@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>Astrophysics | Jonah Wilkes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>Astrophysics</h1>
+        <p>Sub-Subgiants • Radial velocities • Binary inference</p>
+      </div>
+      <div class="links">
+        <a class="badge" href="index.html">Back to Home</a>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab active" href="astrophysics.html">Astrophysics</a>
+      <a class="tab" href="gnss.html">GNSS / Signal Processing</a>
+      <a class="tab" href="aircraft-spacecraft.html">Aircraft / Spacecraft</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>Overview</h2>
+        <p class="muted">
+          Replace this with 2–4 sentences describing your astrophysics research focus and what you contributed.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <h2>Projects</h2>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Sub-Subgiant RV Pipeline</h3>
+          <p><b>Goal:</b> (What question were you answering?)</p>
+          <p><b>Methods:</b> BF/CCF → RV extraction → uncertainties → QA plots.</p>
+          <p><b>Result:</b> (What improved / what you discovered?)</p>
+          <div class="tags"><span>Python</span><span>Astropy</span><span>Spectroscopy</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Orbital Inference (The Joker)</h3>
+          <p><b>Goal:</b> infer orbital parameters from RV data.</p>
+          <p><b>Methods:</b> priors → sampling → diagnostics → best-fit curves.</p>
+          <p><b>Result:</b> (Key distributions, period ranges, notable systems.)</p>
+          <div class="tags"><span>The Joker</span><span>Bayesian</span><span>RV</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Paper / Manuscript Contribution</h3>
+          <p><b>Role:</b> (analysis / code / figures / writing)</p>
+          <p><b>Status:</b> (in prep / submitted / published)</p>
+          <div class="tags"><span>Research</span><span>Writing</span><span>Figures</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
