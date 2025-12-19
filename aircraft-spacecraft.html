@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>Aircraft / Spacecraft | Jonah Wilkes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>Aircraft / Spacecraft</h1>
+        <p>Conceptual design • Optimization • Mission analysis</p>
+      </div>
+      <div class="links">
+        <a class="badge" href="index.html">Back to Home</a>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="astrophysics.html">Astrophysics</a>
+      <a class="tab" href="gnss.html">GNSS / Signal Processing</a>
+      <a class="tab active" href="aircraft-spacecraft.html">Aircraft / Spacecraft</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>Overview</h2>
+        <p class="muted">
+          Replace this with a 2–4 sentence overview of your design/analysis work (SUAVE, MDO, mission design, etc.).
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <h2>Projects</h2>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Conceptual Aircraft Design Optimization Interface</h3>
+          <p><b>Goal:</b> build a workflow to explore/optimize design spaces.</p>
+          <p><b>Methods:</b> SUAVE analyses + sampling/optimization + visualization.</p>
+          <p><b>Result:</b> (what improved / what you demonstrated.)</p>
+          <div class="tags"><span>Python</span><span>SUAVE</span><span>Optimization</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Trajectory / Mission Design Work</h3>
+          <p><b>Goal:</b> plan transfers/insertion and estimate Δv and mass.</p>
+          <p><b>Methods:</b> Lambert solver, porkchop plots, trade studies.</p>
+          <p><b>Result:</b> (design choices + quantitative outcomes.)</p>
+          <div class="tags"><span>Astrodynamics</span><span>Lambert</span><span>Porkchop</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
