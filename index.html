@@ -1,122 +1,110 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Don't index -->
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <!-- discourage indexing -->
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
 
   <title>Jonah Wilkes | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="title">
-      <h1>Jonah Wilkes</h1>
-      <p>Aerospace Engineering • Astrophysics • GNSS/Signal Processing</p>
-    </div>
-    <div class="links">
-      <a href="assets/Jonah_Wilkes_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </header>
-
-  <nav class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab active" data-tab="bio" role="tab" aria-selected="true">Bio</button>
-    <button class="tab" data-tab="astro" role="tab">Astrophysics</button>
-    <button class="tab" data-tab="gnss" role="tab">GNSS / Signal Processing</button>
-    <button class="tab" data-tab="aero" role="tab">Aircraft / Spacecraft</button>
-    <button class="tab" data-tab="nasa" role="tab">NASA / CAD / Proposals</button>
-  </nav>
-
-  <main class="content">
-    <section class="panel active" id="bio" role="tabpanel">
-      <h2>Bio</h2>
-      <p>
-        Short summary goes here. Add your focus areas and what you're looking for (mission design, orbital analysis, etc.).
-      </p>
-
-      <h3>Highlights</h3>
-      <ul>
-        <li>First place, Fall 2024 Armour College of Engineering Expo — conceptual aircraft design optimization work.</li>
-        <li>Astrophysics research: Sub-Subgiants, RV pipelines, Monte Carlo/orbital inference.</li>
-        <li>GNSS positioning: differential baseline estimation, Kalman filtering, LAMBDA ambiguity resolution.</li>
-      </ul>
-    </section>
-
-    <section class="panel" id="astro" role="tabpanel">
-      <h2>Astrophysics</h2>
-
-      <div class="card">
-        <h3>Sub-Subgiant RV Analysis Pipeline</h3>
-        <p>Broadening functions → RV extraction → orbital fits (The Joker) → population inference.</p>
-        <div class="tags">
-          <span>Python</span><span>Astropy</span><span>The Joker</span>
-        </div>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>Jonah Wilkes</h1>
+        <p>Aerospace Engineering • Astrophysics • GNSS / Signal Processing</p>
       </div>
-
-      <div class="card">
-        <h3>Paper / Results</h3>
-        <p>Add a short paragraph + key plots/screenshots.</p>
-        <div class="tags">
-          <span>Research</span><span>RV</span><span>Binary stars</span>
-        </div>
+      <div class="links">
+        <!-- Replace these with your real links -->
+        <a class="badge" href="assets/Jonah_Wilkes_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        <a class="badge" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a class="badge" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="badge" href="mailto:your.email@example.com">Email</a>
       </div>
-    </section>
+    </header>
 
-    <section class="panel" id="gnss" role="tabpanel">
-      <h2>GNSS / Signal Processing</h2>
+    <nav class="tabs">
+      <a class="tab active" href="index.html">Home</a>
+      <a class="tab" href="astrophysics.html">Astrophysics</a>
+      <a class="tab" href="gnss.html">GNSS / Signal Processing</a>
+      <a class="tab" href="aircraft-spacecraft.html">Aircraft / Spacecraft</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
+    </nav>
 
-      <div class="card">
-        <h3>Differential GPS Baseline + Kalman Filter</h3>
-        <p>Epoch LS baseline → CV-KF smoothing → ECEF DD code+phase + LAMBDA.</p>
-        <div class="tags">
-          <span>MATLAB</span><span>Kalman Filter</span><span>LAMBDA</span>
-        </div>
+    <main>
+      <div class="grid">
+        <section class="card col-7">
+          <h2>Bio</h2>
+          <p class="muted">
+            Replace this with a strong 3–6 sentence summary: what you do, what you’ve built/researched,
+            and what roles you’re targeting (e.g., mission design, orbit analysis, GNSS, aerospace R&amp;D).
+          </p>
+
+          <div class="section">
+            <h3>What I’m focused on</h3>
+            <ul>
+              <li>Orbit / mission analysis, trajectory design, and simulation pipelines</li>
+              <li>GNSS positioning + estimation (LS/KF, ambiguity resolution, signal processing)</li>
+              <li>Applied research in astrophysics (RV pipelines, binary inference)</li>
+              <li>Aircraft/spacecraft design projects (conceptual design, analysis, optimization)</li>
+            </ul>
+          </div>
+        </section>
+
+        <aside class="card col-5">
+          <h2>Quick Summary</h2>
+          <ul>
+            <li><b>Tools:</b> Python, MATLAB, Jupyter, Git</li>
+            <li><b>Strengths:</b> modeling, estimation, analysis, clean documentation</li>
+            <li><b>Interests:</b> mission design, GNSS, aerospace systems</li>
+          </ul>
+
+          <div class="section">
+            <h3>Jump to deep dives</h3>
+            <ul>
+              <li><a href="astrophysics.html">Astrophysics →</a></li>
+              <li><a href="gnss.html">GNSS / Signal Processing →</a></li>
+              <li><a href="aircraft-spacecraft.html">Aircraft / Spacecraft →</a></li>
+              <li><a href="nasa.html">NASA / CAD / Proposals →</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <section class="card col-12">
+          <h2>Highlights (top projects)</h2>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Conceptual Aircraft Design Optimization Interface</h3>
+            <p class="muted">One-liner: what it is + what it achieved.</p>
+            <div class="tags"><span>Python</span><span>SUAVE</span><span>MDO</span></div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Sub-Subgiant RV Analysis + Orbital Inference</h3>
+            <p class="muted">One-liner: pipeline + inference + outcome.</p>
+            <div class="tags"><span>Python</span><span>Astropy</span><span>The Joker</span></div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Differential GNSS Positioning + Kalman Filtering</h3>
+            <p class="muted">One-liner: baseline estimation + filtering + ambiguity resolution.</p>
+            <div class="tags"><span>MATLAB</span><span>Kalman Filter</span><span>LAMBDA</span></div>
+          </div>
+        </section>
       </div>
-    </section>
+    </main>
 
-    <section class="panel" id="aero" role="tabpanel">
-      <h2>Aircraft / Spacecraft</h2>
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes • Not indexed (robots/noindex)
+    </footer>
+  </div>
 
-      <div class="card">
-        <h3>Conceptual Aircraft Design Optimization Interface</h3>
-        <p>Design space visualization + optimization workflows built around SUAVE and MDO concepts.</p>
-        <div class="tags">
-          <span>Python</span><span>SUAVE</span><span>MDO</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Mission Design Projects</h3>
-        <p>Titan mission planning (transfer, aerocapture, insertion, mass estimates).</p>
-        <div class="tags">
-          <span>Astrodynamics</span><span>Lambert</span><span>Porkchop</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="nasa" role="tabpanel">
-      <h2>NASA / CAD / Proposals</h2>
-
-      <div class="card">
-        <h3>CAD & Proposal Work</h3>
-        <p>Add entries for CAD models, subsystem designs, proposal writing, trades, etc.</p>
-        <div class="tags">
-          <span>CAD</span><span>Systems</span><span>Writing</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Jonah Wilkes • Not indexed (robots/noindex)</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
