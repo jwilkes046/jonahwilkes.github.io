@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>GNSS / Signal Processing | Jonah Wilkes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>GNSS / Signal Processing</h1>
+        <p>Differential positioning • Estimation • Filtering</p>
+      </div>
+      <div class="links">
+        <a class="badge" href="index.html">Back to Home</a>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="astrophysics.html">Astrophysics</a>
+      <a class="tab active" href="gnss.html">GNSS / Signal Processing</a>
+      <a class="tab" href="aircraft-spacecraft.html">Aircraft / Spacecraft</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>Overview</h2>
+        <p class="muted">
+          Replace this with a short description of your GNSS work (baseline estimation, Kalman filters, ambiguity resolution, etc.).
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <h2>Projects</h2>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Epoch-by-Epoch Baseline Estimation (LS)</h3>
+          <p><b>Goal:</b> compute baseline in ENU/ECEF from observation data.</p>
+          <p><b>Methods:</b> measurement model → least squares → ENU error analysis.</p>
+          <p><b>Result:</b> (RMS / convergence / plots.)</p>
+          <div class="tags"><span>MATLAB</span><span>Least Squares</span><span>ENU/ECEF</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Constant-Velocity Kalman Filter + Smoothing</h3>
+          <p><b>Goal:</b> smooth noisy baseline estimate over time.</p>
+          <p><b>Methods:</b> state model → CV-KF → tuning → residual plots.</p>
+          <p><b>Result:</b> (Noise reduction / stability / metrics.)</p>
+          <div class="tags"><span>Kalman Filter</span><span>Estimation</span><span>Time Series</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Double-Difference Code+Phase + LAMBDA</h3>
+          <p><b>Goal:</b> high-precision relative positioning.</p>
+          <p><b>Methods:</b> DD formulation → ambiguity resolution → validation.</p>
+          <p><b>Result:</b> (sub-meter / cm-level improvements, if applicable.)</p>
+          <div class="tags"><span>LAMBDA</span><span>Carrier Phase</span><span>DD</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
