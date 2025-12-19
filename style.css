@@ -73,11 +73,16 @@ a:hover { text-decoration: underline; }
 }
 
 .tab.active {
-  background: #172544;
+  background: rgba(209, 26, 42, 0.15);
   border-color: var(--accent);
 }
 
-.tab:hover { text-decoration: none; border-color: var(--accent); }
+
+.tab:hover {
+  border-color: var(--accent);
+  background: rgba(209, 26, 42, 0.10);
+}
+
 
 main { padding: 18px 20px 40px; }
 
