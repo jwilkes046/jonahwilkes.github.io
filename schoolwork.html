@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>Schoolwork | Jonah Wilkes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>Schoolwork</h1>
+        <p>Course projects • Design work • Technical analyses</p>
+      </div>
+      <div class="links">
+        <a class="badge" href="index.html">Back to Home</a>
+      </div>
+    </header>
+
+    <!-- Top-level nav (same style as other pages) -->
+    <nav class="tabs">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="astrophysics.html">Astrophysics</a>
+      <a class="tab" href="gnss.html">GNSS / Signal Processing</a>
+      <a class="tab active" href="schoolwork.html">Schoolwork</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
+    </nav>
+
+    <!-- Sub-tabs for schoolwork -->
+    <nav class="tabs" style="border-bottom:none; padding-top: 8px;">
+      <a class="tab active" href="schoolwork.html">Overview</a>
+      <a class="tab" href="schoolwork-aircraft.html">Aircraft Design</a>
+      <a class="tab" href="schoolwork-spacecraft.html">Spacecraft Design</a>
+      <a class="tab" href="schoolwork-navigation.html">Navigation Classwork</a>
+    </nav>
+
+    <main>
+      <section class="card">
+        <h2>Overview</h2>
+        <p class="muted">
+          This page is your “schoolwork hub.” Add 3–6 sentences summarizing the themes:
+          design process, analysis, simulation, documentation, and results.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top:14px;">
+        <h2>Highlights</h2>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Aircraft Design</h3>
+          <p class="muted">Short summary of your strongest aircraft project(s).</p>
+          <p><a href="schoolwork-aircraft.html">Go to Aircraft Design →</a></p>
+          <div class="tags"><span>SUAVE</span><span>Aero</span><span>Optimization</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Spacecraft Design</h3>
+          <p class="muted">Short summary of spacecraft/mission design work.</p>
+          <p><a href="schoolwork-spacecraft.html">Go to Spacecraft Design →</a></p>
+          <div class="tags"><span>Astrodynamics</span><span>Mission Design</span></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Navigation Classwork</h3>
+          <p class="muted">Short summary of GNSS positioning, filtering, and estimation work.</p>
+          <p><a href="schoolwork-navigation.html">Go to Navigation Classwork →</a></p>
+          <div class="tags"><span>Kalman</span><span>GNSS</span><span>Estimation</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
