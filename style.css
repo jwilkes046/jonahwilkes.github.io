@@ -30,10 +30,12 @@ a:hover { text-decoration: underline; }
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end; /* ADD THIS */
   gap: 24px;
   padding: 28px 20px;
   border-bottom: 1px solid var(--border);
 }
+
 
 .header h1 { margin: 0; font-size: 28px; }
 .header p { margin: 6px 0 0; color: var(--muted); }
@@ -41,9 +43,10 @@ a:hover { text-decoration: underline; }
 .links {
   display: flex;
   gap: 14px;
-  align-items: center;
+  align-items: flex-end; /* CHANGE THIS (was center) */
   flex-wrap: wrap;
 }
+
 
 .badge {
   border: 1px solid var(--border2);
