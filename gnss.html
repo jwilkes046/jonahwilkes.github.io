@@ -61,12 +61,11 @@
         <div class="card" style="margin-top:12px;">
           <h3>Raw Data Confirmation (probedata.m)</h3>
           <p class="muted">
-            I am currently validating each acquisition day by inspecting the raw USRP binary
-            recordings before performing any higher-level GNSS-R processing. Using a MATLAB
-            workflow (probedata.m), I generate a compact set of diagnostics — a time-domain
-            trace, a Welch power spectral density estimate, and a histogram of sample values —
-            to confirm signal integrity, identify noise-only captures, and flag configuration
-            or hardware-related irregularities.
+            The first step was validating each acquisition day by inspecting the raw USRP binary
+            recordings before performing any higher-level GNSS-R processing. Using MATLAB, I 
+            generated a compact set of diagnostics — a time-domain trace, a Welch power spectral 
+            density estimate, and a histogram of sample values — to confirm signal integrity, 
+            identify noise-only captures, and flag configuration or hardware-related irregularities.
           </p>
           <p class="muted">
             This step allows me to directly compare field recordings against lab-collected
@@ -90,11 +89,6 @@
             applying incoherent averaging, I evaluate how detectability improves with
             integration time while accounting for signal decorrelation and measurement
             variability across collection periods.
-          </p>
-          <p class="muted">
-            This SNR workflow provides a consistent, repeatable basis for comparing reflection
-            quality across sites and days, and it supports the interpretation of reflected GNSS
-            signal behavior over glacial surfaces for inclusion in the upcoming publication.
           </p>
           <div class="tags">
             <span>GNSS-R</span><span>SNR Estimation</span><span>Coherent Integration</span><span>Incoherent Averaging</span>
