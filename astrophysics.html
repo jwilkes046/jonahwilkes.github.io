@@ -8,12 +8,13 @@
   <title>Astrophysics Research | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="wrap">
     <header class="header">
       <div>
         <h1>Astrophysics Research</h1>
-        <p>Sub-Subgiants • Radial velocities • Binary Stars</p>
+        <p>Sub-Subgiants • Radial Velocities • Binary Stars</p>
       </div>
       <div class="links">
         <a class="badge" href="index.html">Back to Home</a>
@@ -23,61 +24,214 @@
     <nav class="tabs">
       <a class="tab" href="index.html">Home</a>
       <a class="tab active" href="astrophysics.html">Astrophysics Research</a>
-      <a class="tab" href="gnss.html">Anctarctic Signal Processing Research</a>
-      <a class="tab" href="nasa.html">NASA L'SPACE</a>
+      <a class="tab" href="gnss.html">Anctaractic Signal Processing Research</a>
+      <a class="tab" href="nasa.html">NASA L&#39;SPACE</a>
       <a class="tab" href="schoolwork.html">Schoolwork</a>
     </nav>
 
     <main>
+      <!-- =======================
+           OVERVIEW
+      ======================== -->
       <section class="card">
         <h2>Overview</h2>
-    
+
         <p class="muted">
-          As an Astrophysics Researcher at Illinois Tech, I have been leading a project to 
-          examine the formation mechanisms and classification of Sub-Subgiant stars. I 
-          have analyzed stellar spectra of 98 systems to extract radial velocities and 
-          orbital parameters of each stellar source. To complement this observational data, 
-          I built Monte Carlo simulations of synthetic binary populations, with which I was 
+          As an Astrophysics Researcher at Illinois Tech, I have been leading a project to
+          examine the formation mechanisms and classification of Sub-Subgiant stars. I
+          have analyzed stellar spectra of 98 systems to extract radial velocities and
+          orbital parameters of each stellar source. To complement this observational data,
+          I built Monte Carlo simulations of synthetic binary populations, with which I was
           able to directly compare the modeled distributions to the observed data.
         </p>
-    
+
         <p class="muted">
-          I am currently writing this work into a publishable document, focusing on the 
-          interpretation of the observational data and statistical results. My analysis 
-          indicates that Sub-Subgiant stars are very likely to be binary systems, reinforcing 
-          binarity as a fundamental characteristic of this stellar population. My efforts 
-          toward this publication include synthesizing these results within existing 
-          theoretical formation channels and developing a consistent interpretation of the 
-          observed orbital properties. This paper aims to present a statistically grounded 
+          I am currently writing this work into a publishable document, focusing on the
+          interpretation of the observational data and statistical results. My analysis
+          indicates that Sub-Subgiant stars are predominantly found in binary systems, reinforcing
+          binarity as a fundamental characteristic of this stellar population. My efforts
+          toward this publication include synthesizing these results within existing
+          theoretical formation channels and developing a consistent interpretation of the
+          observed orbital properties. This paper aims to present a statistically grounded
           classification of Sub-Subgiant systems and their dominant formation mechanisms.
         </p>
       </section>
 
+      <!-- =======================
+           RESEARCH WORKFLOW
+      ======================== -->
       <section class="card" style="margin-top:14px;">
-        <h2>Projects</h2>
+        <h2>Research Workflow</h2>
 
+        <p class="muted">
+          This project is organized as a single end-to-end workflow: converting spectroscopy into radial velocities,
+          interpreting those velocities through synthetic population modeling, and testing formation hypotheses using
+          distribution-level statistics. The sections below summarize the major pieces of that workflow, with representative
+          figures from the manuscript draft included where they best illustrate the approach.
+        </p>
+
+        <!-- 1) RV Extraction / BF -->
         <div class="card" style="margin-top:12px;">
-          <h3>Sub-Subgiant RV Pipeline</h3>
-          <p><b>Goal:</b> (What question were you answering?)</p>
-          <p><b>Methods:</b> BF/CCF → RV extraction → uncertainties → QA plots.</p>
-          <p><b>Result:</b> (What improved / what you discovered?)</p>
-          <div class="tags"><span>Python</span><span>Astropy</span><span>Spectroscopy</span></div>
+          <h3>Radial Velocity Extraction (Broadening Functions)</h3>
+
+          <p class="muted">
+            The foundation of the analysis is a radial-velocity extraction pipeline built around broadening functions (BFs).
+            For each system, the spectra are processed to compute BFs and classify their morphology (e.g., SB1, SB2, or asymmetric
+            profiles). These BF profiles are then fit to extract radial-velocity measurements across epochs, with uncertainty estimates
+            derived through resampling methods (bootstrap) to provide realistic error bars for each measurement.
+          </p>
+
+          <p class="muted">
+            This approach produces a consistent set of RV curves across the sample and enables direct, quantitative measures of variability.
+            In addition to the epoch-by-epoch velocities, semi-amplitude-style metrics (e.g., K estimates from extrema in the measured RVs)
+            are computed as a compact representation of each system’s RV variability. Those derived distributions become the key connection
+            point between the observed sample and the synthetic populations tested later in the workflow.
+          </p>
+
+          <!-- Figure 2 -->
+          <div class="figure">
+            <!-- Replace file name if your export differs -->
+            <img src="assets/fig2_bf_classifications.png" alt="Figure 2 — Broadening Function classifications and example fits" />
+            <div class="figcap">
+              <b>Include from paper draft:</b> <b>Figure 2</b> — BF classifications (SB1 / SB2 / Asymmetric) with example fits used for RV extraction.
+              <div class="mini">Place the exported image in <code>assets/</code> and keep the filename consistent with the <code>src</code>.</div>
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>Python</span><span>Spectroscopy</span><span>Broadening Functions</span><span>Bootstrap</span>
+          </div>
         </div>
 
+        <!-- 2) Monte Carlo population modeling -->
         <div class="card" style="margin-top:12px;">
-          <h3>Orbital Inference (The Joker)</h3>
-          <p><b>Goal:</b> infer orbital parameters from RV data.</p>
-          <p><b>Methods:</b> priors → sampling → diagnostics → best-fit curves.</p>
-          <p><b>Result:</b> (Key distributions, period ranges, notable systems.)</p>
-          <div class="tags"><span>The Joker</span><span>Bayesian</span><span>RV</span></div>
+          <h3>Population Modeling (Monte Carlo Synthetic Binaries)</h3>
+
+          <p class="muted">
+            To interpret the observational RV variability, I constructed Monte Carlo simulations of synthetic binary populations.
+            Rather than comparing “true” orbital parameters directly, the simulations are designed to reproduce what the observations
+            would have measured under realistic cadence limitations. Each synthetic population begins with a candidate underlying period
+            distribution (e.g., field-like vs short-period or tidally synchronized scenarios) and then draws the additional orbital and
+            geometric parameters needed to generate RV curves.
+          </p>
+
+          <p class="muted">
+            A critical step is forward-modeling the observing cadence: synthetic orbits are sampled in clustered “bursts” that mimic the
+            multi-night observational structure common in real campaigns. This makes the comparison fair—because sparse sampling can systematically
+            underestimate a system’s true semi-amplitude, the simulations explicitly capture those effects. The result is a set of synthetic,
+            observation-matched semi-amplitude distributions that can be compared directly to the measured distribution from the SSG sample.
+          </p>
+
+          <!-- Figure 5 -->
+          <div class="figure">
+            <img src="assets/fig5_simulated_sampling.png" alt="Figure 5 — Simulated orbit with cadence sampling effects" />
+            <div class="figcap">
+              <b>Include from paper draft:</b> <b>Figure 5</b> — example simulated orbit showing how clustered sampling can under-measure the true semi-amplitude.
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>Monte Carlo</span><span>Forward Modeling</span><span>Sampling Bias</span><span>Binary Populations</span>
+          </div>
         </div>
 
+        <!-- 3) Results: CDF + KS -->
         <div class="card" style="margin-top:12px;">
-          <h3>Paper / Manuscript Contribution</h3>
-          <p><b>Role:</b> (analysis / code / figures / writing)</p>
-          <p><b>Status:</b> (in prep / submitted / published)</p>
-          <div class="tags"><span>Research</span><span>Writing</span><span>Figures</span></div>
+          <h3>Results (CDF Comparison &amp; K–S Statistical Testing)</h3>
+
+          <p class="muted">
+            The core results are presented as distribution-level comparisons between observed and simulated semi-amplitude behavior.
+            For each candidate population model, the synthetic semi-amplitudes are converted into cumulative distribution functions (CDFs),
+            which are then compared against the measured CDF from the observational sample. This format makes it easy to see which models
+            reproduce the overall structure of the data and which deviate systematically (for example, by producing too many low-variability
+            systems or failing to generate the observed high-amplitude tail).
+          </p>
+
+          <p class="muted">
+            To move beyond qualitative agreement, I apply two-sample Kolmogorov–Smirnov (K–S) testing to quantify consistency between each
+            modeled distribution and the observed sample. Together, the CDF overlays and K–S results provide a statistical basis for evaluating
+            proposed formation scenarios. In the current manuscript, this analysis supports the interpretation that Sub-Subgiants are predominantly
+            binaries and that short-period / synchronized scenarios best reproduce the observed variability, while broader field-like period
+            distributions are less consistent with the data.
+          </p>
+
+          <div class="two-col">
+            <!-- Figure 6 -->
+            <div class="figure">
+              <img src="assets/fig6_cdf_ks.png" alt="Figure 6 — CDF comparisons and KS testing panels" />
+              <div class="figcap">
+                <b>Include from paper draft:</b> <b>Figure 6</b> — CDF comparisons used for the statistical tests (large-sample simulation overlays).
+              </div>
+            </div>
+
+            <!-- Optional slot: add Fig 7 or KS tables later -->
+            <div class="figure">
+              <img src="assets/fig_optional.png" alt="Optional figure slot" />
+              <div class="figcap">
+                <b>Optional:</b> place a second supporting visual here (e.g., a small-sample CDF panel, a KS summary table, or a key result figure).
+                <div class="mini">If you don’t want a second image, you can remove this entire block.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>CDF</span><span>KS Test</span><span>Statistical Comparison</span><span>Results</span>
+          </div>
         </div>
+
+        <!-- 4) Orbital fitting (Joker) AFTER results; not part of paper yet -->
+        <div class="card" style="margin-top:12px;">
+          <h3>Orbital Fitting (The Joker) <span class="note">— next phase</span></h3>
+
+          <p class="muted">
+            A parallel track of the project is orbital inference using <i>The Joker</i>, which provides a Bayesian framework for fitting orbital
+            solutions to RV time series. This component is being developed as a continuation of the RV extraction work, but it is not yet included
+            in the current manuscript draft. The motivation is to move from semi-amplitude distributions to full posterior constraints on parameters
+            such as period, eccentricity, and semi-amplitude for systems with sufficient temporal coverage.
+          </p>
+
+          <p class="muted">
+            In practice, this involves defining priors appropriate for Sub-Subgiant binaries, sampling orbital posteriors from each RV dataset,
+            and validating solutions through diagnostics and posterior predictive checks. As this work matures, it will enable per-system orbital
+            solutions alongside the population-level conclusions already supported by the CDF and K–S analysis, and it will provide a direct bridge
+            from “confirmed binarity” to well-characterized orbital architectures.
+          </p>
+
+          <!-- Future figure slot -->
+          <div class="figure">
+            <img src="assets/fig_joker_placeholder.png" alt="Placeholder — The Joker orbital fit figure" />
+            <div class="figcap">
+              <b>Future figure slot:</b> add an example RV curve with posterior draws / best-fit model, or a corner plot summarizing key orbital parameters.
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>The Joker</span><span>Bayesian Inference</span><span>RV Orbits</span><span>Posteriors</span>
+          </div>
+        </div>
+
+        <!-- 5) Writing / paper discussion -->
+        <div class="card" style="margin-top:12px;">
+          <h3>Manuscript (Writing &amp; Interpretation)</h3>
+
+          <p class="muted">
+            The current phase of the project is focused on consolidating the pipeline, simulations, and statistical conclusions into a publishable manuscript.
+            This includes writing the methods in a reproducible way (so that the BF extraction and uncertainty model are clearly defined), presenting the population
+            modeling with explicit cadence effects, and organizing the results around hypothesis-driven distribution tests rather than isolated case studies.
+          </p>
+
+          <p class="muted">
+            The discussion work is where the observational constraints are connected back to formation theory. Here, the goal is to present a coherent interpretation
+            of what the RV variability and distribution-level statistics imply about the Sub-Subgiant population—specifically, that binarity is a defining characteristic
+            and that the data are most consistent with short-period / synchronized scenarios. This manuscript is being prepared as a first-author publication and is
+            intended to serve as both a classification result and a statistically grounded constraint on dominant formation pathways.
+          </p>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>Scientific Writing</span><span>Figures</span><span>Interpretation</span><span>Publication</span>
+          </div>
+        </div>
+
       </section>
     </main>
 
