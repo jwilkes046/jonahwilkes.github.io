@@ -89,12 +89,11 @@
           </p>
 
           <!-- Figure 2 -->
-          <div class="figure">
+          <div class="figure" style="margin-top:10px;">
             <!-- Replace file name if your export differs -->
             <img src="assets/BF_Fig.PNG" alt="Broadening Function classifications and example fits" />
             <div class="figcap">
-              <b>Include from paper draft:</b> <b>Figure 2</b> — BF classifications (SB1 / SB2 / Asymmetric) with example fits used for RV extraction.
-              <div class="mini">Place the exported image in <code>assets/</code> and keep the filename consistent with the <code>src</code>.</div>
+              <b>Figure</b> — BF classifications (SB1 / SB2 / Asymmetric) with example fits used for RV extraction.
             </div>
           </div>
 
@@ -117,16 +116,16 @@
 
           <p class="muted">
             A critical step is forward-modeling the observing cadence: synthetic orbits are sampled in clustered “bursts” that mimic the
-            multi-night observational structure common in real campaigns. This makes the comparison fair—because sparse sampling can systematically
+            multi-night observational structure common in real campaigns. This makes the comparison fair; because sparse sampling can systematically
             underestimate a system’s true semi-amplitude, the simulations explicitly capture those effects. The result is a set of synthetic,
             observation-matched semi-amplitude distributions that can be compared directly to the measured distribution from the SSG sample.
           </p>
 
           <!-- Figure 5 -->
-          <div class="figure">
+          <div class="figure" style="margin-top:10px;">
             <img src="assets/Simulated_Orbit_1.png" alt="Figure 5 — Simulated orbit with cadence sampling effects" />
             <div class="figcap">
-              <b>Include from paper draft:</b> <b>Figure 5</b> — example simulated orbit showing how clustered sampling can under-measure the true semi-amplitude.
+              <b>Figure</b> — Example simulated orbit showing how clustered sampling can under-measure the true semi-amplitude.
             </div>
           </div>
 
@@ -157,19 +156,22 @@
 
           <div class="two-col">
             <!-- Figure 6 -->
-            <div class="figure">
+            <div class="figure" style="margin-top:10px;">
               <img src="assets/CDF_Paper.png" alt="Cumulative Distribution Function Comparison of Results" />
               <div class="figcap">
-                <b>Include from paper draft:</b> <b>Figure 6</b> — CDF comparisons used for the statistical tests (large-sample simulation overlays).
+                <b>Figure</b> — Cumulative Distribution Function (CDF) comparisons using each of the four simulated period 
+                distributions from the large-sample simulation (N = 10,000), with observed semi-amplitude measurements 
+                overlaid for comparison
               </div>
             </div>
 
             <!-- Optional slot: add Fig 7 or KS tables later -->
-            <div class="figure">
-              <img src="assets/CDF_full_Combine_plot.png" alt="Optional figure slot" />
+            <div class="figure" style="margin-top:10px;">
+              <img src="assets/KS_1.PNG" alt="Optional figure slot" />
               <div class="figcap">
-                <b>Optional:</b> place a second supporting visual here (e.g., a small-sample CDF panel, a KS summary table, or a key result figure).
-                <div class="mini">If you don’t want a second image, you can remove this entire block.</div>
+                <b>Figure</b> — KS Test Summary comparison for the single, high sample count run. Note the correlation value 
+                (p-value) is significant for the two short-period binary simulated distributions, while the two long-period
+                simulated distributions show no correlation, as expected.
               </div>
             </div>
           </div>
@@ -198,21 +200,21 @@
           </p>
 
           <!-- The Joker orbital fits -->
-          <div class="figure">
+          <div class="figure" style="margin-top:10px;">
             <img src="assets/V834Her_pass2_fit.png" alt="The Joker orbital fit for V834 Her (pass 2)" />
             <div class="figcap">
               <b>The Joker orbital fit:</b> V834&nbsp;Her — posterior RV curves and best-fit solution (pass 2).
             </div>
           </div>
           
-          <div class="figure">
+          <div class="figure" style="margin-top:10px;">
             <img src="assets/MPBoo_pass3_fit.png" alt="The Joker orbital fit for MP Boo (pass 3)" />
             <div class="figcap">
               <b>The Joker orbital fit:</b> MP&nbsp;Boo — refined orbital solution from third-pass sampling.
             </div>
           </div>
           
-          <div class="figure">
+          <div class="figure" style="margin-top:10px;">
             <img src="assets/QZBoo_pass1_fit.png" alt="The Joker orbital fit for QZ Boo (pass 1)" />
             <div class="figcap">
               <b>The Joker orbital fit:</b> QZ&nbsp;Boo — initial orbital constraints from first-pass sampling.
@@ -220,14 +222,15 @@
           </div>
 
 
+
           <div class="tags" style="margin-top:10px;">
-            <span>The Joker</span><span>Bayesian Inference</span><span>RV Orbits</span><span>Posteriors</span>
+            <span>Python</span><span>The Joker</span><span>Bayesian Inference</span><span>RV Orbits</span><span>Posteriors</span>
           </div>
         </div>
 
         <!-- 5) Writing / paper discussion -->
         <div class="card" style="margin-top:12px;">
-          <h3>Manuscript (Writing &amp; Interpretation)</h3>
+          <h3>Publication (Writing &amp; Interpretation)</h3>
 
           <p class="muted">
             The current phase of the project is focused on consolidating the pipeline, simulations, and statistical conclusions into a publishable manuscript.
