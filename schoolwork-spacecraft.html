@@ -26,10 +26,10 @@
     <!-- Top-level navigation -->
     <nav class="tabs">
       <a class="tab" href="index.html">Home</a>
-      <a class="tab" href="astrophysics.html">Astrophysics Research</a>
-      <a class="tab" href="gnss.html">Anctarctic Signal Processing Research</a>
-      <a class="tab" href="nasa.html">NASA L'SPACE</a>
+      <a class="tab" href="astrophysics.html">Astrophysics</a>
+      <a class="tab" href="gnss.html">GNSS / Signal Processing</a>
       <a class="tab active" href="schoolwork.html">Schoolwork</a>
+      <a class="tab" href="nasa.html">NASA / CAD / Proposals</a>
     </nav>
 
     <!-- Schoolwork sub-navigation -->
@@ -59,3 +59,46 @@
           <p><b>Results:</b> Identified viable launch windows and mass/propulsion feasibility.</p>
           <div class="tags">
             <span>Astrodynamics</span>
+            <span>Lambert</span>
+            <span>Porkchop</span>
+            <span>Δv Budget</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Orbital Analysis & Trade Studies</h3>
+          <p><b>Goal:</b> Evaluate orbit choices and mission constraints.</p>
+          <p><b>Methods:</b> Parameter sweeps, sensitivity studies, visualization.</p>
+          <p><b>Results:</b> Clear justification for design decisions.</p>
+          <div class="tags">
+            <span>Orbit Design</span>
+            <span>Trade Studies</span>
+            <span>Simulation</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Spacecraft Systems Considerations</h3>
+          <p class="muted">
+            Power, propulsion, communications, and mass constraints integrated
+            into mission-level decisions.
+          </p>
+          <div class="tags">
+            <span>Systems Engineering</span>
+            <span>Propulsion</span>
+            <span>Mass Budget</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
