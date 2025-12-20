@@ -89,7 +89,7 @@
           </p>
 
           <!-- Figure 2 -->
-          <div class="figure" style="margin-top:10px;">
+          <div class="figure" style="margin-top:20px;">
             <!-- Replace file name if your export differs -->
             <img src="assets/BF_Fig.PNG" alt="Broadening Function classifications and example fits" />
             <div class="figcap">
@@ -97,7 +97,7 @@
             </div>
           </div>
 
-          <div class="tags" style="margin-top:10px;">
+          <div class="tags" style="margin-top:20px;">
             <span>Python</span><span>Spectroscopy</span><span>Broadening Functions</span><span>Bootstrap</span>
           </div>
         </div>
@@ -122,14 +122,14 @@
           </p>
 
           <!-- Figure 5 -->
-          <div class="figure" style="margin-top:10px;">
+          <div class="figure" style="margin-top:20px;">
             <img src="assets/Simulated_Orbit_1.png" alt="Figure 5 — Simulated orbit with cadence sampling effects" />
             <div class="figcap">
               <b>Figure</b> — Example simulated orbit showing how clustered sampling can under-measure the true semi-amplitude.
             </div>
           </div>
 
-          <div class="tags" style="margin-top:10px;">
+          <div class="tags" style="margin-top:20px;">
             <span>Monte Carlo</span><span>Forward Modeling</span><span>Sampling Bias</span><span>Binary Populations</span>
           </div>
         </div>
@@ -156,7 +156,7 @@
 
           <div class="two-col">
             <!-- Figure 6 -->
-            <div class="figure" style="margin-top:10px;">
+            <div class="figure" style="margin-top:20px;">
               <img src="assets/CDF_Paper.png" alt="Cumulative Distribution Function Comparison of Results" />
               <div class="figcap">
                 <b>Figure</b> — Cumulative Distribution Function (CDF) comparisons using each of the four simulated period 
@@ -165,18 +165,100 @@
               </div>
             </div>
 
-            <!-- Optional slot: add Fig 7 or KS tables later -->
-            <div class="figure" style="margin-top:10px;">
-              <img src="assets/KS_1.PNG" alt="Optional figure slot" />
-              <div class="figcap">
-                <b>Figure</b> — KS Test Summary comparison for the single, high sample count run. Note the correlation value 
-                (p-value) is significant for the two short-period binary simulated distributions, while the two long-period
-                simulated distributions show no correlation, as expected.
-              </div>
+
+            
+          <div class="figure" style="margin-top:20px; padding:14px;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+              <thead>
+                <tr style="border-bottom:2px solid rgba(255,255,255,0.25);">
+                  <th style="text-align:left; padding:6px;">Distribution</th>
+                  <th style="text-align:center; padding:6px;">Simulated Type</th>
+                  <th style="text-align:center; padding:6px;">KS Value</th>
+                  <th style="text-align:center; padding:6px;">p-value</th>
+                </tr>
+              </thead>
+          
+              <tbody>
+                <tr>
+                  <td colspan="4" style="padding-top:10px; font-weight:600;">
+                    Observations with <b>3+ measurements</b> compared to each simulated distribution
+                  </td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 10<sup>4</sup> days)</td>
+                  <td style="text-align:center;">Observed</td>
+                  <td style="text-align:center;">0.7812</td>
+                  <td style="text-align:center;">0.0000</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 1000 days)</td>
+                  <td style="text-align:center;">Observed</td>
+                  <td style="text-align:center;">0.5153</td>
+                  <td style="text-align:center;">0.0000</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 30 days)</td>
+                  <td style="text-align:center;">Observed</td>
+                  <td style="text-align:center;">0.1285</td>
+                  <td style="text-align:center;">0.1910</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Tidally Locked (Leiner SSGs Distribution)</td>
+                  <td style="text-align:center;">Observed</td>
+                  <td style="text-align:center;">0.1377</td>
+                  <td style="text-align:center;">0.1354</td>
+                </tr>
+          
+                <tr>
+                  <td colspan="4" style="padding-top:14px; font-weight:600;">
+                    Observations with <b>7+ measurements</b> compared to each simulated distribution
+                  </td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 10<sup>4</sup> days)</td>
+                  <td style="text-align:center;">Expected</td>
+                  <td style="text-align:center;">0.7696</td>
+                  <td style="text-align:center;">0.0000</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 1000 days)</td>
+                  <td style="text-align:center;">Expected</td>
+                  <td style="text-align:center;">0.5471</td>
+                  <td style="text-align:center;">0.0000</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Eccentric, Lognormal (2 &lt; P &lt; 30 days)</td>
+                  <td style="text-align:center;">Expected</td>
+                  <td style="text-align:center;">0.1312</td>
+                  <td style="text-align:center;">0.5246</td>
+                </tr>
+          
+                <tr>
+                  <td style="padding:6px;">Tidally Locked (Leiner SSGs Distribution)</td>
+                  <td style="text-align:center;">Expected</td>
+                  <td style="text-align:center;">0.1312</td>
+                  <td style="text-align:center;">0.5244</td>
+                </tr>
+              </tbody>
+            </table>
+          
+            <div class="figcap" style="margin-top:10px;">
+              <b>KS Test Summary.</b> Kolmogorov–Smirnov test results comparing observed semi-amplitude
+              distributions against simulated binary populations. Long-period distributions are
+              strongly inconsistent with the observed sample (low p-values), while short-period
+              and tidally locked distributions show statistically consistent behavior, supporting
+              a predominantly short-period binary interpretation.
             </div>
           </div>
 
-          <div class="tags" style="margin-top:10px;">
+          <div class="tags" style="margin-top:20px;">
             <span>CDF</span><span>KS Test</span><span>Statistical Comparison</span><span>Results</span>
           </div>
         </div>
@@ -200,30 +282,30 @@
           </p>
 
           <!-- The Joker orbital fits -->
-          <div class="figure" style="margin-top:10px;">
+          <div class="figure" style="margin-top:20px;">
             <img src="assets/V834Her_pass2_fit.png" alt="The Joker orbital fit for V834 Her (pass 2)" />
             <div class="figcap">
-              <b>The Joker orbital fit:</b> V834&nbsp;Her — posterior RV curves and best-fit solution (pass 2).
+              <b>The Joker orbital fit:</b> V834&nbsp;Her — initial orbital fits.
             </div>
           </div>
           
-          <div class="figure" style="margin-top:10px;">
+          <div class="figure" style="margin-top:20px;">
             <img src="assets/MPBoo_pass3_fit.png" alt="The Joker orbital fit for MP Boo (pass 3)" />
             <div class="figcap">
-              <b>The Joker orbital fit:</b> MP&nbsp;Boo — refined orbital solution from third-pass sampling.
+              <b>The Joker orbital fit:</b> MP&nbsp;Boo — initial orbital fits.
             </div>
           </div>
           
-          <div class="figure" style="margin-top:10px;">
+          <div class="figure" style="margin-top:20px;">
             <img src="assets/QZBoo_pass1_fit.png" alt="The Joker orbital fit for QZ Boo (pass 1)" />
             <div class="figcap">
-              <b>The Joker orbital fit:</b> QZ&nbsp;Boo — initial orbital constraints from first-pass sampling.
+              <b>The Joker orbital fit:</b> QZ&nbsp;Boo — initial orbital fits.
             </div>
           </div>
 
 
 
-          <div class="tags" style="margin-top:10px;">
+          <div class="tags" style="margin-top:20px;">
             <span>Python</span><span>The Joker</span><span>Bayesian Inference</span><span>RV Orbits</span><span>Posteriors</span>
           </div>
         </div>
@@ -245,7 +327,7 @@
             intended to serve as both a classification result and a statistically grounded constraint on dominant formation pathways.
           </p>
 
-          <div class="tags" style="margin-top:10px;">
+          <div class="tags" style="margin-top:20px;">
             <span>Scientific Writing</span><span>Figures</span><span>Interpretation</span><span>Publication</span>
           </div>
         </div>
