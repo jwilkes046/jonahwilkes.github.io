@@ -7,12 +7,10 @@
   --accent: #d11a2a;   /* bright crimson red */
 
   --text: #f2f2f2;
-  --muted: rgba(242,242,242,0.78);
+  --muted: rgba(242, 242, 242, 0.78);
 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
-
-
 
 * { box-sizing: border-box; }
 
@@ -22,31 +20,44 @@ body {
   color: var(--text);
 }
 
-a { color: var(--accent); }
-a:hover { text-decoration: underline; }
+/* Global link styling: no underlines anywhere */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 .wrap { max-width: 1100px; margin: 0 auto; }
 
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* ADD THIS */
+  align-items: flex-end;       /* bottom-align left block + badges */
   gap: 24px;
   padding: 28px 20px;
   border-bottom: 1px solid var(--border);
 }
 
-
 .header h1 { margin: 0; font-size: 28px; }
-.header p { margin: 6px 0 0; color: var(--muted); }
+.header p  { margin: 6px 0 0; color: var(--muted); }
+
+/* Ensure your second line (subline) is NOT smaller unless you want it to be */
+.subline {
+  font-size: inherit;
+}
 
 .links {
   display: flex;
   gap: 14px;
-  align-items: flex-end; /* CHANGE THIS (was center) */
+  align-items: flex-end;       /* keep badges aligned to the bottom of header */
   flex-wrap: wrap;
 }
-
 
 .badge {
   border: 1px solid var(--border2);
@@ -80,12 +91,13 @@ a:hover { text-decoration: underline; }
   border-color: var(--accent);
 }
 
-
+/* Unified hover behavior for both badges + tabs */
+.badge:hover,
 .tab:hover {
   border-color: var(--accent);
   background: rgba(209, 26, 42, 0.10);
+  text-decoration: none;
 }
-
 
 main { padding: 18px 20px 40px; }
 
@@ -98,13 +110,19 @@ h2 { margin-top: 0; }
   gap: 14px;
 }
 
-.col-7 { grid-column: span 7; }
-.col-5 { grid-column: span 5; }
+.col-7  { grid-column: span 7; }
+.col-5  { grid-column: span 5; }
 .col-12 { grid-column: span 12; }
 
 @media (max-width: 900px) {
   .col-7, .col-5 { grid-column: span 12; }
-  .header { flex-direction: column; }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;   /* better on mobile */
+  }
+  .links {
+    align-items: flex-start;   /* badges align nicely under header text */
+  }
 }
 
 .card {
@@ -139,22 +157,21 @@ h2 { margin-top: 0; }
   color: var(--muted);
 }
 
-
 /* --- Figure containers should never spill outside cards --- */
 .figure {
   width: 100%;
   max-width: 100%;
-  overflow: hidden;         /* clips anything that tries to spill */
+  overflow: hidden; /* clips anything that tries to spill */
   box-sizing: border-box;
 }
 
 /* --- Make images responsive and constrained --- */
 .figure img {
-  display: block;           /* removes inline whitespace + baseline issues */
-  max-width: 100%;          /* key line: never exceed container width */
-  width: 100%;              /* scale to container width */
-  height: auto;             /* preserve aspect ratio */
-  object-fit: contain;      /* safe for oversized images */
+  display: block;     /* removes inline whitespace + baseline issues */
+  max-width: 100%;    /* key line: never exceed container width */
+  width: 100%;        /* scale to container width */
+  height: auto;       /* preserve aspect ratio */
+  object-fit: contain;
 }
 
 /* If you ever place images outside .figure blocks */
@@ -162,5 +179,3 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-
