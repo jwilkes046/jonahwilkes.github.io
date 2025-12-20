@@ -135,3 +135,29 @@ h2 { margin-top: 0; }
   padding: 18px 20px;
   color: var(--muted);
 }
+
+
+/* --- Figure containers should never spill outside cards --- */
+.figure {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;         /* clips anything that tries to spill */
+  box-sizing: border-box;
+}
+
+/* --- Make images responsive and constrained --- */
+.figure img {
+  display: block;           /* removes inline whitespace + baseline issues */
+  max-width: 100%;          /* key line: never exceed container width */
+  width: 100%;              /* scale to container width */
+  height: auto;             /* preserve aspect ratio */
+  object-fit: contain;      /* safe for oversized images */
+}
+
+/* If you ever place images outside .figure blocks */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
