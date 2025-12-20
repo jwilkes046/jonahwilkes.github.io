@@ -32,7 +32,6 @@
       <section class="card">
         <h2>Overview</h2>
 
-        
         <p class="muted">
           As an Aerospace Researcher at Illinois Tech, I am currently conducting research in
           Global Navigation Satellite System Reflectometry (GNSS-R), focusing on the processing
@@ -41,7 +40,7 @@
           developing MATLAB-based signal processing algorithms to extract surface reflection
           characteristics and quantify signal-to-noise behavior in low-SNR environments.
         </p>
-        
+
         <p class="muted">
           My work involves analyzing the raw data and applying coherent and incoherent
           integration techniques to isolate weak surface reflections from noise and system
@@ -53,34 +52,55 @@
           in experimental GNSS-R analysis, algorithm development, and research-level technical
           communication.
         </p>
-
       </section>
 
+      <!-- REPLACED SECTION -->
       <section class="card" style="margin-top:14px;">
-        <h2>Projects</h2>
+        <h2>Research Workflow</h2>
 
         <div class="card" style="margin-top:12px;">
-          <h3>Epoch-by-Epoch Baseline Estimation (LS)</h3>
-          <p><b>Goal:</b> compute baseline in ENU/ECEF from observation data.</p>
-          <p><b>Methods:</b> measurement model → least squares → ENU error analysis.</p>
-          <p><b>Result:</b> (RMS / convergence / plots.)</p>
-          <div class="tags"><span>MATLAB</span><span>Least Squares</span><span>ENU/ECEF</span></div>
+          <h3>Raw Data Confirmation (probedata.m)</h3>
+          <p class="muted">
+            I am currently validating each acquisition day by inspecting the raw USRP binary
+            recordings before performing any higher-level GNSS-R processing. Using a MATLAB
+            workflow (probedata.m), I generate a compact set of diagnostics — a time-domain
+            trace, a Welch power spectral density estimate, and a histogram of sample values —
+            to confirm signal integrity, identify noise-only captures, and flag configuration
+            or hardware-related irregularities.
+          </p>
+          <p class="muted">
+            This step allows me to directly compare field recordings against lab-collected
+            noise references and use both spectral signatures and on-site notes to justify data
+            screening decisions (including the exclusion of identified noise-only segments)
+            before downstream analysis.
+          </p>
+          <div class="tags">
+            <span>MATLAB</span><span>USRP RF Data</span><span>Welch PSD</span><span>Quality Control</span>
+          </div>
+          <!-- Optional: place representative figures here -->
+          <!-- <div class="figure"><img src="assets/..." alt="Raw data confirmation plots"><p class="muted">Figure X: ...</p></div> -->
         </div>
 
         <div class="card" style="margin-top:12px;">
-          <h3>Constant-Velocity Kalman Filter + Smoothing</h3>
-          <p><b>Goal:</b> smooth noisy baseline estimate over time.</p>
-          <p><b>Methods:</b> state model → CV-KF → tuning → residual plots.</p>
-          <p><b>Result:</b> (Noise reduction / stability / metrics.)</p>
-          <div class="tags"><span>Kalman Filter</span><span>Estimation</span><span>Time Series</span></div>
-        </div>
-
-        <div class="card" style="margin-top:12px;">
-          <h3>Double-Difference Code+Phase + LAMBDA</h3>
-          <p><b>Goal:</b> high-precision relative positioning.</p>
-          <p><b>Methods:</b> DD formulation → ambiguity resolution → validation.</p>
-          <p><b>Result:</b> (sub-meter / cm-level improvements, if applicable.)</p>
-          <div class="tags"><span>LAMBDA</span><span>Carrier Phase</span><span>DD</span></div>
+          <h3>SNR Processing (Coherent &amp; Incoherent Integration)</h3>
+          <p class="muted">
+            After raw-data confirmation, I am currently quantifying reflected-signal strength
+            through signal-to-noise ratio (SNR) processing using coherent and incoherent
+            integration techniques. By systematically varying coherent accumulation lengths and
+            applying incoherent averaging, I evaluate how detectability improves with
+            integration time while accounting for signal decorrelation and measurement
+            variability across collection periods.
+          </p>
+          <p class="muted">
+            This SNR workflow provides a consistent, repeatable basis for comparing reflection
+            quality across sites and days, and it supports the interpretation of reflected GNSS
+            signal behavior over glacial surfaces for inclusion in the upcoming publication.
+          </p>
+          <div class="tags">
+            <span>GNSS-R</span><span>SNR Estimation</span><span>Coherent Integration</span><span>Incoherent Averaging</span>
+          </div>
+          <!-- Optional: place SNR / integration-gain figures here -->
+          <!-- <div class="figure"><img src="assets/..." alt="SNR vs integration"><p class="muted">Figure Y: ...</p></div> -->
         </div>
       </section>
     </main>
