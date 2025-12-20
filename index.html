@@ -19,11 +19,16 @@
         <p>Aerospace Engineering • Astrophysics • GNSS / Signal Processing</p>
       </div>
       <div class="links">
-        <!-- Replace these with your real links -->
         <a class="badge" href="assets/Jonah_Wilkes_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+
+        <!-- From resume: email + phone + location -->
+        <a class="badge" href="mailto:jonah.wilkes@verizon.net">jonah.wilkes@verizon.net</a>
+        <a class="badge" href="tel:+15713269383">571-326-9383</a>
+        <span class="badge">Chicago, IL • Open to relocation</span>
+
+        <!-- Replace these with your real URLs -->
         <a class="badge" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         <a class="badge" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="badge" href="mailto:your.email@example.com">Email</a>
       </div>
     </header>
 
@@ -37,30 +42,48 @@
 
     <main>
       <div class="grid">
+        <!-- LEFT: BIO + FOCUS -->
         <section class="card col-7">
           <h2>Bio</h2>
           <p class="muted">
-            Replace this with a strong 3–6 sentence summary: what you do, what you’ve built/researched,
-            and what roles you’re targeting (e.g., mission design, orbit analysis, GNSS, aerospace R&amp;D).
+            Aerospace Engineering student at Illinois Institute of Technology pursuing a combined B.S./M.S. in Mechanical
+            and Aerospace Engineering (expected Spring 2026) with a completed minor in Astrophysics. Experienced in Python
+            and MATLAB programming, mission design, dynamics analysis, and technical research. Lead author on a forthcoming
+            astrophysics publication analyzing binary star systems and contributing author on a GNSS-Reflectometry study.
+            Recognized for developing optimization tools for aircraft design and contributing to NASA L’SPACE mission design
+            programs. Seeking an entry-level role in Systems Engineering, GNC, Propulsion, or related aerospace disciplines.
           </p>
 
           <div class="section">
             <h3>What I’m focused on</h3>
             <ul>
-              <li>Orbit / mission analysis, trajectory design, and simulation pipelines</li>
-              <li>GNSS positioning + estimation (LS/KF, ambiguity resolution, signal processing)</li>
-              <li>Applied research in astrophysics (RV pipelines, binary inference)</li>
-              <li>Aircraft/spacecraft design projects (conceptual design, analysis, optimization)</li>
+              <li>Systems integration & mission design (ConOps, trade studies, design reviews)</li>
+              <li>GNSS / estimation / signal processing (GNSS-R, SNR extraction, filtering)</li>
+              <li>Astrophysics research (spectroscopy → RV curves → orbital parameter inference)</li>
+              <li>Optimization + modeling pipelines (aircraft design space exploration and tooling)</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Current targets</h3>
+            <ul>
+              <li>Systems Engineering</li>
+              <li>GNC / Navigation</li>
+              <li>Propulsion</li>
+              <li>Mission Design / Analysis</li>
             </ul>
           </div>
         </section>
 
+        <!-- RIGHT: QUICK SUMMARY + LINKS -->
         <aside class="card col-5">
           <h2>Quick Summary</h2>
           <ul>
-            <li><b>Tools:</b> Python, MATLAB, Jupyter, Git</li>
-            <li><b>Strengths:</b> modeling, estimation, analysis, clean documentation</li>
-            <li><b>Interests:</b> mission design, GNSS, aerospace systems</li>
+            <li><b>School:</b> Illinois Institute of Technology (IIT)</li>
+            <li><b>Program:</b> B.S. Aerospace Engineering + M.S. Mechanical & Aerospace Engineering</li>
+            <li><b>Minor:</b> Astrophysics (completed Fall 2024)</li>
+            <li><b>GPA:</b> 3.824 / 4.0</li>
+            <li><b>Tools:</b> Python, MATLAB, STK, Simulink, AVL, XFLR5, Siemens NX, SolidWorks</li>
           </ul>
 
           <div class="section">
@@ -68,33 +91,138 @@
             <ul>
               <li><a href="astrophysics.html">Astrophysics →</a></li>
               <li><a href="gnss.html">GNSS / Signal Processing →</a></li>
-              <li><a href="aircraft-spacecraft.html">Aircraft / Spacecraft →</a></li>
+              <li><a href="schoolwork.html">Schoolwork (Aircraft / Spacecraft / Navigation) →</a></li>
               <li><a href="nasa.html">NASA / CAD / Proposals →</a></li>
             </ul>
           </div>
         </aside>
 
+        <!-- FULL WIDTH: HIGHLIGHTS -->
         <section class="card col-12">
-          <h2>Highlights (top projects)</h2>
+          <h2>Highlights</h2>
 
           <div class="card" style="margin-top:12px;">
-            <h3>Conceptual Aircraft Design Optimization Interface</h3>
-            <p class="muted">One-liner: what it is + what it achieved.</p>
-            <div class="tags"><span>Python</span><span>SUAVE</span><span>MDO</span></div>
+            <h3>GNSS-Reflectometry (GNSS-R) Signal Processing — Research Assistant (May 2025–Present)</h3>
+            <p class="muted">
+              Built MATLAB tooling to process GNSS-R signals from Antarctic glacial study sites, extracting surface reflection
+              characteristics and SNR from raw satellite data. Contributing results to an upcoming peer-reviewed publication.
+            </p>
+            <div class="tags">
+              <span>MATLAB</span><span>Signal Processing</span><span>GNSS-R</span><span>SNR Extraction</span><span>Research</span>
+            </div>
           </div>
 
           <div class="card" style="margin-top:12px;">
-            <h3>Sub-Subgiant RV Analysis + Orbital Inference</h3>
-            <p class="muted">One-liner: pipeline + inference + outcome.</p>
-            <div class="tags"><span>Python</span><span>Astropy</span><span>The Joker</span></div>
+            <h3>Sub-Subgiant / Binary Star Research — Astrophysics Research Assistant (May 2024–Present)</h3>
+            <p class="muted">
+              Lead author on a forthcoming publication investigating binarity in stellar systems. Analyzed stellar spectra in Python
+              to derive RV curves for 98 binary systems, extracted orbital parameters, and used Monte Carlo population modeling to
+              compare synthetic and observed distributions.
+            </p>
+            <div class="tags">
+              <span>Python</span><span>Spectroscopy</span><span>Radial Velocities</span><span>Monte Carlo</span><span>Orbital Dynamics</span>
+            </div>
           </div>
 
           <div class="card" style="margin-top:12px;">
-            <h3>Differential GNSS Positioning + Kalman Filtering</h3>
-            <p class="muted">One-liner: baseline estimation + filtering + ambiguity resolution.</p>
-            <div class="tags"><span>MATLAB</span><span>Kalman Filter</span><span>LAMBDA</span></div>
+            <h3>Conceptual Aircraft Design Optimization Tool — Aerospace Research Assistant (Aug 2024–Dec 2024)</h3>
+            <p class="muted">
+              Developed design and optimization algorithms in Python to accelerate conceptual aircraft design (Boeing 737-focused),
+              enabling rapid exploration of high-dimensional design spaces and tradeoffs. Consolidated methods into an application;
+              awarded 1st Place at the Fall 2024 Armour R&amp;D Expo.
+            </p>
+            <div class="tags">
+              <span>Python</span><span>Optimization</span><span>Design Space Exploration</span><span>Aircraft Design</span>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>NASA L’SPACE MCA — Mechanical Engineer / CAD + Mission Design (May 2025–Aug 2025)</h3>
+            <p class="muted">
+              Served as primary Mechanical Engineer; produced an integrated rover CAD model in Siemens NX (payload, thermal, power,
+              comms). Developed ConOps with four mission phases, advanced design through PDR, and presented to a Standing Review Board.
+            </p>
+            <div class="tags">
+              <span>Siemens NX</span><span>Systems Integration</span><span>ConOps</span><span>Design Reviews</span><span>NASA L’SPACE</span>
+            </div>
           </div>
         </section>
+
+        <!-- FULL WIDTH: EDUCATION + SKILLS -->
+        <section class="card col-12" style="margin-top:14px;">
+          <h2>Education</h2>
+          <div class="grid">
+            <div class="card col-7">
+              <h3>Illinois Institute of Technology (IIT) — Chicago, IL</h3>
+              <p class="muted">
+                B.S. Aerospace Engineering (ABET Accredited)<br/>
+                M.S. Mechanical &amp; Aerospace Engineering (ABET Accredited)<br/>
+                Minor in Astrophysics (Completed Fall 2024)<br/>
+                Expected Graduation: May 2026 • GPA: 3.824/4.0
+              </p>
+              <ul>
+                <li>Dean’s List: Every semester enrolled (Fall 2021 – Spring 2025)</li>
+                <li>IIT STEM Scholarship Recipient</li>
+              </ul>
+            </div>
+
+            <div class="card col-5">
+              <h3>Relevant Courses</h3>
+              <p class="muted">
+                Aerospace Propulsion, Spacecraft Dynamics &amp; Design, Aircraft Design, Optimal State Estimation, Navigation Systems,
+                Aerodynamics, Aerostructures, Compressible Flow, Computational Mechanics, Observational &amp; Extragalactic Astrophysics,
+                Geographic Information Systems (GIS)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card col-12" style="margin-top:14px;">
+          <h2>Technical Skills</h2>
+
+          <div class="grid">
+            <div class="card col-7">
+              <h3>Programming &amp; Data Analysis</h3>
+              <p class="muted">
+                Python, MATLAB, Monte Carlo simulations, data visualization, signal processing (GNSS-R), statistical modeling &amp; analysis
+              </p>
+
+              <h3 style="margin-top:14px;">Aerospace Modeling &amp; Simulation</h3>
+              <p class="muted">
+                STK (orbital &amp; mission analysis), AVL, XFLR5, OpenRocket, Simulink, porkchop plots &amp; Lambert solvers,
+                optimal state estimation, spacecraft dynamics modeling
+              </p>
+            </div>
+
+            <div class="card col-5">
+              <h3>CAD &amp; Mechanical Design</h3>
+              <p class="muted">
+                Siemens NX (Certified), SolidWorks, 3D assemblies &amp; mechanical drawings, rover subsystem integration
+              </p>
+
+              <h3 style="margin-top:14px;">Mission Design &amp; Systems</h3>
+              <p class="muted">
+                ConOps, systems integration, NASA technical/proposal writing &amp; review (L’SPACE MCA &amp; NPWEE),
+                trade studies, sensitivity analysis, design reviews (SRR/PDR)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card col-12" style="margin-top:14px;">
+          <h2>Extracurriculars</h2>
+          <div class="grid">
+            <div class="card col-7">
+              <h3>Illinois Tech Baseball</h3>
+              <p class="muted">Starting catcher; developed leadership, teamwork, and resilience as a core member of varsity athletics.</p>
+            </div>
+            <div class="card col-5">
+              <h3>Illinois Tech Rocketry Club</h3>
+              <p class="muted">Member.</p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </main>
 
