@@ -179,3 +179,46 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+
+
+
+/* ============================
+   Schoolwork page aside layout
+   ============================ */
+
+.schoolwork-page .card:has(.aside-img) {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  column-gap: 20px;
+  align-items: start;
+}
+
+.schoolwork-page .aside-img {
+  justify-self: end;
+  margin-top: 12px;
+}
+
+.schoolwork-page .aside-img img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+
+/* Mobile fallback */
+@media (max-width: 720px) {
+  .schoolwork-page .card:has(.aside-img) {
+    grid-template-columns: 1fr;
+  }
+
+  .schoolwork-page .aside-img {
+    justify-self: start;
+  }
+
+  .schoolwork-page .aside-img img {
+    max-width: 100%;
+  }
+}
+
