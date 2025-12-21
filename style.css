@@ -275,27 +275,47 @@ img {
 
 
 
+/* ============================
+   Video preview (aside) + video lightbox
+   ============================ */
 
-
-/* Looping MP4 displayed like a GIF */
-.media {
-  margin-top: 12px;
+/* Button wrapper so the aside is clickable like your image lightbox triggers */
+.media-trigger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
 }
 
-.gif-video {
+/* Small looping preview video (right-side aside) */
+.aside-video {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: #000; /* prevents white flash while loading */
+  background: #000;
+  opacity: 0.95;
 }
 
-.media-caption {
+/* Optional caption under the preview */
+.aside-caption {
   margin-top: 8px;
-  font-size: 0.95rem;
-  line-height: 1.3;
+  font-size: 12px;
+  opacity: 0.85;
 }
+
+/* Lightbox video sizing */
+#videoLightbox video {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  background: #000;
+}
+
 
 
 
