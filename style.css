@@ -183,4 +183,48 @@ img {
 
 
 
+/* ============================
+   Schoolwork highlight cards: small aside column
+   ============================ */
+
+.card.with-aside {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.card.with-aside .card-main {
+  flex: 1 1 auto;
+  min-width: 0; /* prevents flex overflow issues */
+}
+
+.card.with-aside .aside-img {
+  flex: 0 0 180px; /* the “small column” width */
+  margin: 0;       /* override any default aside spacing */
+}
+
+.card.with-aside .aside-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  opacity: 0.95;
+}
+
+/* Mobile: stack image below content */
+@media (max-width: 720px) {
+  .card.with-aside {
+    flex-direction: column;
+  }
+
+  .card.with-aside .aside-img {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 420px; /* optional: keeps it from being huge */
+  }
+}
+
+
+
+
 
