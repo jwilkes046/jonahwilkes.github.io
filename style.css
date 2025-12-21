@@ -276,3 +276,28 @@ img {
 
 
 
+
+/* Looping MP4 displayed like a GIF */
+.media {
+  margin-top: 12px;
+}
+
+.gif-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #000; /* prevents white flash while loading */
+}
+
+.media-caption {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+
+
+
+
