@@ -8,25 +8,31 @@
   <title>NASA L'SPACE | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- Lightbox (required for clickable expand) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" style="display:none;">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
   <div class="wrap">
     <header class="header">
       <div style="display:flex; align-items:center; gap:18px;">
-        
         <!-- L'SPACE Logo -->
         <img
           src="assets/lspace.png"
           alt="NASA L'SPACE Program Logo"
           style="height:70px; width:auto;"
         />
-    
+
         <!-- Title text -->
         <div>
           <h1>NASA L'SPACE</h1>
           <p>Mission design • Technical writing • Interdisciplinary collaboration</p>
         </div>
       </div>
-    
+
       <div class="links">
         <a class="badge" href="index.html">Back to Home</a>
       </div>
@@ -56,6 +62,27 @@
       <section class="card" style="margin-top:14px;">
         <h2>Mission Concept Academy (MCA)</h2>
 
+        <!-- ✅ Put the aside HERE so text wraps around it -->
+        <aside class="figure"
+          style="
+            float:right;
+            width:360px;
+            max-width:42%;
+            margin:6px 0 10px 16px;
+          "
+        >
+          <img
+            src="assets/Im1.1.JPG"
+            alt="NASA L'SPACE Mission Concept Academy rover CAD model"
+            style="width:100%; height:auto; cursor:pointer; display:block;"
+            onclick="openLightbox(this.src, this.alt)"
+          />
+          <div class="figcap">
+            <b>MCA Design Work</b> — Mars Rover mechanical configuration developed
+            in Siemens NX as part of the NASA L’SPACE Mission Concept Academy.
+          </div>
+        </aside>
+
         <p>
           As the primary Mechanical Engineer on a NASA L’SPACE Mission Concept Academy team, I led
           the mechanical design of a Mars Rover mission concept developed under NASA systems
@@ -74,19 +101,8 @@
           documentation standards, and interdisciplinary collaboration.
         </p>
 
-        
-        <aside class="figure" style="float:right; max-width:360px; margin:4px 0 10px 16px;">
-          <img
-            src="assets/Im1.1.JPG"
-            alt="NASA L'SPACE Mission Concept Academy rover CAD model"
-            style="width:100%; cursor:pointer;"
-            onclick="openLightbox(this.src, this.alt)"
-          />
-          <div class="figcap">
-            <b>MCA Design Work</b> — Mars Rover mechanical configuration developed
-            in Siemens NX as part of the NASA L’SPACE Mission Concept Academy.
-          </div>
-        </aside>
+        <!-- clear the float so tags don't slide up beside it -->
+        <div style="clear:both;"></div>
 
         <div class="tags">
           <span>Mechanical Design</span>
@@ -94,6 +110,9 @@
           <span>Mission Systems</span>
           <span>ConOps</span>
         </div>
+
+        <!-- Mobile fallback (optional but helpful without editing CSS) -->
+        <div style="display:none;"></div>
       </section>
 
       <!-- NPWEE -->
@@ -109,9 +128,9 @@
         </p>
 
         <p>
-          At the end of this program, I served as a reviewer for peer team proposals, evaluating 
-          submissions using formal NASA review rubrics in a <b>Standing Review Board</b> format. 
-          This role provided hands-on exposure to NASA’s proposal evaluation process, strengthening 
+          At the end of this program, I served as a reviewer for peer team proposals, evaluating
+          submissions using formal NASA review rubrics in a <b>Standing Review Board</b> format.
+          This role provided hands-on exposure to NASA’s proposal evaluation process, strengthening
           my understanding of how technical merit, risk, and communication quality influence proposal
           competitiveness.
         </p>
@@ -132,6 +151,53 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Lightbox helpers (self-contained)
+    function openLightbox(src, alt) {
+      const lb = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      img.src = src;
+      img.alt = alt || "";
+      lb.style.display = "flex";
+      lb.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      img.src = "";
+      img.alt = "";
+      lb.style.display = "none";
+      lb.setAttribute("aria-hidden", "true");
+    }
+
+    document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      if (e.target.id === "lightbox") closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
+
+    // Basic mobile safeguard without CSS edits:
+    // If the screen is narrow, remove the float and allow full width.
+    function adaptAside() {
+      const aside = document.querySelector('section.card aside.figure');
+      if (!aside) return;
+      if (window.innerWidth <= 760) {
+        aside.style.float = "none";
+        aside.style.width = "100%";
+        aside.style.maxWidth = "100%";
+        aside.style.margin = "10px 0 12px 0";
+      } else {
+        aside.style.float = "right";
+        aside.style.width = "360px";
+        aside.style.maxWidth = "42%";
+        aside.style.margin = "6px 0 10px 16px";
+      }
+    }
+    adaptAside();
+    window.addEventListener("resize", adaptAside);
   </script>
 </body>
 </html>
