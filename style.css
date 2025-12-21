@@ -226,4 +226,53 @@ img {
 
 
 
+/* ============================
+   Image lightbox
+   ============================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 36px;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+/* Subtle affordance */
+.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+
+
 
