@@ -52,29 +52,37 @@
       <section class="card" style="margin-top:14px;">
         <h2>Projects</h2>
 
-        <div class="card" style="margin-top:12px;">
-          <h3>Interplanetary Mission Design (e.g., Titan Mission)</h3>
-          <p><b>Goal:</b> Design a feasible transfer and capture strategy for a deep-space mission.</p>
-          <p><b>Methods:</b> Lambert solver, porkchop plots, Δv budgeting, aerocapture analysis.</p>
-          <p><b>Results:</b> Identified viable launch windows and mass/propulsion feasibility.</p>
+        <!-- Card with right-side aside video preview -->
+        <div class="card with-aside" style="margin-top:12px;">
+          <div class="card-main">
+            <h3>Interplanetary Mission Design (e.g., Titan Mission)</h3>
+            <p><b>Goal:</b> Design a feasible transfer and capture strategy for a deep-space mission.</p>
+            <p><b>Methods:</b> Lambert solver, porkchop plots, Δv budgeting, aerocapture analysis.</p>
+            <p><b>Results:</b> Identified viable launch windows and mass/propulsion feasibility.</p>
 
-          <!-- Demo video (GIF-like loop) -->
-          <div class="media">
-            <video class="gif-video" autoplay loop muted playsinline preload="auto">
-              <source src="assets/FinalOrbits_50.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="media-caption muted">Trajectory visualization (looping MP4).</p>
+            <div class="tags">
+              <span>Astrodynamics</span>
+              <span>Lambert</span>
+              <span>Porkchop</span>
+              <span>Δv Budget</span>
+            </div>
           </div>
 
-
-          
-          <div class="tags">
-            <span>Astrodynamics</span>
-            <span>Lambert</span>
-            <span>Porkchop</span>
-            <span>Δv Budget</span>
-          </div>
+          <aside class="aside-img">
+            <button
+              class="lightbox-trigger media-trigger"
+              type="button"
+              data-video="assets/FinalOrbits_50.mp4"
+              aria-label="Open trajectory video in viewer"
+              title="Click to expand"
+            >
+              <video class="aside-video" autoplay loop muted playsinline preload="metadata">
+                <source src="assets/FinalOrbits_50.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </button>
+            <div class="aside-caption muted">Click to expand</div>
+          </aside>
         </div>
 
         <div class="card" style="margin-top:12px;">
@@ -109,8 +117,56 @@
     </footer>
   </div>
 
+  <!-- Video Lightbox -->
+  <div id="videoLightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close">×</button>
+    <video id="lightboxVideo" controls playsinline preload="metadata"></video>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // --- Video Lightbox ---
+    const vbox = document.getElementById("videoLightbox");
+    const vboxVideo = document.getElementById("lightboxVideo");
+    const vboxClose = vbox.querySelector(".lightbox-close");
+
+    function openVideoLightbox(src) {
+      vbox.classList.add("open");
+      vbox.setAttribute("aria-hidden", "false");
+
+      // Set src fresh each time so playback starts cleanly
+      vboxVideo.src = src;
+      vboxVideo.currentTime = 0;
+      vboxVideo.play().catch(() => {});
+    }
+
+    function closeVideoLightbox() {
+      vbox.classList.remove("open");
+      vbox.setAttribute("aria-hidden", "true");
+      vboxVideo.pause();
+      vboxVideo.removeAttribute("src");
+      vboxVideo.load();
+    }
+
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".media-trigger");
+      if (btn) {
+        openVideoLightbox(btn.dataset.video);
+        return;
+      }
+
+      if (e.target === vbox || e.target === vboxClose) {
+        closeVideoLightbox();
+        return;
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && vbox.classList.contains("open")) {
+        closeVideoLightbox();
+      }
+    });
   </script>
 </body>
 </html>
