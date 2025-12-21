@@ -9,6 +9,9 @@
   --text: #f2f2f2;
   --muted: rgba(242, 242, 242, 0.78);
 
+  /* NEW: standardized rounding */
+  --radius: 14px;
+
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
@@ -129,7 +132,7 @@ h2 { margin-top: 0; }
   border: 1px solid var(--border);
   background: var(--panel);
   padding: 14px;
-  border-radius: 14px;
+  border-radius: var(--radius); /* CHANGED */
 }
 
 .card h3 { margin: 0 0 8px; }
@@ -165,13 +168,17 @@ h2 { margin-top: 0; }
   box-sizing: border-box;
 }
 
-/* --- Make images responsive and constrained --- */
 .figure img {
-  display: block;     /* removes inline whitespace + baseline issues */
-  max-width: 100%;    /* key line: never exceed container width */
-  width: 100%;        /* scale to container width */
-  height: auto;       /* preserve aspect ratio */
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
   object-fit: contain;
+
+  /* CHANGED: standardized rounding + add border */
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
 }
 
 /* If you ever place images outside .figure blocks */
@@ -179,9 +186,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-
-
 
 /* ============================
    Schoolwork highlight cards: centered larger aside
@@ -206,7 +210,12 @@ img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+
+  /* CHANGED: standardized rounding + add border */
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+
   opacity: 0.95;
 }
 
@@ -222,9 +231,6 @@ img {
     max-width: 480px;
   }
 }
-
-
-
 
 /* ============================
    Image lightbox
@@ -247,7 +253,10 @@ img {
 .lightbox img {
   max-width: 92vw;
   max-height: 88vh;
-  border-radius: 14px;
+
+  /* CHANGED: standardized rounding */
+  border-radius: var(--radius);
+
   box-shadow: 0 0 40px rgba(0,0,0,0.8);
 }
 
@@ -273,8 +282,6 @@ img {
   cursor: zoom-in;
 }
 
-
-
 /* ============================
    Video preview (aside) + video lightbox
    ============================ */
@@ -294,7 +301,10 @@ img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+
+  /* CHANGED: standardized rounding */
+  border-radius: var(--radius);
+
   border: 1px solid var(--border);
   background: #000;
   opacity: 0.95;
@@ -311,13 +321,10 @@ img {
 #videoLightbox video {
   max-width: 92vw;
   max-height: 88vh;
-  border-radius: 14px;
+
+  /* CHANGED: standardized rounding */
+  border-radius: var(--radius);
+
   box-shadow: 0 0 40px rgba(0,0,0,0.8);
   background: #000;
 }
-
-
-
-
-
-
