@@ -184,30 +184,29 @@ img {
 
 
 /* ============================
-   Schoolwork highlight cards: small aside column
+   Schoolwork highlight cards: centered larger aside
    ============================ */
 
 .card.with-aside {
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
+  gap: 22px;
+  align-items: center;   /* vertical centering */
 }
 
 .card.with-aside .card-main {
   flex: 1 1 auto;
-  min-width: 0; /* prevents flex overflow issues */
+  min-width: 0;
 }
 
 .card.with-aside .aside-img {
-  flex: 0 0 180px; /* the “small column” width */
-  margin: 0;       /* override any default aside spacing */
+  flex: 0 0 360px;       /* ~2× previous size */
 }
 
 .card.with-aside .aside-img img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   opacity: 0.95;
 }
 
@@ -215,12 +214,12 @@ img {
 @media (max-width: 720px) {
   .card.with-aside {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .card.with-aside .aside-img {
-    flex: 0 0 auto;
     width: 100%;
-    max-width: 420px; /* optional: keeps it from being huge */
+    max-width: 480px;
   }
 }
 
