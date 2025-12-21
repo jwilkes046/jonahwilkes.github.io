@@ -8,6 +8,7 @@
   <title>Schoolwork | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="wrap">
     <header class="header">
@@ -47,7 +48,6 @@
           Introduction to Navigation Systems, each emphasizing the translation of fundamental principles into practical modeling, analysis, and design decisions.
           Together, these projects reflect my interest in understanding how complex aerospace systems are modeled, simulated, and evaluated across multiple domains.
         </p>
-
       </section>
 
       <section class="card" style="margin-top:14px;">
@@ -57,79 +57,80 @@
           <div class="card-main">
             <h3>Aircraft Design</h3>
             <p class="muted">
-              In my Aircraft Design coursework at Illinois Tech, I led the conceptual and preliminary design of a fixed-wing aircraft, taking primary 
-              responsibility for the aerodynamic configuration, performance analysis, and control development. Working within a small team, I guided 
-              early design decisions including overall sizing, wing planform definition, and airfoil selection, translating high-level mission requirements 
-              into a viable aircraft configuration. Later in the semester, I conducted detailed aerodynamic analysis using XFLR5, developed custom MATLAB scripts 
-              to extract and process aerodynamic data, and integrated these results into a Simulink-based flight control model. I evaluated aircraft performance 
-              and stability across multiple flight conditions and maneuvers, gaining experience connecting aerodynamic design, dynamic modeling, and 
+              In my Aircraft Design coursework at Illinois Tech, I led the conceptual and preliminary design of a fixed-wing aircraft, taking primary
+              responsibility for the aerodynamic configuration, performance analysis, and control development. Working within a small team, I guided
+              early design decisions including overall sizing, wing planform definition, and airfoil selection, translating high-level mission requirements
+              into a viable aircraft configuration. Later in the semester, I conducted detailed aerodynamic analysis using XFLR5, developed custom MATLAB scripts
+              to extract and process aerodynamic data, and integrated these results into a Simulink-based flight control model. I evaluated aircraft performance
+              and stability across multiple flight conditions and maneuvers, gaining experience connecting aerodynamic design, dynamic modeling, and
               control system behavior in a cohesive aircraft analysis.
             </p>
-        
+
             <p><a href="schoolwork-aircraft.html">Go to Aircraft Design →</a></p>
             <div class="tags"><span>Aircraft Design</span><span>Aerodynamics</span><span>CAD</span><span>XFLR5</span><span>MATLAB</span><span>Simulink</span></div>
           </div>
-        
+
           <aside class="aside-img">
-            <img src="assets/Aircraft_XFLR5.PNG" alt="XFLR5 wing aerodynamic analysis" />
+            <img
+              src="assets/Aircraft_XFLR5.PNG"
+              alt="XFLR5 wing aerodynamic analysis"
+              class="lightbox-trigger"
+            />
           </aside>
         </div>
-
-
-        
 
         <div class="card with-aside" style="margin-top:12px;">
           <div class="card-main">
             <h3>Spacecraft Dynamics and Design</h3>
             <p class="muted">
               My coursework in Spacecraft Dynamics and Spacecraft Design provided a two-semester progression from orbital mechanics fundamentals to full mission
-              systems engineering. In Spacecraft Dynamics, I designed and simulated interplanetary trajectories for a multi-flyby mission involving ten of Jupiter’s 
-              moons, developing numerical trajectory models from first principles using Python and the <code>REBOUND</code> N-body simulation framework. This work involved 
-              constructing three-dimensional, time-resolved spacecraft trajectories and evaluating orbital behavior across multiple mission phases. In the subsequent 
+              systems engineering. In Spacecraft Dynamics, I designed and simulated interplanetary trajectories for a multi-flyby mission involving ten of Jupiter’s
+              moons, developing numerical trajectory models from first principles using Python and the <code>REBOUND</code> N-body simulation framework. This work involved
+              constructing three-dimensional, time-resolved spacecraft trajectories and evaluating orbital behavior across multiple mission phases. In the subsequent
               Spacecraft Design course, I applied these astrodynamics methods within a broader systems-engineering context while contributing to the design of an
               unmanned mission to Saturn’s moon Titan. I led trajectory design efforts while also collaborating on spacecraft architecture, payload deployment concepts,
               and surface exploration systems, including deployable satellites and a submersible vehicle intended for Titan’s methane lakes. Together, these projects
               emphasized the integration of orbital mechanics, numerical simulation, and systems-level mission design.
             </p>
-  
+
             <p><a href="schoolwork-spacecraft.html">Go to Spacecraft Design →</a></p>
             <div class="tags"><span>Astrodynamics</span><span>Orbital Mechanics</span><span>Mission Design</span><span>Systems Engineering</span></div>
           </div>
-          
+
           <aside class="aside-img">
-            <img src="assets/Spacecraft_img.PNG" alt="Interplanetary trajectory and spacecraft mission concept" />
+            <img
+              src="assets/Spacecraft_img.PNG"
+              alt="Interplanetary trajectory and spacecraft mission concept"
+              class="lightbox-trigger"
+            />
           </aside>
-          
         </div>
-        
 
         <div class="card with-aside" style="margin-top:12px;">
           <div class="card-main">
             <h3>Navigation Systems</h3>
-  
+
             <p class="muted">
-              My coursework in Introduction to Navigation Systems, supported by my Optimal State Estimation course, established a strong foundation in modern 
-              positioning and estimation theory. Through lecture material and a cumulative project, I developed a working understanding of satellite-based navigation 
-              systems, including GNSS positioning, differential GPS techniques, and augmentation methods. I applied state-space modeling and Kalman filtering 
-              to estimate position and velocity in the presence of measurement noise and uncertainty, gaining familiarity with how navigation solutions are 
-              constructed and evaluated. The course emphasized estimation structure, error sources, and solution robustness, providing conceptual grounding 
+              My coursework in Introduction to Navigation Systems, supported by my Optimal State Estimation course, established a strong foundation in modern
+              positioning and estimation theory. Through lecture material and a cumulative project, I developed a working understanding of satellite-based navigation
+              systems, including GNSS positioning, differential GPS techniques, and augmentation methods. I applied state-space modeling and Kalman filtering
+              to estimate position and velocity in the presence of measurement noise and uncertainty, gaining familiarity with how navigation solutions are
+              constructed and evaluated. The course emphasized estimation structure, error sources, and solution robustness, providing conceptual grounding
               that has informed my understanding of navigation and signal processing research.
             </p>
-  
-  
-            
+
             <p><a href="schoolwork-navigation.html">Go to Navigation Classwork →</a></p>
             <div class="tags"><span>MATLAB</span><span>GNSS / GPS</span><span>Kalman Filtering</span><span>Optimal Estimation</span></div>
-          </div> 
+          </div>
 
-          
           <aside class="aside-img">
-            <img src="assets/Problem123_fig1.png" alt="Navigation estimation error and positioning results" />
+            <img
+              src="assets/Problem123_fig1.png"
+              alt="Navigation estimation error and positioning results"
+              class="lightbox-trigger"
+            />
           </aside>
-          
         </div>
-        
-        
       </section>
     </main>
 
@@ -138,8 +139,45 @@
     </footer>
   </div>
 
+  <!-- Lightbox container (MUST be inside body) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".lightbox-close");
+
+    document.querySelectorAll(".lightbox-trigger").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = ""; // optional: prevents flashing old image next open
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeLightbox();
+    });
   </script>
 </body>
 </html>
