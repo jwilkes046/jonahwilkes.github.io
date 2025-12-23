@@ -328,3 +328,53 @@ img {
   box-shadow: 0 0 40px rgba(0,0,0,0.8);
   background: #000;
 }
+
+
+
+/* --- PDF thumbnail block inside aside --- */
+.pdf-thumb {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+  padding: 14px;
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0.95;
+}
+
+.pdf-icon {
+  display: inline-block;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 6px 10px;
+  width: fit-content;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.pdf-title {
+  font-size: 13px;
+  word-break: break-word;
+  color: var(--text);
+  opacity: 0.92;
+}
+
+.pdf-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* PDF lightbox sizing */
+.lightbox iframe {
+  width: min(92vw, 1100px);
+  height: 88vh;
+  border-radius: var(--radius);
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  background: #000;
+  border: 1px solid var(--border);
+}
+
