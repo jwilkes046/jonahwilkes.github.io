@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,20 +11,38 @@
   <title>Jonah Wilkes | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
+  <!-- =========================================================
+       LIGHTBOX (IMAGES + PDF)
+       Place once near the top of <body>, before your main content
+       ========================================================= -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+
+    <!-- image -->
+    <img id="lightbox-img" src="" alt="" style="display:none;" />
+
+    <!-- pdf -->
+    <iframe id="lightbox-pdf"
+            title="PDF preview"
+            style="display:none;"
+            frameborder="0"></iframe>
+  </div>
+
   <div class="wrap">
     <header class="header">
       <div>
         <h1>Jonah Wilkes</h1>
         <p>Aerospace Engineering • Astrophysics Research • GNSS-R Signal Analysis</p>
-        <p class="subline">Dynamics, Controls, & Estimation</p>
+        <p class="subline">Dynamics, Controls, &amp; Estimation</p>
       </div>
       <div class="links">
         <a class="badge" href="mailto:jonah.wilkes@verizon.net">jonah.wilkes@verizon.net</a>
         <a class="badge" href="assets/Jonah Wilkes Resume 2025.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
 
         <!-- From resume: email + phone + location -->
-        
         <!-- <a class="badge" href="tel:+15713269383">571-326-9383</a> -->
         <!-- <span class="badge">Chicago, IL • Open to relocation</span> -->
 
@@ -37,7 +54,6 @@
            rel="noopener noreferrer">
           LinkedIn
         </a>
-
       </div>
     </header>
 
@@ -74,7 +90,6 @@
             </ul>
           </div>
 
-
           <div class="section">
             <h3>Current Career Targets</h3>
             <ul>
@@ -85,7 +100,6 @@
             </ul>
           </div>
 
-
           <div class="section">
             <h3>Jump to deep dives</h3>
             <ul>
@@ -95,42 +109,40 @@
               <li><a href="schoolwork.html">Schoolwork (Aircraft / Spacecraft / Navigation) →</a></li>
             </ul>
           </div>
-
         </section>
 
         <aside class="card col-5">
           <h2>Quick Summary</h2>
-        
+
           <!-- Degrees first, clearer hierarchy -->
           <div class="section" style="margin-top:6px;">
             <h3 style="margin-bottom:8px;">Degrees</h3>
-          
+
             <p class="muted" style="margin:0;">
               <b>B.S. Aerospace Engineering</b><br/>
               Illinois Institute of Technology (ABET Accredited)<br/>
               Expected May 2026
             </p>
-          
+
             <p class="muted" style="margin:10px 0 0 0;">
               <b>M.S. Mechanical &amp; Aerospace Engineering</b><br/>
               Illinois Institute of Technology (ABET Accredited)<br/>
               Expected May 2026
             </p>
-          
+
             <p class="muted" style="margin:10px 0 0 0;">
               <b>Minor:</b> Astrophysics<br/>
               Completed Fall 2024
             </p>
           </div>
 
-        
           <!-- GPA emphasized -->
           <div class="section" style="margin-top:14px;">
             <h3 style="margin-bottom:8px;">GPA</h3>
-          
+
             <div class="card" style="padding:12px; margin:0;">
               <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-          
+
                 <div>
                   <div style="font-size:1.25rem; font-weight:800; line-height:1;">
                     3.840 <span class="muted" style="font-weight:600;">/ 4.0</span>
@@ -139,7 +151,7 @@
                     Undergraduate (B.S.)
                   </div>
                 </div>
-          
+
                 <div>
                   <div style="font-size:1.25rem; font-weight:800; line-height:1;">
                     3.640 <span class="muted" style="font-weight:600;">/ 4.0</span>
@@ -148,15 +160,12 @@
                     Graduate (M.S.)
                   </div>
                 </div>
-          
+
               </div>
-          
-              
             </div>
           </div>
 
-        
-          <!-- Tools emphasized (more scannable than one long line) -->
+          <!-- Tools emphasized -->
           <div class="section" style="margin-top:14px;">
             <h3 style="margin-bottom:8px;">Core Skills</h3>
             <div class="tags" style="margin-top:4px;">
@@ -167,71 +176,126 @@
               Focused on dynamics, modeling, estimation, and mission/system-level analysis.
             </p>
           </div>
-        
         </aside>
 
-
-        <!-- FULL WIDTH: HIGHLIGHTS -->
+        <!-- FULL WIDTH: EXPERIENCE (WITH CLICK-TO-EXPAND MEDIA) -->
         <section class="card col-12">
           <h2>Experience</h2>
 
-          <div class="card" style="margin-top:12px;">
-            <h3>GNSS-Reflectometry (GNSS-R) Signal Processing — Research Assistant (May 2025–Present)</h3>
-            <p class="muted">
-              Developing MATLAB tools to process GNSS-Reflectometry data from Antarctic glacial sites, extracting surface
-              reflection characteristics and signal-to-noise metrics from raw satellite observations. Contributing analysis 
-              results toward an upcoming peer-reviewed publication in cryospheric remote sensing.
-            </p>
-            <div class="tags">
-              <span>MATLAB</span><span>Signal Processing</span><span>GNSS-R</span><span>SNR Extraction</span><span>Research</span>
+          <!-- GNSS-R -->
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3>GNSS-Reflectometry (GNSS-R) Signal Processing — Research Assistant (May 2025–Present)</h3>
+              <p class="muted">
+                Developing MATLAB tools to process GNSS-Reflectometry data from Antarctic glacial sites, extracting surface
+                reflection characteristics and signal-to-noise metrics from raw satellite observations. Contributing analysis
+                results toward an upcoming peer-reviewed publication in cryospheric remote sensing.
+              </p>
+              <div class="tags">
+                <span>MATLAB</span><span>Signal Processing</span><span>GNSS-R</span><span>SNR Extraction</span><span>Research</span>
+              </div>
+            </div>
+
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger"
+                      type="button"
+                      data-type="image"
+                      data-src="assets/SNR.png"
+                      aria-label="Expand GNSS-R figure">
+                <img src="assets/SNR.png" alt="GNSS-R SNR figure preview" />
+              </button>
             </div>
           </div>
 
-          <div class="card" style="margin-top:12px;">
-            <h3>Sub-Subgiant / Binary Star Research — Astrophysics Research Assistant (May 2024–Present)</h3>
-            <p class="muted">
-              Lead author on a forthcoming astrophysics publication investigating binarity in sub-subgiant stellar systems. 
-              Analyzed stellar spectra in Python to derive radial velocity curves for nearly 100 binaries and used Monte Carlo
-              population modeling to compare observed and synthetic orbital distributions.
-            </p>
-            <div class="tags">
-              <span>Python</span><span>Spectroscopy</span><span>Radial Velocities</span><span>Monte Carlo</span><span>Orbital Dynamics</span>
+          <!-- SSG -->
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3>Sub-Subgiant / Binary Star Research — Astrophysics Research Assistant (May 2024–Present)</h3>
+              <p class="muted">
+                Lead author on a forthcoming astrophysics publication investigating binarity in sub-subgiant stellar systems.
+                Analyzed stellar spectra in Python to derive radial velocity curves for nearly 100 binaries and used Monte Carlo
+                population modeling to compare observed and synthetic orbital distributions.
+              </p>
+              <div class="tags">
+                <span>Python</span><span>Spectroscopy</span><span>Radial Velocities</span><span>Monte Carlo</span><span>Orbital Dynamics</span>
+              </div>
+            </div>
+
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger"
+                      type="button"
+                      data-type="pdf"
+                      data-src="assets/Summer_2024_Astro_Wilkes.pdf"
+                      aria-label="Open SSG PDF preview">
+                <div class="pdf-thumb" role="img" aria-label="PDF preview: Summer 2024 Astrophysics (Wilkes)">
+                  <div class="pdf-icon">PDF</div>
+                  <div class="pdf-title">Summer_2024_Astro_Wilkes.pdf</div>
+                  <div class="pdf-sub">Click to expand</div>
+                </div>
+              </button>
             </div>
           </div>
 
-          
-          <div class="card" style="margin-top:12px;">
-            <h3>NASA L’SPACE MCA — Mechanical Engineer / CAD + Mission Design (May 2025–Aug 2025)</h3>
-            <p class="muted">
-              Served as the primary Mechanical Engineer for a NASA L’SPACE Mission Concept Academy team, leading mechanical 
-              design of a Mars rover mission concept under NASA systems engineering standards. Produced an integrated rover 
-              CAD model in Siemens NX, developed a four-phase Concept of Operations, and advanced the design through Preliminary 
-              Design Review with presentation to a NASA Standing Review Board.
-            </p>
-            <div class="tags">
-              <span>Siemens NX</span><span>Systems Integration</span><span>ConOps</span><span>Design Reviews</span><span>NASA L’SPACE</span>
+          <!-- NASA L'SPACE -->
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3>NASA L’SPACE MCA — Mechanical Engineer / CAD + Mission Design (May 2025–Aug 2025)</h3>
+              <p class="muted">
+                Served as the primary Mechanical Engineer for a NASA L’SPACE Mission Concept Academy team, leading mechanical
+                design of a Mars rover mission concept under NASA systems engineering standards. Produced an integrated rover
+                CAD model in Siemens NX, developed a four-phase Concept of Operations, and advanced the design through Preliminary
+                Design Review with presentation to a NASA Standing Review Board.
+              </p>
+              <div class="tags">
+                <span>Siemens NX</span><span>Systems Integration</span><span>ConOps</span><span>Design Reviews</span><span>NASA L’SPACE</span>
+              </div>
+            </div>
+
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger"
+                      type="button"
+                      data-type="image"
+                      data-src="assets/Img1.1.png"
+                      aria-label="Expand NASA L’SPACE figure">
+                <img src="assets/Img1.1.png" alt="NASA L’SPACE figure preview" />
+              </button>
             </div>
           </div>
 
-          
-          <div class="card" style="margin-top:12px;">
-            <h3>Conceptual Aircraft Design Optimization Tool — Aerospace Research Assistant (Aug 2024–Dec 2024)</h3>
-            <p class="muted">
-              Developed Python-based design and optimization algorithms to accelerate conceptual aircraft design and explore 
-              high-dimensional trade spaces, with a focus on Boeing 737-class configurations. Consolidated methods into a 
-              standalone application and received 1st Place at the Fall 2024 Armour College of Engineering R&amp;D Expo.
-            </p>
-            <div class="tags">
-              <span>Python</span><span>Optimization</span><span>Design Space Exploration</span><span>Aircraft Design</span>
+          <!-- Conceptual Aircraft Design -->
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3>Conceptual Aircraft Design Optimization Tool — Aerospace Research Assistant (Aug 2024–Dec 2024)</h3>
+              <p class="muted">
+                Developed Python-based design and optimization algorithms to accelerate conceptual aircraft design and explore
+                high-dimensional trade spaces, with a focus on Boeing 737-class configurations. Consolidated methods into a
+                standalone application and received 1st Place at the Fall 2024 Armour College of Engineering R&amp;D Expo.
+              </p>
+              <div class="tags">
+                <span>Python</span><span>Optimization</span><span>Design Space Exploration</span><span>Aircraft Design</span>
+              </div>
+            </div>
+
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger"
+                      type="button"
+                      data-type="pdf"
+                      data-src="assets/Fall_2024_Armour_Wilkes.pdf"
+                      aria-label="Open Aircraft Design PDF preview">
+                <div class="pdf-thumb" role="img" aria-label="PDF preview: Fall 2024 Armour Expo (Wilkes)">
+                  <div class="pdf-icon">PDF</div>
+                  <div class="pdf-title">Fall_2024_Armour_Wilkes.pdf</div>
+                  <div class="pdf-sub">Click to expand</div>
+                </div>
+              </button>
             </div>
           </div>
-          
         </section>
 
         <!-- FULL WIDTH: EDUCATION -->
         <section class="card col-12" style="margin-top:14px;">
           <h2>Education</h2>
-        
+
           <div class="grid">
             <!-- LEFT: Degrees -->
             <div class="card col-7">
@@ -241,31 +305,30 @@
                 ABET Accredited • Expected May 2026<br/>
                 <b>Undergraduate GPA:</b> 3.840 / 4.0
               </p>
-            
+
               <h3 style="margin-top:14px;">M.S. Mechanical &amp; Aerospace Engineering</h3>
               <p class="muted">
                 Illinois Institute of Technology — Chicago, IL<br/>
                 ABET Accredited • Expected May 2026<br/>
                 <b>Graduate GPA:</b> 3.640 / 4.0
               </p>
-            
+
               <h3 style="margin-top:14px;">Minor in Astrophysics</h3>
               <p class="muted">
                 Illinois Institute of Technology<br/>
                 Completed Fall 2024
               </p>
-            
+
               <ul style="margin-top:14px; list-style:none; padding-left:1.2em;">
                 <li>Dean’s List: Every semester enrolled (Fall 2021 – Spring 2025)</li>
                 <li>IIT STEM Scholarship Recipient</li>
               </ul>
             </div>
 
-
             <!-- RIGHT: Coursework -->
             <div class="card col-5">
               <h3>Notable Courses</h3>
-            
+
               <ul style="list-style:none; padding-left:1.1em; margin-top:10px;">
                 <li>Advanced Dynamics</li>
                 <li>Aerodynamics</li>
@@ -282,40 +345,35 @@
                 <li>Spacecraft Dynamics &amp; Design</li>
               </ul>
             </div>
-
-            </div>
-
           </div>
         </section>
 
-
         <section class="card col-12" style="margin-top:14px;">
           <h2>Technical Skills</h2>
-        
+
           <div class="grid">
-        
+
             <!-- LEFT COLUMN -->
             <div class="col-7">
-        
-            <div class="card">
-              <h3>Programming, Scientific Computing &amp; Data Analysis</h3>
-              <ul class="muted">
-                <li><b>Python</b> (NumPy, SciPy, Pandas, Matplotlib, Astropy)</li>
-                <li><b>MATLAB</b> (signal processing, numerical methods, GNSS analysis)</li>
-                <li>Linux operating systems &amp; command-line environments</li>
-                <li>Object-oriented scientific software development</li>
-                <li>Monte Carlo simulation &amp; probabilistic modeling</li>
-                <li>Statistical inference, uncertainty propagation &amp; error analysis</li>
-                <li>Time-series, spectral &amp; frequency-domain analysis</li>
-                <li>Signal filtering, smoothing &amp; noise characterization</li>
-                <li>Curve fitting &amp; nonlinear optimization</li>
-                <li>Automated analysis pipelines &amp; large-scale batch execution</li>
-                <li>Scientific visualization &amp; diagnostic plotting</li>
-                <li>Version control (Git) for collaborative development</li>
-              </ul>
-            </div>
 
-        
+              <div class="card">
+                <h3>Programming, Scientific Computing &amp; Data Analysis</h3>
+                <ul class="muted">
+                  <li><b>Python</b> (NumPy, SciPy, Pandas, Matplotlib, Astropy)</li>
+                  <li><b>MATLAB</b> (signal processing, numerical methods, GNSS analysis)</li>
+                  <li>Linux operating systems &amp; command-line environments</li>
+                  <li>Object-oriented scientific software development</li>
+                  <li>Monte Carlo simulation &amp; probabilistic modeling</li>
+                  <li>Statistical inference, uncertainty propagation &amp; error analysis</li>
+                  <li>Time-series, spectral &amp; frequency-domain analysis</li>
+                  <li>Signal filtering, smoothing &amp; noise characterization</li>
+                  <li>Curve fitting &amp; nonlinear optimization</li>
+                  <li>Automated analysis pipelines &amp; large-scale batch execution</li>
+                  <li>Scientific visualization &amp; diagnostic plotting</li>
+                  <li>Version control (Git) for collaborative development</li>
+                </ul>
+              </div>
+
               <div class="card" style="margin-top:12px;">
                 <h3>Aerospace, Astrodynamics &amp; Navigation Modeling</h3>
                 <ul class="muted">
@@ -333,12 +391,12 @@
                   <li>OpenRocket vehicle performance &amp; trajectory modeling</li>
                 </ul>
               </div>
-        
+
             </div>
-        
+
             <!-- RIGHT COLUMN -->
             <div class="col-5">
-        
+
               <div class="card">
                 <h3>CAD, Mechanical Design &amp; Configuration</h3>
                 <ul class="muted">
@@ -353,7 +411,7 @@
                   <li>CAD-driven trade studies</li>
                 </ul>
               </div>
-        
+
               <div class="card" style="margin-top:12px;">
                 <h3>Mission Design, Systems Engineering &amp; Research Practices</h3>
                 <ul class="muted">
@@ -369,13 +427,11 @@
                   <li>Interdisciplinary technical communication</li>
                 </ul>
               </div>
-        
+
             </div>
-        
+
           </div>
         </section>
-
-
 
         <section class="card col-12" style="margin-top:14px;">
           <h2>Extracurriculars</h2>
@@ -399,8 +455,77 @@
     </footer>
   </div>
 
+  <!-- =========================================================
+       SCRIPTS
+       Place near end of <body>
+       ========================================================= -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const closeBtn = lightbox?.querySelector(".lightbox-close");
+      const imgEl = document.getElementById("lightbox-img");
+      const pdfEl = document.getElementById("lightbox-pdf");
+
+      if (!lightbox || !closeBtn || !imgEl || !pdfEl) return;
+
+      function openLightbox(type, src, altText) {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        if (type === "pdf") {
+          imgEl.style.display = "none";
+          imgEl.src = "";
+          imgEl.alt = "";
+
+          pdfEl.style.display = "block";
+          pdfEl.src = src + "#view=FitH";
+        } else {
+          pdfEl.style.display = "none";
+          pdfEl.src = "";
+
+          imgEl.style.display = "block";
+          imgEl.src = src;
+          imgEl.alt = altText || "";
+        }
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        imgEl.src = "";
+        imgEl.alt = "";
+        pdfEl.src = "";
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lightbox-trigger");
+        if (!btn) return;
+
+        const type = btn.getAttribute("data-type") || "image";
+        const src  = btn.getAttribute("data-src");
+        if (!src) return;
+
+        const img = btn.querySelector("img");
+        const alt = img ? img.getAttribute("alt") : "";
+
+        openLightbox(type, src, alt);
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
 </body>
 </html>
