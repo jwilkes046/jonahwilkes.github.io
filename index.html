@@ -15,20 +15,12 @@
 <body>
 
   <!-- =========================================================
-       LIGHTBOX (IMAGES + PDF)
+       IMAGE LIGHTBOX (images only)
        Place once near the top of <body>, before your main content
        ========================================================= -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close">×</button>
-
-    <!-- image -->
-    <img id="lightbox-img" src="" alt="" style="display:none;" />
-
-    <!-- pdf -->
-    <iframe id="lightbox-pdf"
-            title="PDF preview"
-            style="display:none;"
-            frameborder="0"></iframe>
+    <button class="lightbox-close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
   </div>
 
   <div class="wrap">
@@ -178,7 +170,7 @@
           </div>
         </aside>
 
-        <!-- FULL WIDTH: EXPERIENCE (WITH CLICK-TO-EXPAND MEDIA) -->
+        <!-- FULL WIDTH: EXPERIENCE (WITH CLICK-TO-EXPAND IMAGES) -->
         <section class="card col-12">
           <h2>Experience</h2>
 
@@ -199,7 +191,6 @@
             <div class="aside-img">
               <button class="media-trigger lightbox-trigger"
                       type="button"
-                      data-type="image"
                       data-src="assets/SNR.png"
                       aria-label="Expand GNSS-R figure">
                 <img src="assets/SNR.png" alt="GNSS-R SNR figure preview" />
@@ -207,7 +198,7 @@
             </div>
           </div>
 
-          <!-- SSG -->
+          <!-- SSG (PNG) -->
           <div class="card with-aside" style="margin-top:12px;">
             <div class="card-main">
               <h3>Sub-Subgiant / Binary Star Research — Astrophysics Research Assistant (May 2024–Present)</h3>
@@ -224,14 +215,9 @@
             <div class="aside-img">
               <button class="media-trigger lightbox-trigger"
                       type="button"
-                      data-type="pdf"
-                      data-src="assets/Summer_2024_Astro_Wilkes.pdf"
-                      aria-label="Open SSG PDF preview">
-                <div class="pdf-thumb" role="img" aria-label="PDF preview: Summer 2024 Astrophysics (Wilkes)">
-                  <div class="pdf-icon">PDF</div>
-                  <div class="pdf-title">Summer_2024_Astro_Wilkes.pdf</div>
-                  <div class="pdf-sub">Click to expand</div>
-                </div>
+                      data-src="assets/Summer_2024_Astro_Wilkes.png"
+                      aria-label="Expand SSG figure">
+                <img src="assets/Summer_2024_Astro_Wilkes.png" alt="SSG research figure preview" />
               </button>
             </div>
           </div>
@@ -254,15 +240,14 @@
             <div class="aside-img">
               <button class="media-trigger lightbox-trigger"
                       type="button"
-                      data-type="image"
-                      data-src="assets/Img1.1.png"
+                      data-src="assets/Im1.1.jpg"
                       aria-label="Expand NASA L’SPACE figure">
-                <img src="assets/Img1.1.png" alt="NASA L’SPACE figure preview" />
+                <img src="assets/Im1.1.jpg" alt="NASA L’SPACE figure preview" />
               </button>
             </div>
           </div>
 
-          <!-- Conceptual Aircraft Design -->
+          <!-- Conceptual Aircraft Design (PNG) -->
           <div class="card with-aside" style="margin-top:12px;">
             <div class="card-main">
               <h3>Conceptual Aircraft Design Optimization Tool — Aerospace Research Assistant (Aug 2024–Dec 2024)</h3>
@@ -279,14 +264,9 @@
             <div class="aside-img">
               <button class="media-trigger lightbox-trigger"
                       type="button"
-                      data-type="pdf"
-                      data-src="assets/Fall_2024_Armour_Wilkes.pdf"
-                      aria-label="Open Aircraft Design PDF preview">
-                <div class="pdf-thumb" role="img" aria-label="PDF preview: Fall 2024 Armour Expo (Wilkes)">
-                  <div class="pdf-icon">PDF</div>
-                  <div class="pdf-title">Fall_2024_Armour_Wilkes.pdf</div>
-                  <div class="pdf-sub">Click to expand</div>
-                </div>
+                      data-src="assets/Fall_2024_Armour_Wilkes.png"
+                      aria-label="Expand Aircraft Design figure">
+                <img src="assets/Fall_2024_Armour_Wilkes.png" alt="Conceptual aircraft design figure preview" />
               </button>
             </div>
           </div>
@@ -468,29 +448,14 @@
       const lightbox = document.getElementById("lightbox");
       const closeBtn = lightbox?.querySelector(".lightbox-close");
       const imgEl = document.getElementById("lightbox-img");
-      const pdfEl = document.getElementById("lightbox-pdf");
 
-      if (!lightbox || !closeBtn || !imgEl || !pdfEl) return;
+      if (!lightbox || !closeBtn || !imgEl) return;
 
-      function openLightbox(type, src, altText) {
+      function openLightbox(src, altText) {
         lightbox.classList.add("open");
         lightbox.setAttribute("aria-hidden", "false");
-
-        if (type === "pdf") {
-          imgEl.style.display = "none";
-          imgEl.src = "";
-          imgEl.alt = "";
-
-          pdfEl.style.display = "block";
-          pdfEl.src = src + "#view=FitH";
-        } else {
-          pdfEl.style.display = "none";
-          pdfEl.src = "";
-
-          imgEl.style.display = "block";
-          imgEl.src = src;
-          imgEl.alt = altText || "";
-        }
+        imgEl.src = src;
+        imgEl.alt = altText || "";
       }
 
       function closeLightbox() {
@@ -498,21 +463,19 @@
         lightbox.setAttribute("aria-hidden", "true");
         imgEl.src = "";
         imgEl.alt = "";
-        pdfEl.src = "";
       }
 
       document.addEventListener("click", (e) => {
         const btn = e.target.closest(".lightbox-trigger");
         if (!btn) return;
 
-        const type = btn.getAttribute("data-type") || "image";
-        const src  = btn.getAttribute("data-src");
+        const src = btn.getAttribute("data-src");
         if (!src) return;
 
         const img = btn.querySelector("img");
         const alt = img ? img.getAttribute("alt") : "";
 
-        openLightbox(type, src, alt);
+        openLightbox(src, alt);
       });
 
       closeBtn.addEventListener("click", closeLightbox);
