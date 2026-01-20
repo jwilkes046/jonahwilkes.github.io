@@ -206,42 +206,45 @@
             </div>
           </div>
 
+
           <div class="card aero-images">
             <h3>Aerodynamics (Airfoil + Wing Sizing)</h3>
           
-            <p>
-              I evaluated candidate airfoils using performance-relevant metrics and summarized the decision in a weighted selection matrix.
-              The chosen airfoil and wing sizing were then carried forward as the aerodynamic baseline for the final configuration and later
-              simulation work.
-            </p>
+            <div class="aero-layout">
+              <!-- LEFT: text -->
+              <div class="aero-text">
+                <p>
+                  I evaluated candidate airfoils using performance-relevant metrics and summarized the decision in a weighted selection matrix.
+                  The chosen airfoil and wing sizing were then carried forward as the aerodynamic baseline for the final configuration and later
+                  simulation work.
+                </p>
           
-            <div class="tags" style="margin-top:10px;">
-              <span>Airfoil selection</span><span>Selection matrix</span><span>Wing sizing</span>
-            </div>
+                <div class="tags" style="margin-top:10px;">
+                  <span>Airfoil selection</span><span>Selection matrix</span><span>Wing sizing</span>
+                </div>
+              </div>
           
-            <!-- Compact, side-by-side clickable previews -->
-            <div class="img-row">
-              <div class="figure">
-                <button class="media-trigger lightbox-trigger"
+              <!-- RIGHT: thumbnail bubbles (click to expand) -->
+              <div class="aero-thumbs">
+                <button class="media-trigger lightbox-trigger thumb"
                         type="button"
                         data-src="assets/Airfoil_characteristics.png"
                         aria-label="Expand airfoil characteristics figure">
-                  <img src="assets/Airfoil_characteristics.png"
-                       alt="Airfoil characteristics comparison" />
+                  <img src="assets/Airfoil_characteristics.png" alt="Airfoil characteristics comparison" />
+                  <div class="caption">Airfoil characteristics</div>
                 </button>
-              </div>
           
-              <div class="figure">
-                <button class="media-trigger lightbox-trigger"
+                <button class="media-trigger lightbox-trigger thumb"
                         type="button"
                         data-src="assets/Airfoil_selection_matrix.png"
                         aria-label="Expand airfoil selection matrix">
-                  <img src="assets/Airfoil_selection_matrix.png"
-                       alt="Airfoil selection matrix" />
+                  <img src="assets/Airfoil_selection_matrix.png" alt="Airfoil selection matrix" />
+                  <div class="caption">Selection matrix</div>
                 </button>
               </div>
             </div>
           </div>
+
 
 
           <div class="card">
