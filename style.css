@@ -541,8 +541,9 @@ img {
   display: flex;
   flex-direction: row;
   gap: 18px;
-  align-items: flex-start;
+  align-items: center; /* ✅ vertically center image */
 }
+
 
 .home .card.with-aside .card-main,
 .home-layout .card.with-aside .card-main {
@@ -602,8 +603,9 @@ img {
   display: flex;
   flex-direction: row;
   gap: 18px;
-  align-items: flex-start;
+  align-items: center; /* ✅ vertically center video */
 }
+
 
 .side-media .card.with-aside .card-main {
   flex: 1 1 auto;
