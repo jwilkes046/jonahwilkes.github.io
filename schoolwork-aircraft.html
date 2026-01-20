@@ -86,18 +86,6 @@
         <div class="tags" style="margin-top:10px;">
           <span>Conceptual sizing</span><span>Aerodynamics</span><span>XFLR5</span><span>MATLAB</span><span>Simulink</span><span>Performance</span><span>Stability & control</span>
         </div>
-
-        <!--
-        <hr style="margin:14px 0; opacity:.25;">
-
-        <div class="card">
-          <h3>Deliverables</h3>
-          <div class="tags" style="margin-top:10px;">
-            <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Open Conceptual Design Report (PDF)</a>
-            <a class="badge" href="assets/MMAE414_Group_8_Project_Report.pdf" target="_blank" rel="noopener">Open Final Project Report (PDF)</a>
-          </div>
-        </div>
-        -->
       </section>
 
       <!-- =========================
@@ -180,9 +168,6 @@
            ========================= -->
       <section class="card" style="margin-top:14px;">
         <h2>Conceptual Design Report (Mid-Semester)</h2>
-        <p class="muted" style="margin-top:-6px;">
-          Preliminary design parameters and justification of key configuration choices.
-        </p>
 
         <div class="stack">
           <div class="card">
@@ -206,10 +191,9 @@
             </div>
           </div>
 
-
           <div class="card aero-images">
             <h3>Aerodynamics (Airfoil + Wing Sizing)</h3>
-          
+
             <div class="aero-layout">
               <!-- LEFT: text -->
               <div class="aero-text">
@@ -218,12 +202,12 @@
                   The chosen airfoil and wing sizing were then carried forward as the aerodynamic baseline for the final configuration and later
                   simulation work.
                 </p>
-          
+
                 <div class="tags" style="margin-top:10px;">
                   <span>Airfoil selection</span><span>Selection matrix</span><span>Wing sizing</span>
                 </div>
               </div>
-          
+
               <!-- RIGHT: thumbnail bubbles (click to expand) -->
               <div class="aero-thumbs">
                 <button class="media-trigger lightbox-trigger thumb"
@@ -233,7 +217,7 @@
                   <img src="assets/Airfoil_characteristics.png" alt="Airfoil characteristics comparison" />
                   <div class="caption">Airfoil characteristics</div>
                 </button>
-          
+
                 <button class="media-trigger lightbox-trigger thumb"
                         type="button"
                         data-src="assets/Airfoil_selection_matrix.png"
@@ -244,8 +228,6 @@
               </div>
             </div>
           </div>
-
-
 
           <div class="card">
             <h3>Report</h3>
@@ -262,75 +244,171 @@
            ========================= -->
       <section class="card" style="margin-top:14px;">
         <h2>Final Project Report</h2>
-        <p class="muted" style="margin-top:-6px;">
-          Full aircraft model, aerodynamic dataset processing, and maneuver performance evaluation.
-        </p>
 
         <div class="stack">
-          <div class="card">
+
+          <div class="card aero-images">
             <h3>XFLR5 Aircraft Configuration</h3>
-            <p>
-              I built and refined the aircraft configuration in XFLR5 to generate aerodynamic outputs across relevant operating conditions.
-              This established the baseline coefficient curves used later for performance and control simulation.
-            </p>
-            <div class="tags" style="margin-top:10px;">
-              <span>Geometry</span><span>Polars</span><span>Operating points</span>
+
+            <div class="aero-layout">
+              <div class="aero-text">
+                <p>
+                  I built and refined the aircraft configuration in XFLR5 to generate aerodynamic outputs across relevant operating conditions.
+                  This established the baseline coefficient curves used later for performance and control simulation.
+                </p>
+                <div class="tags" style="margin-top:10px;">
+                  <span>Geometry</span><span>Polars</span><span>Operating points</span>
+                </div>
+              </div>
+
+              <div class="aero-thumbs" style="grid-template-columns: 1fr;">
+                <button class="media-trigger lightbox-trigger thumb"
+                        type="button"
+                        data-src="assets/Aircraft_XFLR5.PNG"
+                        aria-label="Expand XFLR5 aircraft configuration figure">
+                  <img src="assets/Aircraft_XFLR5.PNG" alt="XFLR5 aircraft configuration" />
+                  <div class="caption">XFLR5 configuration</div>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card aero-images">
             <h3>XFLR5 Data → MATLAB Processing</h3>
-            <p>
-              I developed MATLAB scripts to extract XFLR5 results and compute coefficient increments (e.g., changes due to control deflection
-              or other configuration effects). These processed outputs were packaged into a form suitable for lookup/interpolation inside the
-              simulation environment.
-            </p>
-            <div class="tags" style="margin-top:10px;">
-              <span>Data extraction</span><span>Coefficient increments</span><span>Lookup tables</span>
+
+            <div class="aero-layout">
+              <div class="aero-text">
+                <p>
+                  I developed MATLAB scripts to extract XFLR5 results and compute coefficient increments (e.g., changes due to control deflection
+                  or other configuration effects). These processed outputs were packaged into a form suitable for lookup/interpolation inside the
+                  simulation environment.
+                </p>
+                <div class="tags" style="margin-top:10px;">
+                  <span>Data extraction</span><span>Coefficient increments</span><span>Lookup tables</span>
+                </div>
+              </div>
+
+              <div class="aero-thumbs" style="grid-template-columns: 1fr;">
+                <button class="media-trigger lightbox-trigger thumb"
+                        type="button"
+                        data-src="assets/Aircraft_data.png"
+                        aria-label="Expand MATLAB processing figure">
+                  <img src="assets/Aircraft_data.png" alt="XFLR5 data processing workflow output" />
+                  <div class="caption">Processed aero data</div>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card aero-images">
             <h3>Simulink Control & Maneuver Evaluation</h3>
-            <p>
-              I integrated the processed aerodynamic data into a Simulink-based flight model and used it to evaluate aircraft behavior in
-              multiple scenarios. The final analysis emphasized stability and control behavior under representative maneuvers and flight
-              phases.
-            </p>
-            <div class="tags" style="margin-top:10px;">
-              <span>Controls integration</span><span>Stability</span><span>Maneuvers</span>
+
+            <div class="aero-layout">
+              <div class="aero-text">
+                <p>
+                  I integrated the processed aerodynamic data into a Simulink-based flight model and used it to evaluate aircraft behavior in
+                  multiple scenarios. The final analysis emphasized stability and control behavior under representative maneuvers and flight
+                  phases.
+                </p>
+                <div class="tags" style="margin-top:10px;">
+                  <span>Controls integration</span><span>Stability</span><span>Maneuvers</span>
+                </div>
+              </div>
+
+              <div class="aero-thumbs" style="grid-template-columns: 1fr;">
+                <button class="media-trigger lightbox-trigger thumb"
+                        type="button"
+                        data-src="assets/Simulink_control.PNG"
+                        aria-label="Expand Simulink control model figure">
+                  <img src="assets/Simulink_control.PNG" alt="Simulink control and maneuver evaluation model" />
+                  <div class="caption">Simulink model</div>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card aero-images">
             <h3>Performance Cases</h3>
-            <ul>
-              <li><b>Glide:</b> energy management and trim behavior.</li>
-              <li><b>Climb:</b> climb capability across operating points.</li>
-              <li><b>Hold:</b> sustained maneuver/loiter behavior and control authority.</li>
-              <li><b>Landing:</b> approach/landing phase constraints and handling.</li>
-            </ul>
+
+            <div class="aero-layout">
+              <div class="aero-text">
+                <ul>
+                  <li><b>Glide:</b> energy management and trim behavior.</li>
+                  <li><b>Climb:</b> climb capability across operating points.</li>
+                  <li><b>Hold:</b> sustained maneuver/loiter behavior and control authority.</li>
+                  <li><b>Landing:</b> approach/landing phase constraints and handling.</li>
+                </ul>
+              </div>
+
+              <div class="aero-thumbs">
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance1.png"
+                        aria-label="Expand performance case figure 1">
+                  <img src="assets/performance1.png" alt="Performance case figure 1" />
+                  <div class="caption">Performance 1</div>
+                </button>
+
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance2.png"
+                        aria-label="Expand performance case figure 2">
+                  <img src="assets/performance2.png" alt="Performance case figure 2" />
+                  <div class="caption">Performance 2</div>
+                </button>
+
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance3.png"
+                        aria-label="Expand performance case figure 3">
+                  <img src="assets/performance3.png" alt="Performance case figure 3" />
+                  <div class="caption">Performance 3</div>
+                </button>
+
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance4.png"
+                        aria-label="Expand performance case figure 4">
+                  <img src="assets/performance4.png" alt="Performance case figure 4" />
+                  <div class="caption">Performance 4</div>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="card">
+          <div class="card aero-images">
             <h3>GPS Positioning Testing</h3>
-            <p>
-              At the same time I was completing this course, I was also taking Introduction to Navigation Systems, which got me thinking
-              about how GPS positioning would work for an aircraft like this. So, I developed an MATLAB code to express a short GPS
-              positioning representation of the aircraft's final approach flight path, using satellite position estimation concepts from
-              my concurrent Navigation coursework. The image on the right is the result of my modeling, which included the simulation
-              of 32 satellites at different orbits, their measurements of the aircraft's position (in ECEF coordinates) at each second,
-              random error due to sources such as receiver noise, satellite and receiver clock offsets, and ionosperic and tropospheric
-              delays consistent with GPS error sources, and the simulated correction of this error using typical GPS filtering techniques.
-            </p>
-            <p>
-              While I do admit that this is a completely arbitrary and user-controlled method of estimating position, I included this in my
-              report as a test of what I learned and understood about Navigation, as well as an exploration of the applications of GPS
-              positioning in the Aerospace field.
-            </p>
 
-            <div class="tags" style="margin-top:10px;">
-              <span>GPS</span><span>Estimation</span><span>Cross-discipline integration</span>
+            <div class="aero-layout">
+              <div class="aero-text">
+                <p>
+                  At the same time I was completing this course, I was also taking Introduction to Navigation Systems, which got me thinking
+                  about how GPS positioning would work for an aircraft like this. So, I developed an MATLAB code to express a short GPS
+                  positioning representation of the aircraft's final approach flight path, using satellite position estimation concepts from
+                  my concurrent Navigation coursework.
+                </p>
+                <p>
+                  While I do admit that this is a completely arbitrary and user-controlled method of estimating position, I included this in my
+                  report as a test of what I learned and understood about Navigation, as well as an exploration of the applications of GPS
+                  positioning in the Aerospace field.
+                </p>
+
+                <div class="tags" style="margin-top:10px;">
+                  <span>GPS</span><span>Estimation</span><span>Cross-discipline integration</span>
+                </div>
+              </div>
+
+              <div class="aero-thumbs">
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps1.png"
+                        aria-label="Expand GPS positioning figure 1">
+                  <img src="assets/aircraft_gps1.png" alt="GPS positioning figure 1" />
+                  <div class="caption">GPS 1</div>
+                </button>
+
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps2.png"
+                        aria-label="Expand GPS positioning figure 2">
+                  <img src="assets/aircraft_gps2.png" alt="GPS positioning figure 2" />
+                  <div class="caption">GPS 2</div>
+                </button>
+
+                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps3.png"
+                        aria-label="Expand GPS positioning figure 3">
+                  <img src="assets/aircraft_gps3.png" alt="GPS positioning figure 3" />
+                  <div class="caption">GPS 3</div>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -341,6 +419,7 @@
             </p>
             <a class="badge" href="assets/MMAE414_Group_8_Project_Report.pdf" target="_blank" rel="noopener">Final Design Report - Jonah Wilkes</a>
           </div>
+
         </div>
       </section>
     </main>
