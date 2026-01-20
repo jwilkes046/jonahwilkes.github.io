@@ -378,3 +378,34 @@ img {
   border: 1px solid var(--border);
 }
 
+
+
+
+/* ============================================================
+   Aircraft page – Aerodynamics image layout ONLY
+   ============================================================ */
+
+.card.aero-images p {
+  max-width: 78ch;   /* readable line length */
+}
+
+.card.aero-images .img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: start;
+}
+
+@media (max-width: 780px) {
+  .card.aero-images .img-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card.aero-images .img-row img {
+  width: 100%;
+  max-height: 220px;     /* compact previews */
+  object-fit: contain;
+}
+
