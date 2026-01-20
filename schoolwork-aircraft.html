@@ -76,17 +76,19 @@
         <div class="tags" style="margin-top:10px;">
           <span>Conceptual sizing</span><span>Aerodynamics</span><span>XFLR5</span><span>MATLAB</span><span>Simulink</span><span>Performance</span><span>Stability & control</span>
         </div>
-
+        
+        
+        <!--
         <hr style="margin:14px 0; opacity:.25;">
-
+        
         <div class="card">
           <h3>Deliverables</h3>
           <div class="tags" style="margin-top:10px;">
-            <!-- Update filenames to match your /assets/ names exactly -->
             <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Open Conceptual Design Report (PDF)</a>
             <a class="badge" href="assets/MMAE414_Group_8_Project_Report.pdf" target="_blank" rel="noopener">Open Final Project Report (PDF)</a>
           </div>
         </div>
+        -->
       </section>
 
       <!-- =========================
@@ -100,23 +102,26 @@
           <div class="tags"><span>MATLAB</span><span>Simulink</span><span>XFLR5</span><span>Technical Writing</span></div>
 
           <p style="margin-top:10px;">
-            This project progressed from a requirements-driven conceptual design report (mid-semester) to a final aircraft model and
-            performance evaluation using an XFLR5 → MATLAB → Simulink workflow. My work focused on sizing and aerodynamic decisions early,
-            then on building an aerodynamic dataset and integrating it into a flight dynamics/control simulation for maneuver performance.
+            The goal of this project was to develop a multi-functional agricultural aircraft, with autonomous functionality when
+            dusting crops, as well as with space for manual piloting during ferry missions. Throughout the semester, the project
+            progress from a requirements-driven Conceptual Design Report (mid-semester) to final aircraft model and performance
+            evaluation in a Final Design Report. My work focused on sizing an aerodynamic decisions early, then on building an
+            aerodynamic dataset using XFLR5 and integrating it into a flight dynamics/control simulation for maneuver performance
+            using Simulink.
           </p>
 
           <!-- CHANGED: grid -> stack -->
           <div class="stack">
             <div class="card">
-              <h4 style="margin:0 0 6px 0;">Phase 1 — Conceptual Design</h4>
+              <h4 style="margin:0 0 6px 0;">Conceptual Design</h4>
               <p class="muted" style="margin:0;">
-                Requirements → sizing trades → aerodynamic downselect → baseline configuration.
+                Requirements - sizing and trade studies - aerodynamic profile selection - and baseline configuration.
               </p>
             </div>
             <div class="card">
-              <h4 style="margin:0 0 6px 0;">Phase 2 — Modeling & Performance</h4>
+              <h4 style="margin:0 0 6px 0;">Modeling & Performance</h4>
               <p class="muted" style="margin:0;">
-                XFLR5 aircraft build → coefficient processing in MATLAB → Simulink dynamics/control → maneuver analysis.
+                XFLR5 aircraft build - coefficient processing in MATLAB - Simulink dynamics/control - maneuver analysis.
               </p>
             </div>
           </div>
@@ -129,7 +134,7 @@
       <section class="card" style="margin-top:14px;">
         <h2>My Role</h2>
         <p class="muted" style="margin-top:-6px;">
-          Highlights of the components I owned end-to-end.
+          Highlights of the components I owned end-to-end. In the full report PDFs, these each have their own sections.
         </p>
 
         <!-- CHANGED: grid -> stack -->
@@ -140,7 +145,7 @@
               <li><b>Design approach:</b> converted mission requirements into sizing and configuration drivers.</li>
               <li><b>Initial sizing:</b> wing loading (W/S) selection, trade study logic, and iterative weight estimation.</li>
               <li><b>Fuel & weight fractions:</b> fuel fraction and empty-weight fraction estimation to converge on gross weight.</li>
-              <li><b>Aerodynamic downselect:</b> airfoil evaluation with a selection matrix and wing sizing tied to performance goals.</li>
+              <li><b>Aerodynamic choices:</b> airfoil evaluation with a selection matrix and wing sizing tied to performance goals.</li>
             </ul>
             <div class="tags">
               <span>Trade studies</span><span>W/S sizing</span><span>Weight iteration</span><span>Airfoil selection</span>
@@ -210,9 +215,9 @@
           <div class="card">
             <h3>Report</h3>
             <p class="muted">
-              Full mid-semester report with sizing workflow, trade studies, and aerodynamic downselect.
+              The full conceptual design report is linked below for reference.
             </p>
-            <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Open PDF</a>
+            <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Conceptual Design Report - Jonah Wilkes</a>
           </div>
         </div>
       </section>
@@ -274,13 +279,24 @@
           </div>
 
           <div class="card">
-            <h3>Beyond Requirements: GPS Positioning Test</h3>
+            <h3>GPS Positioning Testing</h3>
             <p>
-              As an additional extension, I included a short GPS positioning test section to connect flight operations with navigation
-              estimation concepts from my concurrent Navigation coursework. This is expanded further in my Navigation tab.
+              At the same time I was completing this course, I was also taking Introduction to Navigation Systems, which got me thinking
+              about how GPS positioning would work for an aircraft like this. So, I developed an MATLAB code to express a short GPS 
+              positioning representation of the aircraft's final approach flight path, using satellite position estimation concepts from 
+              my concurrent Navigation coursework. The image on the right is the result of my modeling, which included the simulation
+              of 32 satellites at different orbits, their measurements of the aircraft's position (in ECEF coordinates) at each second, 
+              random error due to sources such as receiver noise, satellite and receiver clock offsets, and ionosperic and tropospheric 
+              delays consistent with GPS error sources, and the simulated correction of this error using typical GPS filtering techniques.
             </p>
+            <p>
+              While I do admit that this is a completely arbitrary and user-controlled method of estimating position, I included this in my 
+              report as a test of what I learned and understood about Navigation, as well as an exploration of the applications of GPS 
+              positioning in the Aerospace field.
+            </p>
+            
             <div class="tags" style="margin-top:10px;">
-              <span>GPS</span><span>Estimation</span><span>Cross-course integration</span>
+              <span>GPS</span><span>Estimation</span><span>Cross-discipline integration</span>
             </div>
           </div>
 
