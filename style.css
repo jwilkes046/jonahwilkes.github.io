@@ -139,7 +139,6 @@ h2 { margin-top: 0; }
   flex-direction: column;
 }
 
-
 .card h3 { margin: 0 0 8px; }
 
 .muted { color: var(--muted); }
@@ -149,13 +148,12 @@ h2 { margin-top: 0; }
   gap: 8px;
   flex-wrap: wrap;
 
-  /* NEW: push tags to bottom of the card */
+  /* NEW: push tags to bottom of the card (when possible) */
   margin-top: auto;
 
   /* NEW: spacing above tags */
   padding-top: 12px;
 }
-
 
 .tags span {
   border: 1px solid var(--border2);
@@ -340,8 +338,6 @@ img {
   background: #000;
 }
 
-
-
 /* --- PDF thumbnail block inside aside --- */
 .pdf-thumb {
   border-radius: var(--radius);
@@ -389,9 +385,6 @@ img {
   border: 1px solid var(--border);
 }
 
-
-
-
 /* ============================================================
    Aircraft page – Aerodynamics card: text + thumbnail bubbles
    (scoped ONLY to .card.aero-images)
@@ -401,7 +394,9 @@ img {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px; /* text | thumbnails */
   gap: 14px;
-  align-items: start;
+
+  /* CHANGED: stretch columns to same height so tags can sit at the bottom */
+  align-items: stretch;
 }
 
 /* Stack text + thumbnails on smaller screens */
@@ -411,9 +406,22 @@ img {
   }
 }
 
+/* NEW: make the text column a flex stack so tags can push down */
+.card.aero-images .aero-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 /* Keep text readable but not full-bleed */
 .card.aero-images .aero-text p {
   max-width: 78ch;
+}
+
+/* NEW: ensure tags in aero-text sit at bottom of the section */
+.card.aero-images .aero-text .tags {
+  margin-top: auto;
+  padding-top: 12px;
 }
 
 /* Right-side thumbnail container (side-by-side bubbles) */
@@ -463,7 +471,6 @@ img {
   color: var(--muted);
 }
 
-
 /* GPS thumbs: 2-column grid, with first image spanning the top row */
 .card.aero-images .aero-thumbs.gps-thumbs {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -483,15 +490,6 @@ img {
   }
 }
 
-
-
-
-
-
-
-
-
-
 /* ============================================================
    Report cards: text left, download right
    ============================================================ */
@@ -507,16 +505,6 @@ img {
     grid-template-columns: 1fr;
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
