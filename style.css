@@ -133,7 +133,12 @@ h2 { margin-top: 0; }
   background: var(--panel);
   padding: 14px;
   border-radius: var(--radius); /* CHANGED */
+
+  /* NEW: allow "stick to bottom" elements (tags) */
+  display: flex;
+  flex-direction: column;
 }
+
 
 .card h3 { margin: 0 0 8px; }
 
@@ -143,8 +148,14 @@ h2 { margin-top: 0; }
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 10px;
+
+  /* NEW: push tags to bottom of the card */
+  margin-top: auto;
+
+  /* NEW: spacing above tags */
+  padding-top: 12px;
 }
+
 
 .tags span {
   border: 1px solid var(--border2);
