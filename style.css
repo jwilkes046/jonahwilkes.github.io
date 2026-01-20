@@ -382,30 +382,60 @@ img {
 
 
 /* ============================================================
-   Aircraft page – Aerodynamics image layout ONLY
+   Aircraft page – Aerodynamics card: text + thumbnail bubbles
+   (scoped ONLY to .card.aero-images)
    ============================================================ */
 
-.card.aero-images p {
-  max-width: 78ch;   /* readable line length */
-}
-
-.card.aero-images .img-row {
+.card.aero-images .aero-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 12px;
+  grid-template-columns: minmax(0, 1fr) 320px; /* text | thumbnails */
+  gap: 14px;
   align-items: start;
 }
 
-@media (max-width: 780px) {
-  .card.aero-images .img-row {
-    grid-template-columns: 1fr;
+@media (max-width: 900px) {
+  .card.aero-images .aero-layout {
+    grid-template-columns: 1fr; /* stack on mobile */
   }
 }
 
-.card.aero-images .img-row img {
-  width: 100%;
-  max-height: 220px;     /* compact previews */
-  object-fit: contain;
+/* Keep text readable but not full-bleed */
+.card.aero-images .aero-text p {
+  max-width: 78ch;
 }
 
+/* Right-side thumbnail "bubbles" */
+.card.aero-images .aero-thumbs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* The button itself should feel like a small clickable tile */
+.card.aero-images .thumb {
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.card.aero-images .thumb:hover {
+  border-color: var(--accent);
+  background: rgba(209, 26, 42, 0.08);
+}
+
+.card.aero-images .thumb img {
+  width: 100%;
+  height: 140px;       /* small preview bubble size */
+  object-fit: contain; /* don't crop plots */
+  display: block;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.card.aero-images .thumb .caption {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
