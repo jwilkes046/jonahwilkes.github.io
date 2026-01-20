@@ -472,3 +472,42 @@ img {
   }
 }
 
+
+
+
+
+
+
+
+
+
+/* ============================================================
+   Report cards: text left, download right
+   ============================================================ */
+.card.report-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .card.report-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
