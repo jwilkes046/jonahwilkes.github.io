@@ -36,20 +36,264 @@
     </nav>
 
     <main>
+      <!-- =========================
+           OVERVIEW
+           ========================= -->
       <section class="card">
         <h2>Overview</h2>
-        <p class="muted">TBC</p>
+        <p>
+          In my Aircraft Design coursework at Illinois Tech, I led the conceptual and preliminary design of a fixed-wing aircraft,
+          taking primary responsibility for the aerodynamic configuration, performance analysis, and control development. Working within
+          a small team, I guided early design decisions including overall sizing, wing planform definition, and airfoil selection,
+          translating high-level mission requirements into a viable aircraft configuration. Later in the semester, I conducted detailed
+          aerodynamic analysis using XFLR5, developed custom MATLAB scripts to extract and process aerodynamic data, and integrated these
+          results into a Simulink-based flight control model. I evaluated aircraft performance and stability across multiple flight
+          conditions and maneuvers, gaining experience connecting aerodynamic design, dynamic modeling, and control system behavior in a
+          cohesive aircraft analysis.
+        </p>
+
+        <div class="tags" style="margin-top:10px;">
+          <span>Conceptual sizing</span><span>Aerodynamics</span><span>XFLR5</span><span>MATLAB</span><span>Simulink</span><span>Performance</span><span>Stability & control</span>
+        </div>
+
+        <hr style="margin:14px 0; opacity:.25;">
+
+        <div class="card">
+          <h3>Deliverables</h3>
+          <p class="muted" style="margin-top:-6px;">
+            Course reports (open in-browser; no auto-download).
+          </p>
+
+          <div class="tags" style="margin-top:10px;">
+            <!-- Update filenames to match your /assets/ names exactly -->
+            <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Open Conceptual Design Report (PDF)</a>
+            <a class="badge" href="assets/MMAE414_Group_8_Project_Report.pdf" target="_blank" rel="noopener">Open Final Project Report (PDF)</a>
+          </div>
+        </div>
       </section>
 
+      <!-- =========================
+           PROJECT
+           ========================= -->
       <section class="card" style="margin-top:14px;">
         <h2>Project</h2>
 
         <div class="card" style="margin-top:12px;">
           <h3>Aircraft Design Project</h3>
           <div class="tags"><span>MATLAB</span><span>Simulink</span><span>XFLR5</span><span>Technical Writing</span></div>
+
+          <p style="margin-top:10px;">
+            This project progressed from a requirements-driven conceptual design report (mid-semester) to a final aircraft model and
+            performance evaluation using an XFLR5 → MATLAB → Simulink workflow. My work focused on sizing and aerodynamic decisions early,
+            then on building an aerodynamic dataset and integrating it into a flight dynamics/control simulation for maneuver performance.
+          </p>
+
+          <div class="grid" style="margin-top:12px;">
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Phase 1 — Conceptual Design</h4>
+              <p class="muted" style="margin:0;">
+                Requirements → sizing trades → aerodynamic downselect → baseline configuration.
+              </p>
+            </div>
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Phase 2 — Modeling & Performance</h4>
+              <p class="muted" style="margin:0;">
+                XFLR5 aircraft build → coefficient processing in MATLAB → Simulink dynamics/control → maneuver analysis.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
+      <!-- =========================
+           MY ROLE
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>My Role</h2>
+        <p class="muted" style="margin-top:-6px;">
+          Highlights of the components I owned end-to-end.
+        </p>
 
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>Conceptual Design Contributions</h3>
+            <ul>
+              <li><b>Design approach:</b> converted mission requirements into sizing and configuration drivers.</li>
+              <li><b>Initial sizing:</b> wing loading (W/S) selection, trade study logic, and iterative weight estimation.</li>
+              <li><b>Fuel & weight fractions:</b> fuel fraction and empty-weight fraction estimation to converge on gross weight.</li>
+              <li><b>Aerodynamic downselect:</b> airfoil evaluation with a selection matrix and wing sizing tied to performance goals.</li>
+            </ul>
+            <div class="tags">
+              <span>Trade studies</span><span>W/S sizing</span><span>Weight iteration</span><span>Airfoil selection</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Final Report Contributions</h3>
+            <ul>
+              <li><b>Document design:</b> produced the final report in LaTeX/Overleaf for readability and consistent technical formatting.</li>
+              <li><b>XFLR5 setup:</b> defined the aircraft configuration and generated aerodynamic outputs for analysis.</li>
+              <li><b>MATLAB processing:</b> wrote scripts to extract XFLR5 results and compute usable coefficient/increment tables.</li>
+              <li><b>Simulink integration:</b> supported a flight dynamics/control simulation to evaluate multiple maneuvers and conditions.</li>
+              <li><b>Beyond requirements:</b> added a short GPS positioning test section connecting to my Navigation coursework.</li>
+            </ul>
+            <div class="tags">
+              <span>XFLR5</span><span>Coefficient increments</span><span>Simulink</span><span>LaTeX</span><span>GPS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           CONCEPTUAL DESIGN REPORT
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Conceptual Design Report (Mid-Semester)</h2>
+        <p class="muted" style="margin-top:-6px;">
+          Preliminary design parameters and justification of key configuration choices.
+        </p>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>Design Approach</h3>
+            <p>
+              I documented a requirements-driven approach that connects mission needs (payload, flight profile, and operational constraints)
+              to a feasible baseline configuration. The goal was to make early decisions traceable: every geometry or sizing choice had a
+              performance or constraint-based reason behind it.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Initial Sizing (W/S + Weight Iteration)</h3>
+            <p>
+              I performed the first-pass sizing using wing loading as the primary driver, then iterated fuel fraction, empty weight fraction,
+              and gross weight estimation to converge on a consistent design point. This included trade study logic to understand how sizing
+              choices moved the aircraft through the feasible design space.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Wing loading (W/S)</span><span>Trade study</span><span>Fuel fraction</span><span>Empty weight fraction</span><span>Gross weight</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Aerodynamics (Airfoil + Wing Sizing)</h3>
+            <p>
+              I evaluated candidate airfoils using performance-relevant metrics and summarized the decision in a weighted selection matrix.
+              The chosen airfoil and wing sizing were then carried forward as the aerodynamic baseline for the final configuration and later
+              simulation work.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Airfoil selection</span><span>Selection matrix</span><span>Wing sizing</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Report</h3>
+            <p class="muted">
+              Full mid-semester report with sizing workflow, trade studies, and aerodynamic downselect.
+            </p>
+            <a class="badge" href="assets/Group 8 - Conceptual Design Report 1.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           FINAL REPORT
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Final Project Report</h2>
+        <p class="muted" style="margin-top:-6px;">
+          Full aircraft model, aerodynamic dataset processing, and maneuver performance evaluation.
+        </p>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>XFLR5 Aircraft Configuration</h3>
+            <p>
+              I built and refined the aircraft configuration in XFLR5 to generate aerodynamic outputs across relevant operating conditions.
+              This established the baseline coefficient curves used later for performance and control simulation.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Geometry</span><span>Polars</span><span>Operating points</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>XFLR5 Data → MATLAB Processing</h3>
+            <p>
+              I developed MATLAB scripts to extract XFLR5 results and compute coefficient increments (e.g., changes due to control deflection
+              or other configuration effects). These processed outputs were packaged into a form suitable for lookup/interpolation inside the
+              simulation environment.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Data extraction</span><span>Coefficient increments</span><span>Lookup tables</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Simulink Control & Maneuver Evaluation</h3>
+            <p>
+              I integrated the processed aerodynamic data into a Simulink-based flight model and used it to evaluate aircraft behavior in
+              multiple scenarios. The final analysis emphasized stability and control behavior under representative maneuvers and flight
+              phases.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Controls integration</span><span>Stability</span><span>Maneuvers</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Performance Cases</h3>
+            <ul>
+              <li><b>Glide:</b> energy management and trim behavior.</li>
+              <li><b>Climb:</b> climb capability across operating points.</li>
+              <li><b>Hold:</b> sustained maneuver/loiter behavior and control authority.</li>
+              <li><b>Landing:</b> approach/landing phase constraints and handling.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Beyond Requirements: GPS Positioning Test</h3>
+            <p>
+              As an additional extension, I included a short GPS positioning test section to connect flight operations with navigation
+              estimation concepts from my concurrent Navigation coursework. This is expanded further in my Navigation tab.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>GPS</span><span>Estimation</span><span>Cross-course integration</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Report</h3>
+            <p class="muted">
+              Full final report with XFLR5 configuration details, MATLAB processing workflow, and maneuver performance results.
+            </p>
+            <a class="badge" href="assets/MMAE414_Group_8_Project_Report.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           OPTIONAL: PLACEHOLDER FOR FIGURES
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Selected Figures (Optional)</h2>
+        <p class="muted" style="margin-top:-6px;">
+          If you want, we can add a small gallery here (trade study plot, airfoil comparison, XFLR5 polars, increment plots, maneuver trajectories).
+        </p>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="card">
+            <h3>Figure Placeholders</h3>
+            <ul class="muted">
+              <li>W/S trade study plot</li>
+              <li>Airfoil comparison (polars)</li>
+              <li>Selection matrix</li>
+              <li>Maneuver trajectory plot(s)</li>
+              <li>GPS positioning figure</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </main>
 
