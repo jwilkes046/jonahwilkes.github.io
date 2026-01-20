@@ -7,6 +7,30 @@
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
   <title>Aircraft Design | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Page-local layout tweak: stack subsections into multiple rows -->
+  <style>
+    /* Stack cards vertically instead of squeezing into one row */
+    .stack {
+      display: grid;
+      grid-template-columns: 1fr; /* single column = multiple rows */
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    /* Optional: enable 2 columns on wide screens for specific sections later
+       (you can add class="stack two-col" to a container when you want this) */
+    @media (min-width: 1100px) {
+      .stack.two-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Ensure inner cards fill the available width */
+    .stack .card {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -42,10 +66,10 @@
       <section class="card">
         <h2>Overview</h2>
         <p>
-          The sections below go into more technical detail on my contributions to the Aircraft Design project. 
-          They focus on my role in the project, including performing the initial sizing estimates and selecting 
-          wing parameters for the Conceptual Design report, as well as building the XFLR5 model and simulating 
-          aircraft performance in Simulink for the Final report. This page provides a closer look at my role in 
+          The sections below go into more technical detail on my contributions to the Aircraft Design project.
+          They focus on my role in the project, including performing the initial sizing estimates and selecting
+          wing parameters for the Conceptual Design report, as well as building the XFLR5 model and simulating
+          aircraft performance in Simulink for the Final report. This page provides a closer look at my role in
           the project and the skills I developed throughout the course.
         </p>
 
@@ -81,7 +105,8 @@
             then on building an aerodynamic dataset and integrating it into a flight dynamics/control simulation for maneuver performance.
           </p>
 
-          <div class="grid" style="margin-top:12px;">
+          <!-- CHANGED: grid -> stack -->
+          <div class="stack">
             <div class="card">
               <h4 style="margin:0 0 6px 0;">Phase 1 — Conceptual Design</h4>
               <p class="muted" style="margin:0;">
@@ -107,7 +132,8 @@
           Highlights of the components I owned end-to-end.
         </p>
 
-        <div class="grid" style="margin-top:12px;">
+        <!-- CHANGED: grid -> stack -->
+        <div class="stack">
           <div class="card">
             <h3>Conceptual Design Contributions</h3>
             <ul>
@@ -146,7 +172,8 @@
           Preliminary design parameters and justification of key configuration choices.
         </p>
 
-        <div class="grid" style="margin-top:12px;">
+        <!-- CHANGED: grid -> stack -->
+        <div class="stack">
           <div class="card">
             <h3>Design Approach</h3>
             <p>
@@ -199,7 +226,8 @@
           Full aircraft model, aerodynamic dataset processing, and maneuver performance evaluation.
         </p>
 
-        <div class="grid" style="margin-top:12px;">
+        <!-- CHANGED: grid -> stack -->
+        <div class="stack">
           <div class="card">
             <h3>XFLR5 Aircraft Configuration</h3>
             <p>
@@ -265,8 +293,6 @@
           </div>
         </div>
       </section>
-
-
     </main>
 
     <footer class="footer">
