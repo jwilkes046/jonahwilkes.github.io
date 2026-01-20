@@ -452,3 +452,23 @@ img {
   color: var(--muted);
 }
 
+
+/* GPS thumbs: 2-column grid, with first image spanning the top row */
+.card.aero-images .aero-thumbs.gps-thumbs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card.aero-images .aero-thumbs.gps-thumbs .gps-wide {
+  grid-column: 1 / -1; /* span both columns */
+}
+
+/* Mobile: keep it clean */
+@media (max-width: 600px) {
+  .card.aero-images .aero-thumbs.gps-thumbs {
+    grid-template-columns: 1fr;
+  }
+  .card.aero-images .aero-thumbs.gps-thumbs .gps-wide {
+    grid-column: auto;
+  }
+}
+
