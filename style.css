@@ -532,39 +532,53 @@ img {
 
 
 /* ============================================================
-   INDEX (Home) page – smaller right-side preview images
+   INDEX (Home) page – force left text + right image (small)
    Only applies when <body class="home">
    ============================================================ */
 
 .home .card.with-aside {
-  gap: 18px;                 /* slightly tighter than default */
-  align-items: flex-start;   /* keeps text top-aligned like your schoolwork cards */
+  display: flex;             /* FORCE horizontal layout */
+  flex-direction: row;       /* text left, image right */
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.home .card.with-aside .card-main {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .home .card.with-aside .aside-img {
-  flex: 0 0 260px;           /* smaller right column (was 360px) */
+  flex: 0 0 260px;           /* smaller right column */
+  margin-left: auto;         /* LOCK to right edge */
 }
 
 .home .card.with-aside .aside-img img {
   width: 100%;
-  height: 180px;             /* forces a smaller preview footprint */
-  object-fit: cover;         /* keeps it neat; use "contain" if you prefer no cropping */
+  height: 180px;             /* compact preview size */
+  object-fit: cover;         /* change to contain if preferred */
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
 }
 
-/* Home mobile: keep it from getting huge */
+/* Home mobile: stack cleanly */
 @media (max-width: 720px) {
+  .home .card.with-aside {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .home .card.with-aside .aside-img {
+    margin-left: 0;
     flex: 0 0 auto;
     width: 100%;
-    max-width: 420px;        /* smaller than your global 480px */
+    max-width: 420px;
   }
 
   .home .card.with-aside .aside-img img {
-    height: auto;            /* let it scale naturally on mobile */
-    object-fit: contain;     /* avoid cropping on small screens */
+    height: auto;
+    object-fit: contain;
   }
 }
 
