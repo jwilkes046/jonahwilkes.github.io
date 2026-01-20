@@ -532,55 +532,63 @@ img {
 
 
 /* ============================================================
-   INDEX (Home) page – force left text + right image (small)
-   Only applies when <body class="home">
+   INDEX + Schoolwork Overview – force left text + right image (small)
+   Applies when <body class="home"> OR <body class="home-layout">
    ============================================================ */
 
-.home .card.with-aside {
-  display: flex;             /* FORCE horizontal layout */
-  flex-direction: row;       /* text left, image right */
+.home .card.with-aside,
+.home-layout .card.with-aside {
+  display: flex;
+  flex-direction: row;
   gap: 18px;
   align-items: flex-start;
 }
 
-.home .card.with-aside .card-main {
+.home .card.with-aside .card-main,
+.home-layout .card.with-aside .card-main {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.home .card.with-aside .aside-img {
-  flex: 0 0 260px;           /* smaller right column */
-  margin-left: auto;         /* LOCK to right edge */
+.home .card.with-aside .aside-img,
+.home-layout .card.with-aside .aside-img {
+  flex: 0 0 260px;
+  margin-left: auto;
 }
 
-.home .card.with-aside .aside-img img {
+.home .card.with-aside .aside-img img,
+.home-layout .card.with-aside .aside-img img {
   width: 100%;
-  height: 180px;             /* compact preview size */
-  object-fit: cover;         /* change to contain if preferred */
+  height: 180px;
+  object-fit: cover; /* switch to contain if you want zero cropping */
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
 }
 
-/* Home mobile: stack cleanly */
+/* Mobile: stack cleanly */
 @media (max-width: 720px) {
-  .home .card.with-aside {
+  .home .card.with-aside,
+  .home-layout .card.with-aside {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .home .card.with-aside .aside-img {
+  .home .card.with-aside .aside-img,
+  .home-layout .card.with-aside .aside-img {
     margin-left: 0;
     flex: 0 0 auto;
     width: 100%;
     max-width: 420px;
   }
 
-  .home .card.with-aside .aside-img img {
+  .home .card.with-aside .aside-img img,
+  .home-layout .card.with-aside .aside-img img {
     height: auto;
     object-fit: contain;
   }
 }
+
 
 
 
