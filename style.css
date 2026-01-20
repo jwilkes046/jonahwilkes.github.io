@@ -148,12 +148,10 @@ h2 { margin-top: 0; }
   gap: 8px;
   flex-wrap: wrap;
 
-  /* NEW: push tags to bottom of the card (when possible) */
-  margin-top: auto;
-
-  /* NEW: spacing above tags */
-  padding-top: 12px;
+  /* NORMAL behavior everywhere by default */
+  margin-top: 10px;
 }
+
 
 .tags span {
   border: 1px solid var(--border2);
@@ -479,6 +477,31 @@ img {
 .card.aero-images .aero-thumbs.gps-thumbs .gps-wide {
   grid-column: 1 / -1; /* span both columns */
 }
+
+
+/* ============================================================
+   Aircraft page – force tags to bottom of aero text column
+   ============================================================ */
+
+/* Ensure columns match height so bottom-align is possible */
+.card.aero-images .aero-layout {
+  align-items: stretch; /* CHANGED from start */
+}
+
+/* Make text column a flex stack so tags can push down */
+.card.aero-images .aero-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Only in aero-text: push tags to bottom + add spacing */
+.card.aero-images .aero-text .tags {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+
 
 /* Mobile: keep it clean */
 @media (max-width: 600px) {
