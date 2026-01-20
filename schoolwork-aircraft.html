@@ -32,7 +32,17 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- =========================================================
+       IMAGE LIGHTBOX (images only)
+       Place once near the top of <body>, before your main content
+       ========================================================= -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
   <div class="wrap">
     <header class="header">
       <div>
@@ -103,8 +113,8 @@
           <p style="margin-top:10px;">
             The goal of this project was to develop a multi-functional agricultural aircraft, with autonomous functionality when
             dusting crops, as well as with space for manual piloting during ferry missions. Throughout the semester, the project
-            progress from a requirements-driven Conceptual Design Report (mid-semester) to final aircraft model and performance
-            evaluation in a Final Design Report. My work focused on sizing an aerodynamic decisions early, then on building an
+            progressed from a requirements-driven Conceptual Design Report (mid-semester) to a final aircraft model and performance
+            evaluation in a Final Design Report. My work focused on sizing and aerodynamic decisions early, then on building an
             aerodynamic dataset using XFLR5 and integrating it into a flight dynamics/control simulation for maneuver performance
             using Simulink.
           </p>
@@ -208,24 +218,28 @@
               <span>Airfoil selection</span><span>Selection matrix</span><span>Wing sizing</span>
             </div>
 
-            <!-- NEW: Clickable images (full width inside the card) -->
+            <!-- NEW: Smaller clickable preview images (click to expand) -->
             <div class="stack" style="margin-top:12px;">
               <div class="figure">
-                <img
-                  class="lightbox-trigger"
-                  src="assets/Airfoil_characteristics.png"
-                  alt="Airfoil characteristics comparison"
-                  data-full="assets/Airfoil_characteristics.png"
-                />
+                <button class="media-trigger lightbox-trigger"
+                        type="button"
+                        data-src="assets/Airfoil_characteristics.png"
+                        aria-label="Expand airfoil characteristics figure">
+                  <img src="assets/Airfoil_characteristics.png"
+                       alt="Airfoil characteristics comparison"
+                       style="max-width: 520px; margin: 0 auto; display:block;" />
+                </button>
               </div>
 
               <div class="figure">
-                <img
-                  class="lightbox-trigger"
-                  src="assets/Airfoil_selection_matrix.png"
-                  alt="Airfoil selection matrix"
-                  data-full="assets/Airfoil_selection_matrix.png"
-                />
+                <button class="media-trigger lightbox-trigger"
+                        type="button"
+                        data-src="assets/Airfoil_selection_matrix.png"
+                        aria-label="Expand airfoil selection matrix">
+                  <img src="assets/Airfoil_selection_matrix.png"
+                       alt="Airfoil selection matrix"
+                       style="max-width: 520px; margin: 0 auto; display:block;" />
+                </button>
               </div>
             </div>
           </div>
@@ -333,55 +347,59 @@
     </footer>
   </div>
 
-  <!-- NEW: Lightbox container (one per page) -->
-  <div class="lightbox" id="imgLightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
-    <img id="imgLightboxTarget" alt="">
-  </div>
+  <!-- =========================================================
+       SCRIPTS
+       Place near end of <body>
+       ========================================================= -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
   <script>
-    // footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const closeBtn = lightbox?.querySelector(".lightbox-close");
+      const imgEl = document.getElementById("lightbox-img");
 
-    // image lightbox
-    const lb = document.getElementById("imgLightbox");
-    const lbImg = document.getElementById("imgLightboxTarget");
-    const lbClose = lb.querySelector(".lightbox-close");
+      if (!lightbox || !closeBtn || !imgEl) return;
 
-    function openLightbox(src, alt) {
-      lbImg.src = src;
-      lbImg.alt = alt || "";
-      lb.classList.add("open");
-      lb.setAttribute("aria-hidden", "false");
-    }
+      function openLightbox(src, altText) {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        imgEl.src = src;
+        imgEl.alt = altText || "";
+      }
 
-    function closeLightbox() {
-      lb.classList.remove("open");
-      lb.setAttribute("aria-hidden", "true");
-      lbImg.src = "";
-      lbImg.alt = "";
-    }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        imgEl.src = "";
+        imgEl.alt = "";
+      }
 
-    // click any image with .lightbox-trigger
-    document.querySelectorAll(".lightbox-trigger").forEach((img) => {
-      img.addEventListener("click", () => {
-        const full = img.getAttribute("data-full") || img.src;
-        openLightbox(full, img.alt);
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lightbox-trigger");
+        if (!btn) return;
+
+        const src = btn.getAttribute("data-src");
+        if (!src) return;
+
+        const img = btn.querySelector("img");
+        const alt = img ? img.getAttribute("alt") : "";
+
+        openLightbox(src, alt);
       });
-    });
 
-    // close button
-    lbClose.addEventListener("click", closeLightbox);
+      closeBtn.addEventListener("click", closeLightbox);
 
-    // click outside image closes (overlay click)
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLightbox();
-    });
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
 
-    // ESC closes
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lb.classList.contains("open")) closeLightbox();
-    });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
   </script>
 </body>
 </html>
