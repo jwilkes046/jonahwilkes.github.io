@@ -393,9 +393,10 @@ img {
   align-items: start;
 }
 
+/* Stack text + thumbnails on smaller screens */
 @media (max-width: 900px) {
   .card.aero-images .aero-layout {
-    grid-template-columns: 1fr; /* stack on mobile */
+    grid-template-columns: 1fr;
   }
 }
 
@@ -404,19 +405,28 @@ img {
   max-width: 78ch;
 }
 
-/* Right-side thumbnail "bubbles" */
+/* Right-side thumbnail container (side-by-side bubbles) */
 .card.aero-images .aero-thumbs {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* SIDE-BY-SIDE */
   gap: 12px;
 }
 
-/* The button itself should feel like a small clickable tile */
+/* Stack thumbnails vertically on small phones */
+@media (max-width: 600px) {
+  .card.aero-images .aero-thumbs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual thumbnail tile */
 .card.aero-images .thumb {
   border: 1px solid var(--border);
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: var(--radius);
   padding: 10px;
+  cursor: zoom-in;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .card.aero-images .thumb:hover {
@@ -424,18 +434,21 @@ img {
   background: rgba(209, 26, 42, 0.08);
 }
 
+/* Thumbnail image */
 .card.aero-images .thumb img {
   width: 100%;
-  height: 140px;       /* small preview bubble size */
-  object-fit: contain; /* don't crop plots */
+  height: 140px;           /* small preview size */
+  object-fit: contain;     /* preserve plots */
   display: block;
   border-radius: calc(var(--radius) - 4px);
   border: 1px solid var(--border);
   background: #000;
 }
 
+/* Optional caption under thumbnails */
 .card.aero-images .thumb .caption {
   margin-top: 8px;
   font-size: 12px;
   color: var(--muted);
 }
+
