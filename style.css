@@ -590,6 +590,79 @@ img {
 }
 
 
+/* ============================================================
+   Side-media layout (images OR videos on right)
+   Used by:
+   - index.html        (home)
+   - schoolwork.html   (overview)
+   - spacecraft design (video preview)
+   ============================================================ */
+
+.side-media .card.with-aside {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.side-media .card.with-aside .card-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Right column (shared for images & video) */
+.side-media .card.with-aside .aside-img {
+  flex: 0 0 300px;      /* slightly larger than image previews */
+  margin-left: auto;   /* LOCKS it to the right */
+}
+
+/* IMAGE previews */
+.side-media .card.with-aside .aside-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+/* VIDEO previews */
+.side-media .card.with-aside .aside-video {
+  width: 100%;
+  height: 200px;       /* slightly larger than images */
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+/* Caption spacing */
+.side-media .aside-caption {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* Mobile behavior */
+@media (max-width: 720px) {
+  .side-media .card.with-aside {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .side-media .card.with-aside .aside-img {
+    margin-left: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .side-media .card.with-aside .aside-video,
+  .side-media .card.with-aside .aside-img img {
+    height: auto;
+    object-fit: contain;
+  }
+}
 
 
 
