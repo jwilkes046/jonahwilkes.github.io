@@ -333,36 +333,67 @@
             <div class="aero-layout">
               <div class="aero-text">
                 <ul>
-                  <li><b>Glide:</b> energy management and trim behavior.</li>
-                  <li><b>Climb:</b> climb capability across operating points.</li>
-                  <li><b>Hold:</b> sustained maneuver/loiter behavior and control authority.</li>
-                  <li><b>Landing:</b> approach/landing phase constraints and handling.</li>
+                  <li>
+                    <b>Glide:</b>
+                    The first performance parameter was evaluating the aircraft's trimmed glide behavior, focusing
+                    on longitudinal stability and phugoid damping. This simulation was used to verify steady-state
+                    glide speed, elevator trim requirements, and effective lift-to-drag performance once settled.
+                  </li>
+              
+                  <li>
+                    <b>Climb:</b>
+                    The second performance parameter was evlauating the climb capability using cooridnated thrust
+                    and elivator control to transition from level flight into a controlled ascent. I took care
+                    to remain within elevator deflection and available thrust limits, along with meeting climb
+                    rate requirements and remaining within reasonable limits on angle of attack. 
+                  </li>
+              
+                  <li>
+                    <b>Hold:</b>
+                    The thrid performance parameter was simulating a sustained holding pattern to evaluate
+                    lateral-directional stability and control during coordinated turns. This was achieved through
+                    a combination of roll, pitch, and yaw control, ensuring minimal altitude loss and coordinating
+                    sideslip angles throughout the maneuver.
+                  </li>
+              
+                  <li>
+                    <b>Landing:</b>
+                    The final performance parameter was modeling a full landing pattern combining longitudinal and
+                    lateral control, including descending turns and a stabilized final approach. This maneuver was
+                    used as a verification of the full control system, bringing together the descent, turn, and hold
+                    performances into a single continuous scenario. Rather than focusing on precise landing distance
+                    metrics, the simulation emphasized controllability, trim behavior, and coordination throughout
+                    the approach sequence, serving as a validation of the aircraft’s modeled flight dynamics and 
+                    control logic.
+                    
+                  </li>
                 </ul>
               </div>
+
 
               <div class="aero-thumbs">
                 <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance1.png"
                         aria-label="Expand performance case figure 1">
                   <img src="assets/performance1.png" alt="Performance case figure 1" />
-                  <div class="caption">Performance 1</div>
+                  <div class="caption">Glide Performance</div>
                 </button>
 
                 <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance2.png"
                         aria-label="Expand performance case figure 2">
                   <img src="assets/performance2.png" alt="Performance case figure 2" />
-                  <div class="caption">Performance 2</div>
+                  <div class="caption">Climb Performance</div>
                 </button>
 
                 <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance3.png"
                         aria-label="Expand performance case figure 3">
                   <img src="assets/performance3.png" alt="Performance case figure 3" />
-                  <div class="caption">Performance 3</div>
+                  <div class="caption">Hold Performance</div>
                 </button>
 
                 <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/performance4.png"
                         aria-label="Expand performance case figure 4">
                   <img src="assets/performance4.png" alt="Performance case figure 4" />
-                  <div class="caption">Performance 4</div>
+                  <div class="caption">Landing Perofrmance</div>
                 </button>
               </div>
             </div>
@@ -390,25 +421,33 @@
                 </div>
               </div>
 
-              <div class="aero-thumbs">
-                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps1.png"
+              <div class="aero-thumbs gps-thumbs">
+                <button class="media-trigger lightbox-trigger thumb gps-wide"
+                        type="button"
+                        data-src="assets/aircraft_gps1.png"
                         aria-label="Expand GPS positioning figure 1">
                   <img src="assets/aircraft_gps1.png" alt="GPS positioning figure 1" />
                   <div class="caption">GPS 1</div>
                 </button>
-
-                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps2.png"
+              
+                <button class="media-trigger lightbox-trigger thumb"
+                        type="button"
+                        data-src="assets/aircraft_gps2.png"
                         aria-label="Expand GPS positioning figure 2">
                   <img src="assets/aircraft_gps2.png" alt="GPS positioning figure 2" />
                   <div class="caption">GPS 2</div>
                 </button>
-
-                <button class="media-trigger lightbox-trigger thumb" type="button" data-src="assets/aircraft_gps3.png"
+              
+                <button class="media-trigger lightbox-trigger thumb"
+                        type="button"
+                        data-src="assets/aircraft_gps3.png"
                         aria-label="Expand GPS positioning figure 3">
                   <img src="assets/aircraft_gps3.png" alt="GPS positioning figure 3" />
                   <div class="caption">GPS 3</div>
                 </button>
               </div>
+
+
             </div>
           </div>
 
