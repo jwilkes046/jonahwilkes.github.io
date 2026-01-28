@@ -11,6 +11,30 @@
   <title>Spacecraft Design | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
 
+  <!-- Page-local layout tweak: stack subsections into multiple rows (matches aircraft tab pattern) -->
+  <style>
+    .stack{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (min-width: 1100px){
+      .stack.two-col{ grid-template-columns: 1fr 1fr; }
+    }
+    .stack .card{ width:100%; }
+
+    /* Optional: tighter spacing for “report row” cards */
+    .report-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    @media (max-width: 720px){
+      .report-row{ flex-direction:column; align-items:flex-start; }
+    }
+  </style>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYXQ0D03PQ"></script>
@@ -20,18 +44,14 @@
     gtag('js', new Date());
     gtag('config', 'G-QYXQ0D03PQ');
   </script>
-  
 </head>
 
-
-  
 <body class="side-media">
-
   <div class="wrap">
     <header class="header">
       <div>
         <h1>Spacecraft Design</h1>
-        <p>Mission analysis • Trajectory design • Systems trade studies</p>
+        <p>Mission analysis • Trajectory design • Spacecraft dynamics</p>
       </div>
       <div class="links">
         <a class="badge" href="schoolwork.html">Back to Schoolwork</a>
@@ -56,65 +76,215 @@
     </nav>
 
     <main>
+      <!-- =========================
+           OVERVIEW
+           ========================= -->
       <section class="card">
         <h2>Overview</h2>
-        <p class="muted">
-          Two Classes, two missions
+        <p>
+          This page highlights my Spacecraft Dynamics work, focusing first on a full mission design to the Jovian system.
+          In this project, I used real ephemerides/orbital elements to build a multi-moon trajectory in Python, then wrote
+          a final technical report documenting the transfer design, insertion geometry, and moon-to-moon targeting logic.
         </p>
+
+        <div class="tags" style="margin-top:10px;">
+          <span>Astrodynamics</span>
+          <span>Spacecraft dynamics</span>
+          <span>Trajectory design</span>
+          <span>Hohmann transfers</span>
+          <span>Lambert targeting</span>
+          <span>Porkchop plots</span>
+          <span>Python</span>
+          <span>JPL SSD ephemerides</span>
+        </div>
       </section>
 
+      <!-- =========================
+           PROJECTS
+           ========================= -->
       <section class="card" style="margin-top:14px;">
         <h2>Projects</h2>
 
-        <!-- Card with right-side aside video preview -->
-        <div class="card with-aside" style="margin-top:12px;">
-          <div class="card-main">
-            <h3>Spacecraft Dynamics, Mission to Jupiter</h3>
-            <p>
-              Spacecraft Dynamics Mission to Jupiter's 10 moons
-            </p>
+        <!-- =========================
+             PROJECT: JUPITER / CAPRICORN
+             ========================= -->
+        <div class="card" style="margin-top:12px;">
+          <h3>Spacecraft Dynamics — Mission to Jupiter (CAPRICORN)</h3>
+
+          <div class="tags">
+            <span>Mission design</span>
+            <span>Interplanetary transfer</span>
+            <span>Retrograde insertion</span>
+            <span>Multi-target flybys</span>
+            <span>Python simulation</span>
+            <span>Technical report</span>
+          </div>
+
+          <p style="margin-top:10px;">
+            The mission objective was to design and simulate a trajectory that visits <b>ten</b> Jovian moons in a single mission:
+            three outer retrograde irregular moons, the four Galilean moons, and three inner moons. I developed the trajectory in Python
+            using the true orbital element sets (from JPL Solar System Dynamics) to propagate the moons and target encounters.
+          </p>
+
+          <!-- Video stays functional (right-side aside video preview) -->
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h4 style="margin:0 0 6px 0;">Trajectory Visualization</h4>
+              <p class="muted" style="margin:0;">
+                Full simulated trajectory animation (click to expand).
+              </p>
+            </div>
+
+            <aside class="aside-img">
+              <button
+                class="lightbox-trigger media-trigger"
+                type="button"
+                data-video="assets/FinalOrbits_50.mp4"
+                aria-label="Open trajectory video in viewer"
+                title="Click to expand"
+              >
+                <video class="aside-video" autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/FinalOrbits_50.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </button>
+              <div class="aside-caption muted">Click to expand</div>
+            </aside>
+          </div>
+
+          <div class="stack">
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Mission Architecture</h4>
+              <p class="muted" style="margin:0;">
+                Earth → Jupiter transfer → retrograde Jovian orbit insertion → outer retrograde irregular flybys → inner system flybys.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">What this taught me</h4>
+              <p class="muted" style="margin:0;">
+                How to translate orbital mechanics into an executable trajectory plan: choosing transfer methods, setting encounter geometry,
+                managing ∆v constraints, and validating the end-to-end sequence with simulation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================
+             PROJECT: TITAN (placeholder for later)
+             ========================= -->
+        <div class="card" style="margin-top:12px;">
+          <h3>Spacecraft Design — Mission to Titan</h3>
+          <p class="muted" style="margin:0;">
+            (I’ll expand this section next — keeping it here as a second project placeholder.)
+          </p>
+
+          <div class="tags" style="margin-top:10px;">
+            <span>Systems engineering</span>
+            <span>Mission design</span>
+            <span>Interdisciplinary design</span>
+            <span>CAD modeling</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           MY ROLE (JUPITER MISSION)
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>My Role (Jupiter Mission)</h2>
+        <p class="muted" style="margin-top:-6px;">
+          Highlights of the components I owned end-to-end, from dynamics to the final report.
+        </p>
+
+        <div class="stack">
+          <div class="card">
+            <h3>Trajectory Design & Simulation (Python)</h3>
+            <ul>
+              <li><b>Ephemerides-driven setup:</b> used real orbital element sets for Jupiter’s moons as the targeting baseline.</li>
+              <li><b>Transfer modeling:</b> implemented Hohmann-style transfers where feasible and used Lambert targeting where needed.</li>
+              <li><b>Sequence planning:</b> structured the mission into phases (outer retrograde → inner moons) to keep the trajectory tractable.</li>
+              <li><b>Visualization:</b> produced the full trajectory animation to validate geometry and communicate results clearly.</li>
+            </ul>
             <div class="tags">
-              <span>Astrodynamics</span>
-              <span>Kepler's Equations</span>
-              <span>Lambert Solvers</span>
-              <span>Porkchop Plots</span>
+              <span>Orbital elements</span><span>Propagation</span><span>Hohmann transfers</span><span>Lambert targeting</span><span>∆v bookkeeping</span><span>Simulation validation</span><span>Visualization</span>
             </div>
           </div>
 
-          <aside class="aside-img">
-            <button
-              class="lightbox-trigger media-trigger"
-              type="button"
-              data-video="assets/FinalOrbits_50.mp4"
-              aria-label="Open trajectory video in viewer"
-              title="Click to expand"
-            >
-              <video class="aside-video" autoplay loop muted playsinline preload="metadata">
-                <source src="assets/FinalOrbits_50.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </button>
-            <div class="aside-caption muted">Click to expand</div>
-          </aside>
-        </div>
-
-        <div class="card" style="margin-top:12px;">
-          <h3>Spacecraft Design, Mission to Titan</h3>
-
-          <p>
-            Spacecraft Design mission to Titan's surface
-          </p>
-          
-          <div class="tags">
-            <span>Astrodynamics</span>
-            <span>Mission Design</span>
-            <span>CAD modeling</span>
-            <span>Systems Engineering</span>
-            <span>Interdisciplinary Collaboration</span>
+          <div class="card">
+            <h3>Technical Reporting</h3>
+            <ul>
+              <li><b>Mission story:</b> documented the mission timeline, phases, and how each maneuver connects to the next encounter.</li>
+              <li><b>Method justification:</b> explained why different transfer strategies were chosen and what constraints drove the design.</li>
+              <li><b>Deliverable clarity:</b> reported key states/geometry at major phases so the plan can be reproduced or audited.</li>
+            </ul>
+            <div class="tags">
+              <span>Technical writing</span><span>Mission phases</span><span>Traceable assumptions</span><span>Reproducible workflow</span>
+            </div>
           </div>
         </div>
+      </section>
 
+      <!-- =========================
+           TECHNICAL DEEP DIVE (JUPITER MISSION)
+           ========================= -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Jupiter Mission Deep Dive</h2>
 
+        <div class="stack">
+          <div class="card">
+            <h3>Mission Goal</h3>
+            <p>
+              Design a single spacecraft trajectory that visits a set of outer retrograde irregular moons,
+              then transitions inward to reach the Galilean moons and selected inner moons. The mission is structured
+              so the high-value outer retrograde targets come first, and the inner system encounters follow after a
+              controlled alignment/slowdown.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Trajectory Phases</h3>
+            <ul>
+              <li><b>Earth → Jupiter transfer:</b> start with an interplanetary transfer selected using a porkchop-style search.</li>
+              <li><b>Retrograde insertion:</b> enter Jupiter’s system on a geometry that supports retrograde outer-moon flybys.</li>
+              <li><b>Outer retrograde flybys:</b> execute a dual flyby sequence and then the final outer retrograde encounter.</li>
+              <li><b>Inner system sequence:</b> perform a slowdown/alignment step, then proceed moon-to-moon with transfers and small adjustments.</li>
+            </ul>
+            <div class="tags" style="margin-top:10px;">
+              <span>Mission phases</span><span>Transfer selection</span><span>Insertion geometry</span><span>Flyby sequencing</span><span>Inner alignment</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Methods Used</h3>
+            <p>
+              This project forced me to move beyond “textbook” orbital mechanics and into practical mission design. I used
+              Hohmann-style transfers as a baseline tool, then relied on Lambert solutions when simple transfers could not
+              achieve the required intercept geometry within realistic time/∆v windows. The combination of propagation,
+              targeting, and visualization made the trajectory design process feel like an engineering workflow rather than
+              isolated homework problems.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Vis-viva</span><span>Two-body mechanics</span><span>Lambert solvers</span><span>Targeting constraints</span><span>Simulation workflow</span>
+            </div>
+          </div>
+
+          <div class="card report-row">
+            <div>
+              <h3>Report</h3>
+              <p class="muted" style="margin:0;">
+                Full final report (mission timeline, phases, and maneuver logic).
+              </p>
+            </div>
+
+            <a class="badge"
+               href="assets/Jupiter_Final_Project.pdf"
+               target="_blank"
+               rel="noopener">
+              Jupiter Mission Final Report (PDF)
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -123,7 +293,7 @@
     </footer>
   </div>
 
-  <!-- Video Lightbox -->
+  <!-- Video Lightbox (KEEP) -->
   <div id="videoLightbox" class="lightbox" aria-hidden="true">
     <button class="lightbox-close" type="button" aria-label="Close">×</button>
     <video id="lightboxVideo" controls playsinline preload="metadata"></video>
