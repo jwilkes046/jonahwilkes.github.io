@@ -224,6 +224,12 @@
                 <h3>Trajectory Design & Simulation (Python)</h3>
                 <ul>
                   <li><b>Ephemerides-driven setup:</b> used real orbital element sets for Jupiter’s moons as the targeting baseline.</li>
+                  <li></li><b>Orbital data inputs:</b> sourced moon ephemerides from
+                    <a href="https://ssd.jpl.nasa.gov/sats/elem/sep.html" target="_blank" rel="noopener">
+                      NASA JPL Solar System Dynamics
+                    </a>
+                    to drive propagation and encounter targeting.
+                  </li>
                   <li><b>Transfer modeling:</b> implemented Hohmann-style transfers where feasible and used Lambert targeting where needed.</li>
                   <li><b>Sequence planning:</b> structured the mission into phases (outer retrograde → inner moons) to keep the trajectory tractable.</li>
                   <li><b>Constraint management:</b> tracked &Delta;v usage and designed the sequence to reduce time spent deep in the radiation belts.</li>
