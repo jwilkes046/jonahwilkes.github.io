@@ -275,7 +275,7 @@
              PROJECT: TITAN / PDR
              ========================= -->
         <div class="card" style="margin-top:12px;">
-          <h3>Spacecraft Design — Mission to Titan (TITANIC, PDR)</h3>
+          <h3>Spacecraft Design — Mission to Titan (TITANIC)</h3>
 
           <div class="tags">
             <span>PDR documentation</span>
@@ -286,32 +286,57 @@
             <span>Propulsion sizing</span>
             <span>ADCS</span>
           </div>
-
           <p style="margin-top:10px;">
-            This project brought a Titan lake mission concept to the <b>Preliminary Design Review (PDR)</b> stage.
-            The mission targets <b>Kraken Mare</b> and uses a carrier/orbiter system to deliver a semi-submersible
-            surface vehicle while maintaining continuous communications through deployed relay satellites. :contentReference[oaicite:0]{index=0}
+            The goal of this project was to develop a complete mission concept and carry it through the
+            <b>Preliminary Design Review (PDR)</b> stage. Over the semester we expanded beyond the orbital dynamics work from the
+            previous course and into systems-level mission design—communications (spacecraft-to-spacecraft and to Earth),
+            propulsion, spacecraft configuration, thermal/material considerations, and how these subsystems drive one another.
+            This final project was the culmination of that progression, where our team demonstrated an end-to-end mission design
+            that could be defended at PDR.
+          </p>
+          <p style="margin-top:10px;">
+            My work focused on the mission trajectory and timeline, propulsion sizing (including &Delta;v and propellant mass),
+            and initial <b>ADCS</b> feasibility for entry and on-orbit pointing, while also contributing across subsystems and keeping the overall mission
+            concept consistent. Our final design delivers a semi-submersible surface vehicle to Titan’s <b>Kraken Mare</b> using a
+            carrier/orbiter system, and returns data through deployed relay satellites to maintain continuous (or near-continuous)
+            communications during lake operations.
           </p>
 
+          
           <div class="stack">
             <div class="card">
               <h4 style="margin:0 0 6px 0;">Mission concept (high level)</h4>
               <p>
-                Launch → Earth–Saturn transfer (porkchop-selected window) → Titan atmospheric entry and targeted aerobraking →
-                orbit circularization → relay satellite deployment → guided descent/splashdown at Kraken Mare → surface operations and data relay. :contentReference[oaicite:1]{index=1}
+                The mission begins with the launch and insertion into an Earth-Saturn interplanetary transfer selected using porkchop
+                plot analysis. Upon arrival, the transfer craft targets Titan and enters the atmosphere on an intercept trajectory which
+                enables <b>aerobraking</b>, reducing transfer velocity while capturing into the moon's orbit. After orbit circularization,
+                two relay satellites are deployed into phased orbits to establish constant communication coverage. With the relay satellites
+                in place, hte carrier guides the surface vehicle through descent and splashdown at Kraken Mare, after which surface science
+                operations can occur with data transmitted through the orbiters back to Earth.
               </p>
             </div>
-
+          
             <div class="card">
-              <h4 style="margin:0 0 6px 0;">Key design anchors from the PDR</h4>
+              <h4 style="margin:0 0 6px 0;">Key design parameters from the PDR</h4>
               <ul>
-                <li><b>Primary surface target:</b> Kraken Mare (~68°N, 310°W). :contentReference[oaicite:2]{index=2}</li>
-                <li><b>Relay architecture:</b> two deployed relay satellites to support continuous communications. :contentReference[oaicite:3]{index=3}</li>
-                <li><b>Orbit baseline:</b> circularized Titan orbit at ~10,000 km before deployment. :contentReference[oaicite:4]{index=4}</li>
-                <li><b>Timeline anchors:</b> launch 01-May-2028; Titan entry early June 2034; mission end Aug 2034 (report timeline). :contentReference[oaicite:5]{index=5}</li>
+                <li>
+                  <b>Primary surface target:</b> Kraken Mare (~68°N, 310°W), selected for its size, persistence, and science return.
+                </li>
+                <li>
+                  <b>Relay architecture:</b> two deployed relay satellites phased to support continuous or near-continuous
+                  communications during surface operations.
+                </li>
+                <li>
+                  <b>Orbit baseline:</b> circularized Titan orbit at ~10,000 km prior to satellite deployment and descent sequencing.
+                </li>
+                <li>
+                  <b>Timeline anchors:</b> launch in May 2028, Titan atmospheric entry in mid-2034, and mission completion in late 2034,
+                  with these phases driving subsystem and operations planning.
+                </li>
               </ul>
             </div>
           </div>
+
 
           <!-- =========================
                TITAN VIDEOS
@@ -430,15 +455,122 @@
                 </ul>
 
                 <div class="tags">
-                  <span>Attitude dynamics</span><span>Entry torque</span><span>Reaction wheels</span><span>Thruster control</span><span>Pointing modes</span>
+                  <span>Attitude dynamics</span><span>Reaction wheels</span><span>Thruster control</span><span>Pointing modes</span>
                 </div>
+              </div>
+
+              <!-- =========================
+                   NEW: PROPULSION & ΔV BUDGET SUMMARY (Titan)
+                   ========================= -->
+              <div class="card">
+                <h3>Propulsion &Delta;v Budget Summary</h3>
+                <p>
+                  The table below summarizes the propulsion requirements across major mission events. These &Delta;v requirements
+                  were used to estimate propellant usage and mass evolution across the mission, and helped drive feasibility and
+                  launch vehicle sizing decisions at PDR.
+                </p>
+
+                <div style="overflow-x:auto; margin-top:10px;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Phase</th>
+                        <th>Maneuver</th>
+                        <th>Operation Mode</th>
+                        <th>&Delta;V Requirement</th>
+                        <th>Fuel Type</th>
+                        <th>Dry Mass at Event</th>
+                        <th>Fuel Usage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Launch to LEO</td>
+                        <td>Launch</td>
+                        <td>8.000 km/s</td>
+                        <td>Liquid Hydrogen</td>
+                        <td>46,651.785 kg</td>
+                        <td>182,212.225 kg</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Saturn Transfer Boost</td>
+                        <td>Interplanetary Cruise</td>
+                        <td>7.2856 km/s</td>
+                        <td>Liquid Hydrogen</td>
+                        <td>7,530.269 kg</td>
+                        <td>20,900.291 kg</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Titan Entry</td>
+                        <td>Aerobraking</td>
+                        <td>1.3808 km/s</td>
+                        <td>Aerobraking</td>
+                        <td>5,440.240 kg</td>
+                        <td>N/A</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Orbit Correction</td>
+                        <td>Titan Cruise</td>
+                        <td>282.74 m/s</td>
+                        <td>Hydrazine</td>
+                        <td>2,526.762 kg</td>
+                        <td>305.778 kg</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Satellite 1 Deployment</td>
+                        <td>Titan Cruise</td>
+                        <td>19.426 m/s</td>
+                        <td>Hydrazine</td>
+                        <td>320.254 kg</td>
+                        <td>2.538 kg</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Satellite 2 Deployment</td>
+                        <td>Titan Cruise</td>
+                        <td>37.5986 m/s</td>
+                        <td>Hydrazine</td>
+                        <td>320.493 kg</td>
+                        <td>4.932 kg</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>Titan Descent</td>
+                        <td>Descent</td>
+                        <td>352.31 m/s</td>
+                        <td>Hydrazine</td>
+                        <td>1,165.043 kg</td>
+                        <td>177.926 kg</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Titan Splashdown</td>
+                        <td>Surface Operation</td>
+                        <td>538.58 m/s</td>
+                        <td>HS + Parachute</td>
+                        <td>997.25 kg</td>
+                        <td>N/A</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="muted" style="margin-top:8px;">
+                  This breakdown shows how trajectory and entry decisions propagated directly into propulsion sizing,
+                  mass growth, and subsystem feasibility across the full mission lifecycle.
+                </p>
               </div>
 
               <div class="card report-row">
                 <div>
                   <h3>Report</h3>
                   <p class="muted" style="margin:0;">
-                    PDR final report (mission concept, trajectory, subsystem trades, and design justification).
+                    PDR final report (mission concept, trajectory, system design, and design justification).
                   </p>
                 </div>
 
