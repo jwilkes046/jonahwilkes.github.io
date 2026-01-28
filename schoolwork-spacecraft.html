@@ -82,14 +82,15 @@
       <section class="card">
         <h2>Overview</h2>
         <p>
-          This page highlights my work in both Spacecraft Dynamics and Spacecraft Design, focusing first on the former.
+          This page highlights my work in both <b>Spacecraft Dynamics</b> and <b>Spacecraft Design</b>.
           In Spacecraft Dynamics, my team designed a full mission trajectory to the Jovian system. I used real orbital
           elements/ephemerides to build a multi-moon intercept trajectory in Python and wrote the final technical report
           documenting the transfer, retrograde insertion, and moon-to-moon targeting adjustments.
         </p>
 
         <p style="margin-top:10px;">
-          I’ll expand the Spacecraft Design (Titan) project section next.
+          In Spacecraft Design, my team brought a Titan lake mission concept to the <b>Preliminary Design Review (PDR)</b> stage,
+          including a complete trajectory/timeline, subsystem trade studies, and a final report.
         </p>
 
         <div class="tags" style="margin-top:10px;">
@@ -100,7 +101,9 @@
           <span>Lambert targeting</span>
           <span>Porkchop plots</span>
           <span>Python</span>
-          <span>JPL SSD ephemerides</span>
+          <span>Mission timeline</span>
+          <span>Propulsion &Delta;v</span>
+          <span>ADCS</span>
         </div>
       </section>
 
@@ -145,7 +148,6 @@
                 did not make it easy to style the spacecraft separately, so the spacecraft marker blends in with the moon markers. The mission
                 sequence is best followed by watching the trajectory changes between flybys and transfers.
               </p>
-
 
               <p>
                 The animation begins with insertion from the Earth–Jupiter transfer into a wide, retrograde
@@ -204,14 +206,13 @@
                 This project moved beyond solving standalone orbital mechanics problems and into the challenges of full mission design.
                 I learned how to translate two-body dynamics into a practical trajectory plan by selecting appropriate transfer methods,
                 designing encounter geometries that enable sequential targeting, tracking &Delta;v and timing tradeoffs, and validating
-                the full mission through numerical simulation and visualization. The process emphasized systems-level thinking, where
-                individual maneuvers must support the feasibility of the entire mission sequence.
+                the full mission through numerical simulation and visualization—where each maneuver has to work in service of the entire sequence.
               </p>
             </div>
           </div>
 
           <!-- =========================
-               MY ROLE (moved INTO Jupiter block)
+               MY ROLE (Jupiter)
                ========================= -->
           <div class="card" style="margin-top:12px;">
             <h4 style="margin:0 0 6px 0;">My Role</h4>
@@ -227,7 +228,7 @@
                     <a href="https://ssd.jpl.nasa.gov/sats/elem/sep.html" target="_blank" rel="noopener">
                       NASA JPL Solar System Dynamics
                     </a>
-                    to drive propogation and build a targeting baseline for Jupiter's moons.
+                    to drive propagation and build a targeting baseline for Jupiter's moons.
                   </li>
                   <li><b>Transfer modeling:</b> implemented Hohmann-style transfers where feasible and used Lambert targeting where needed.</li>
                   <li><b>Sequence planning:</b> structured the mission into phases (outer retrograde → inner moons) to keep the trajectory tractable.</li>
@@ -271,19 +272,184 @@
         </div>
 
         <!-- =========================
-             PROJECT: TITAN (separate block)
+             PROJECT: TITAN / PDR
              ========================= -->
         <div class="card" style="margin-top:12px;">
-          <h3>Spacecraft Design — Mission to Titan</h3>
-          <p class="muted" style="margin:0;">
-            (I’ll expand this section next — keeping it here as a second project placeholder.)
+          <h3>Spacecraft Design — Mission to Titan (TITANIC, PDR)</h3>
+
+          <div class="tags">
+            <span>PDR documentation</span>
+            <span>Earth–Saturn transfer</span>
+            <span>Aerobraking / aerocapture</span>
+            <span>Relay constellation</span>
+            <span>Surface lake operations</span>
+            <span>Propulsion sizing</span>
+            <span>ADCS</span>
+          </div>
+
+          <p style="margin-top:10px;">
+            This project brought a Titan lake mission concept to the <b>Preliminary Design Review (PDR)</b> stage.
+            The mission targets <b>Kraken Mare</b> and uses a carrier/orbiter system to deliver a semi-submersible
+            surface vehicle while maintaining continuous communications through deployed relay satellites. :contentReference[oaicite:0]{index=0}
           </p>
 
-          <div class="tags" style="margin-top:10px;">
-            <span>Systems engineering</span>
-            <span>Mission design</span>
-            <span>Interdisciplinary design</span>
-            <span>CAD modeling</span>
+          <div class="stack">
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Mission concept (high level)</h4>
+              <p>
+                Launch → Earth–Saturn transfer (porkchop-selected window) → Titan atmospheric entry and targeted aerobraking →
+                orbit circularization → relay satellite deployment → guided descent/splashdown at Kraken Mare → surface operations and data relay. :contentReference[oaicite:1]{index=1}
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Key design anchors from the PDR</h4>
+              <ul>
+                <li><b>Primary surface target:</b> Kraken Mare (~68°N, 310°W). :contentReference[oaicite:2]{index=2}</li>
+                <li><b>Relay architecture:</b> two deployed relay satellites to support continuous communications. :contentReference[oaicite:3]{index=3}</li>
+                <li><b>Orbit baseline:</b> circularized Titan orbit at ~10,000 km before deployment. :contentReference[oaicite:4]{index=4}</li>
+                <li><b>Timeline anchors:</b> launch 01-May-2028; Titan entry early June 2034; mission end Aug 2034 (report timeline). :contentReference[oaicite:5]{index=5}</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- =========================
+               TITAN VIDEOS
+               ========================= -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 6px 0;">Trajectory & Deployment Visualizations</h4>
+            <p class="muted" style="margin:0;">
+              Short clips generated from my trajectory/simulation work (click any preview to expand).
+            </p>
+
+            <div class="stack" style="margin-top:12px;">
+              <div class="card with-aside">
+                <div class="card-main">
+                  <h3 style="margin-top:0;">Earth–Saturn Transfer & Titan Entry</h3>
+                  <p class="muted" style="margin:0;">
+                    Interplanetary transfer trajectory and Titan intercept/entry segment.
+                  </p>
+                </div>
+                <aside class="aside-img">
+                  <button
+                    class="lightbox-trigger media-trigger"
+                    type="button"
+                    data-video="assets/Earth_Saturn_Transfer_and_Entry.mp4"
+                    aria-label="Open Earth–Saturn transfer video in viewer"
+                    title="Click to expand"
+                  >
+                    <video class="aside-video" autoplay loop muted playsinline preload="metadata">
+                      <source src="assets/Earth_Saturn_Transfer_and_Entry.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </button>
+                  <div class="aside-caption muted">Click to expand</div>
+                </aside>
+              </div>
+
+              <div class="card with-aside">
+                <div class="card-main">
+                  <h3 style="margin-top:0;">Aerobraking Maneuver (Close-Up)</h3>
+                  <p class="muted" style="margin:0;">
+                    Close approach/entry geometry and the aerobraking pass used to shed transfer velocity.
+                  </p>
+                </div>
+                <aside class="aside-img">
+                  <button
+                    class="lightbox-trigger media-trigger"
+                    type="button"
+                    data-video="assets/Aerobraking_maneuver.mp4"
+                    aria-label="Open aerobraking maneuver video in viewer"
+                    title="Click to expand"
+                  >
+                    <video class="aside-video" autoplay loop muted playsinline preload="metadata">
+                      <source src="assets/Aerobraking_maneuver.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </button>
+                  <div class="aside-caption muted">Click to expand</div>
+                </aside>
+              </div>
+
+              <div class="card with-aside">
+                <div class="card-main">
+                  <h3 style="margin-top:0;">Satellite Separation (120° Phasing)</h3>
+                  <p class="muted" style="margin:0;">
+                    Deployment maneuver to establish phased relay geometry for communications coverage.
+                  </p>
+                </div>
+                <aside class="aside-img">
+                  <button
+                    class="lightbox-trigger media-trigger"
+                    type="button"
+                    data-video="assets/Satellite_Separation_Final.mp4"
+                    aria-label="Open satellite separation video in viewer"
+                    title="Click to expand"
+                  >
+                    <video class="aside-video" autoplay loop muted playsinline preload="metadata">
+                      <source src="assets/Satellite_Separation_Final.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </button>
+                  <div class="aside-caption muted">Click to expand</div>
+                </aside>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+               MY ROLE (Titan)
+               ========================= -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 6px 0;">My Role</h4>
+            <p class="muted" style="margin:0;">
+              I contributed across the mission, but my primary ownership was trajectory/timeline, propulsion sizing, and ADCS feasibility.
+            </p>
+
+            <div class="stack" style="margin-top:12px;">
+              <div class="card">
+                <h3>Mission Trajectory, Timeline, &Delta;v, and Mass Sizing</h3>
+                <ul>
+                  <li><b>Trajectory design:</b> built the end-to-end plan (transfer → entry/aerobraking → orbit ops → deployment → descent).</li>
+                  <li><b>Timeline integration:</b> defined mission phases and timing so power/communications trades could anchor to a schedule. :contentReference[oaicite:6]{index=6}</li>
+                  <li><b>&Delta;v bookkeeping:</b> calculated maneuver requirements across major mission events. :contentReference[oaicite:7]{index=7}</li>
+                  <li><b>Fuel & wet-mass sizing:</b> used the &Delta;v plan + propulsion assumptions to drive propellant mass and stage sizing. :contentReference[oaicite:8]{index=8}</li>
+                </ul>
+
+                <div class="tags">
+                  <span>Porkchop plots</span><span>Transfer design</span><span>&Delta;v budget</span><span>Rocket equation</span><span>Mass growth</span><span>Mission timeline</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>ADCS Feasibility (Entry + On-Orbit Ops)</h3>
+                <ul>
+                  <li><b>Aerobraking attitude needs:</b> checked stability/torque implications during the entry/aerobraking pass.</li>
+                  <li><b>Repointing & comm geometry:</b> ensured pointing maneuvers were feasible for “look at Titan / talk to Earth” modes.</li>
+                  <li><b>Control allocation:</b> treated thrusters as critical during entry/aerobraking and reaction wheels for routine repointing.</li>
+                </ul>
+
+                <div class="tags">
+                  <span>Attitude dynamics</span><span>Entry torque</span><span>Reaction wheels</span><span>Thruster control</span><span>Pointing modes</span>
+                </div>
+              </div>
+
+              <div class="card report-row">
+                <div>
+                  <h3>Report</h3>
+                  <p class="muted" style="margin:0;">
+                    PDR final report (mission concept, trajectory, subsystem trades, and design justification).
+                  </p>
+                </div>
+
+                <a class="badge"
+                   href="assets/Preliminary_Design_Review_Final_Report_Team_i.pdf"
+                   target="_blank"
+                   rel="noopener">
+                  Titan Mission PDR Final Report (PDF)
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
