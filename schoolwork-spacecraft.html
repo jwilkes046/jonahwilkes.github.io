@@ -317,7 +317,7 @@
           
           <div class="stack">
             <div class="card">
-              <h4 style="margin:0 0 6px 0;">Mission concept (high level)</h4>
+              <h4 style="margin:0 0 6px 0;">Mission concept</h4>
               <p>
                 The mission begins with the launch and insertion into an Earth-Saturn interplanetary transfer selected using porkchop
                 plot analysis. Upon arrival, the transfer craft targets Titan and enters the atmosphere on an intercept trajectory which
@@ -440,7 +440,8 @@
           <div class="card" style="margin-top:12px;">
             <h4 style="margin:0 0 6px 0;">My Role</h4>
             <p class="muted" style="margin:0;">
-              I contributed across the mission, but my primary ownership was trajectory/timeline, propulsion sizing, and ADCS feasibility.
+              I contributed across all levels of the mission design, but my primary role was trajectory/timeline, propulsion sizing, 
+              and ADCS feasibility.
             </p>
 
             <div class="stack" style="margin-top:12px;">
@@ -449,8 +450,8 @@
                 <ul>
                   <li><b>Trajectory design:</b> built the end-to-end plan (transfer → entry/aerobraking → orbit ops → deployment → descent).</li>
                   <li><b>Timeline integration:</b> defined mission phases and timing so power/communications trades could anchor to a schedule.</li>
-                  <li><b>&Delta;v bookkeeping:</b> calculated maneuver requirements across major mission events.</li>
-                  <li><b>Fuel & wet-mass sizing:</b> used the &Delta;v plan + propulsion assumptions to drive propellant mass and stage sizing.</li>
+                  <li><b>&Delta;v computation:</b> calculated maneuver requirements across major mission events.</li>
+                  <li><b>Fuel & wet-mass sizing:</b> used the &Delta;v plan and propulsion assumptions to drive propellant mass and stage sizing.</li>
                 </ul>
 
                 <div class="tags">
@@ -459,10 +460,11 @@
               </div>
 
               <div class="card">
-                <h3>ADCS Feasibility (Entry + On-Orbit Ops)</h3>
+                <h3>Attitude Determination and Control (ADCS) feasibility for Entry and On-Orbit Operations</h3>
                 <ul>
                   <li><b>Aerobraking attitude needs:</b> checked stability/torque implications during the entry/aerobraking pass.</li>
-                  <li><b>Repointing & comm geometry:</b> ensured pointing maneuvers were feasible for “look at Titan / talk to Earth” modes.</li>
+                  <li><b>Repointing & communications geometry:</b> ensured pointing maneuvers were feasible for both communication with the submersible and 
+                    communication with Earth.</li>
                   <li><b>Control allocation:</b> treated thrusters as critical during entry/aerobraking and reaction wheels for routine repointing.</li>
                 </ul>
 
@@ -477,9 +479,9 @@
               <div class="card">
                 <h3>Propulsion &Delta;v Budget Summary</h3>
                 <p>
-                  The table below summarizes the propulsion requirements across major mission events. These &Delta;v requirements
-                  were used to estimate propellant usage and mass evolution across the mission, and helped drive feasibility and
-                  launch vehicle sizing decisions at PDR.
+                  The table below summarizes the propulsion requirements I computed across major mission events. These &Delta;v requirements
+                  were used to estimate propellant usage and mass parameters for the mission, and helped drive feasibility and launch vehicle 
+                  sizing decisions for the PDR.
                 </p>
 
                 <div style="overflow-x:auto; margin-top:10px;">
@@ -572,10 +574,6 @@
                   </table>
                 </div>
 
-                <p class="muted" style="margin-top:8px;">
-                  This breakdown shows how trajectory and entry decisions propagated directly into propulsion sizing,
-                  mass growth, and subsystem feasibility across the full mission lifecycle.
-                </p>
               </div>
 
               <div class="card report-row">
