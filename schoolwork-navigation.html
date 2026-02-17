@@ -11,7 +11,31 @@
   <title>Navigation Classwork | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
 
-  
+  <!-- Page-local layout tweak: match Spacecraft page "stack" layout -->
+  <style>
+    .stack{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (min-width: 1100px){
+      .stack.two-col{ grid-template-columns: 1fr 1fr; }
+    }
+    .stack .card{ width:100%; }
+
+    /* Optional: tighter spacing for “report row” cards (matches Spacecraft page) */
+    .report-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    @media (max-width: 720px){
+      .report-row{ flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYXQ0D03PQ"></script>
   <script>
@@ -20,12 +44,8 @@
     gtag('js', new Date());
     gtag('config', 'G-QYXQ0D03PQ');
   </script>
-
-
 </head>
 
-
-  
 <body>
   <div class="wrap">
     <header class="header">
@@ -56,27 +76,222 @@
     </nav>
 
     <main>
+      <!-- =========================
+           OVERVIEW
+           ========================= -->
       <section class="card">
         <h2>Overview</h2>
-        <p class="muted">
-          <!-- This section highlights advanced navigation and estimation coursework,
-          focusing on GNSS data processing, filtering, and precision positioning. -->
-          TBC
+        <p>
+          This page highlights my <b>GNSS navigation and estimation</b> coursework, focused on implementing
+          end-to-end positioning pipelines from raw GNSS measurements. The project uses a short kinematic dataset
+          collected by <b>two closely-spaced receivers</b> (a reference antenna and a user antenna) and applies
+          five positioning methods of increasing complexity.
         </p>
+
+        <p style="margin-top:10px;">
+          Problems <b>1–3</b> solve for the <b>relative baseline</b> (user vs. reference) using differential
+          pseudorange/carrier techniques and filtering. Problems <b>4–5</b> solve for the <b>absolute position</b>
+          of the user antenna using stand-alone GPS methods and error-mitigation techniques.
+        </p>
+
+        <div class="tags" style="margin-top:10px;">
+          <span>GNSS</span>
+          <span>RINEX</span>
+          <span>Pseudorange</span>
+          <span>Carrier phase</span>
+          <span>Least squares</span>
+          <span>Kalman filtering</span>
+          <span>Differential GNSS</span>
+          <span>Double differencing</span>
+          <span>Ambiguity resolution</span>
+          <span>ENU / ECEF</span>
+          <span>Python</span>
+        </div>
       </section>
 
+      <!-- =========================
+           PROJECT
+           ========================= -->
       <section class="card" style="margin-top:14px;">
         <h2>Course Final Project</h2>
 
         <div class="card" style="margin-top:12px;">
-          <h3>GNSS Estimation</h3>
-          <p>Final Project?</p>
-          
+          <h3>GNSS Estimation — Differential & Stand-alone Positioning</h3>
+
+          <div class="tags">
+            <span>Differential pseudorange</span>
+            <span>Hatch smoothing</span>
+            <span>Kalman filter</span>
+            <span>Double difference</span>
+            <span>LAMBDA ambiguity fixing</span>
+            <span>Single-point positioning</span>
+            <span>SNR weighting</span>
+          </div>
+
+          <p style="margin-top:10px;">
+            The goal of this project was to implement five GNSS positioning methods and compare how accuracy
+            improves as additional modeling and filtering are introduced. The dataset includes two receivers:
+            <b>Antenna 1</b> (reference) and <b>Antenna 2</b> (user). Using broadcast ephemerides and RINEX
+            observations, I built pipelines that estimate either (i) the <b>relative baseline</b> between receivers
+            or (ii) the <b>absolute position</b> of the user receiver without any reference antenna.
+          </p>
+
+          <!-- =========================
+               METHODS OVERVIEW (two-column stack)
+               ========================= -->
+          <div class="stack two-col">
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Parts 1–3: Differential baseline (relative positioning)</h4>
+              <ul>
+                <li><b>Part 1:</b> epoch-by-epoch least squares from <b>single-difference</b> code pseudoranges.</li>
+                <li><b>Part 2:</b> <b>Hatch smoothing</b> + constant-velocity <b>Kalman filter</b> in ENU.</li>
+                <li><b>Part 3:</b> high-accuracy differential solution using <b>double-difference</b> code + carrier phase,
+                  joint ambiguity estimation, and <b>integer fixing</b> (LAMBDA).</li>
+              </ul>
+              <p class="muted" style="margin:10px 0 0 0;">
+                Figures on this page will show the ENU baseline scatter/ellipsoids and time histories for each part.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="margin:0 0 6px 0;">Parts 4–5: Stand-alone position (absolute positioning)</h4>
+              <ul>
+                <li><b>Part 4:</b> GPS-only <b>single-point positioning (SPP)</b> using iterative nonlinear least squares.</li>
+                <li><b>Part 5:</b> stand-alone improvements using <b>carrier smoothing</b> and <b>SNR-based weighting</b>
+                  to reduce measurement noise.</li>
+              </ul>
+              <p class="muted" style="margin:10px 0 0 0;">
+                Figures will show LLH stability vs. time, estimated precision, and ENU residuals relative to truth/reference.
+              </p>
+            </div>
+          </div>
+
+          <!-- =========================
+               PART-BY-PART SECTIONS (placeholders for your figures)
+               ========================= -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 6px 0;">Part-by-part Results (figures to be added)</h4>
+            <p class="muted" style="margin:0;">
+              I’ll add figures in the same style as the project slides (ellipsoid plots, ENU components with error bounds, etc.).
+            </p>
+
+            <div class="stack" style="margin-top:12px;">
+              <div class="card">
+                <h3>Part 1 — Differential pseudorange (single-difference LS)</h3>
+                <p>
+                  Solved the relative ENU baseline between the two antennas using epoch-by-epoch least squares on
+                  <b>single-difference pseudoranges</b>. This provides a baseline performance reference before smoothing and filtering.
+                </p>
+                <ul class="muted" style="margin:8px 0 0 0;">
+                  <li>Planned figures: <code>p1_ellipsoid</code>, <code>p1_ENU_with_error</code></li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Part 2 — Hatch smoothing + ENU Kalman filter</h3>
+                <p>
+                  Reduced pseudorange noise by applying <b>carrier-aided Hatch smoothing</b>, then used a constant-velocity
+                  <b>Kalman filter</b> in ENU to stabilize the baseline estimate over time.
+                </p>
+                <ul class="muted" style="margin:8px 0 0 0;">
+                  <li>Planned figures: <code>p2_ellipsoid</code>, <code>p2_ENU_with_error</code></li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Part 3 — Double-difference code + carrier phase (ambiguity fixing)</h3>
+                <p>
+                  Implemented a high-accuracy differential solution using <b>double-difference</b> code and carrier phase
+                  in an ECEF constant-velocity Kalman filter. Estimated float ambiguities and applied <b>LAMBDA</b>
+                  integer ambiguity resolution to obtain a fixed baseline.
+                </p>
+                <ul class="muted" style="margin:8px 0 0 0;">
+                  <li>Planned figures: <code>p3_ellipsoid</code>, <code>p3_ENU_with_error</code></li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Part 4 — Stand-alone GPS single-point positioning (SPP)</h3>
+                <p>
+                  Computed the absolute position of the user antenna using GPS-only pseudoranges and broadcast ephemerides.
+                  Solved for receiver position + clock bias via iterative nonlinear least squares at selected epochs and averaged
+                  across time.
+                </p>
+                <ul class="muted" style="margin:8px 0 0 0;">
+                  <li>Planned figures: <code>p4_LLH_time</code>, <code>p4_clock_bias</code>, <code>p4_ENU_error</code></li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Part 5 — Stand-alone improvements (smoothing + weighting)</h3>
+                <p>
+                  Improved stand-alone positioning by applying <b>carrier-phase smoothing</b> and <b>SNR-based measurement weighting</b>.
+                  This reduced scatter relative to raw SPP and emphasized higher-quality measurements during the LS updates.
+                </p>
+                <ul class="muted" style="margin:8px 0 0 0;">
+                  <li>Planned figures: <code>p5_LLH_time</code>, <code>p5_clock_bias</code>, <code>p5_ENU_error</code></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+               MY ROLE
+               ========================= -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 6px 0;">My Role</h4>
+            <p class="muted" style="margin:0;">
+              What I implemented end-to-end (from GNSS data handling to estimation and performance evaluation).
+            </p>
+
+            <div class="stack" style="margin-top:12px;">
+              <div class="card">
+                <h3>End-to-end GNSS processing & estimation</h3>
+                <ul>
+                  <li><b>Data handling:</b> parsed and synchronized RINEX observations across two receivers and filtered usable epochs/satellites.</li>
+                  <li><b>Modeling:</b> implemented pseudorange + carrier measurement models in ENU/ECEF, including differencing strategies.</li>
+                  <li><b>Estimation:</b> built LS solvers, Kalman filters, and ambiguity estimation/fixing workflow for high-accuracy baseline solutions.</li>
+                  <li><b>Evaluation:</b> compared solutions across methods using ENU/LLH outputs, precision estimates, and RMS error summaries.</li>
+                </ul>
+                <div class="tags">
+                  <span>RINEX</span><span>Ephemeris propagation</span><span>LOS geometry</span><span>Least squares</span>
+                  <span>Kalman filtering</span><span>Double differencing</span><span>Ambiguity fixing</span><span>Error metrics</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Technical communication</h3>
+                <ul>
+                  <li><b>Report writing:</b> documented measurement/dynamic models, algorithm flow, and key results for each part.</li>
+                  <li><b>Presentation:</b> built a structured slide deck summarizing method progression and performance comparisons.</li>
+                </ul>
+                <div class="tags">
+                  <span>Technical writing</span><span>Methods documentation</span><span>Figures & interpretation</span>
+                </div>
+              </div>
+
+              <div class="card report-row">
+                <div>
+                  <h3>Report & Slides</h3>
+                  <p class="muted" style="margin:0;">
+                    Full write-up and presentation deck for the five-method GNSS positioning study.
+                  </p>
+                </div>
+
+                <!-- Update these href paths to wherever you store them in /assets -->
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <a class="badge" href="assets/Wilkes_Jonah_report_MMAE555.pdf" target="_blank" rel="noopener">
+                    Final Report (PDF)
+                  </a>
+                  <a class="badge" href="assets/Wilkes_Jonah_Presentation_MMAE555.pdf" target="_blank" rel="noopener">
+                    Slides (PDF)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-
-
-
       </section>
     </main>
 
