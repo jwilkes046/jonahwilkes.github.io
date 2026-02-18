@@ -34,6 +34,27 @@
     @media (max-width: 720px){
       .report-row{ flex-direction:column; align-items:flex-start; }
     }
+
+    /* Simple responsive image helper */
+    .fig{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:12px;
+    }
+    .fig-caption{
+      margin-top:8px;
+      font-size:0.95rem;
+    }
+    .fig-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (min-width: 900px){
+      .fig-grid.two-col{ grid-template-columns: 1fr 1fr; }
+    }
   </style>
 
   <!-- Google Analytics -->
@@ -149,7 +170,7 @@
                   joint ambiguity estimation, and <b>integer fixing</b> (LAMBDA).</li>
               </ul>
               <p class="muted" style="margin:10px 0 0 0;">
-                Figures on this page will show the ENU baseline scatter/ellipsoids and time histories for each part.
+                Figures on this page show the ENU baseline scatter/ellipsoids and time histories for each part.
               </p>
             </div>
 
@@ -161,43 +182,79 @@
                   to reduce measurement noise.</li>
               </ul>
               <p class="muted" style="margin:10px 0 0 0;">
-                Figures will show LLH stability vs. time, estimated precision, and ENU residuals relative to truth/reference.
+                Figures show ENU behavior and RMS summaries for the stand-alone solutions.
               </p>
             </div>
           </div>
 
           <!-- =========================
-               PART-BY-PART SECTIONS (placeholders for your figures)
+               PART-BY-PART SECTIONS (now wired to your assets/NAV/ images)
                ========================= -->
           <div class="card" style="margin-top:12px;">
-            <h4 style="margin:0 0 6px 0;">Part-by-part Results (figures to be added)</h4>
+            <h4 style="margin:0 0 6px 0;">Part-by-part Results</h4>
             <p class="muted" style="margin:0;">
-              I’ll add figures in the same style as the project slides (ellipsoid plots, ENU components with error bounds, etc.).
+              Figures shown below are pulled from the final project plots (ellipsoids, ENU time histories, and RMS summaries).
             </p>
 
             <div class="stack" style="margin-top:12px;">
+
+              <!-- =========================
+                   PART 1
+                   ========================= -->
               <div class="card">
                 <h3>Part 1 — Differential pseudorange (single-difference LS)</h3>
                 <p>
                   Solved the relative ENU baseline between the two antennas using epoch-by-epoch least squares on
                   <b>single-difference pseudoranges</b>. This provides a baseline performance reference before smoothing and filtering.
                 </p>
-                <ul class="muted" style="margin:8px 0 0 0;">
-                  <li>Planned figures: <code>p1_ellipsoid</code>, <code>p1_ENU_with_error</code></li>
-                </ul>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem1_fig1.png" alt="Problem 1: ENU ellipsoid / baseline scatter" loading="lazy">
+                    <div class="fig-caption muted">Problem 1 — Ellipsoid / ENU baseline scatter.</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem1_fig2.png" alt="Problem 1: ENU components vs time with error bounds" loading="lazy">
+                    <div class="fig-caption muted">Problem 1 — ENU components vs. time (with error bounds).</div>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top:12px;">
+                  <img class="fig" src="assets/NAV/p1_RMS_1.png" alt="Problem 1: RMS summary" loading="lazy">
+                  <div class="fig-caption muted">Problem 1 — RMS summary.</div>
+                </div>
               </div>
 
+              <!-- =========================
+                   PART 2
+                   ========================= -->
               <div class="card">
                 <h3>Part 2 — Hatch smoothing + ENU Kalman filter</h3>
                 <p>
                   Reduced pseudorange noise by applying <b>carrier-aided Hatch smoothing</b>, then used a constant-velocity
                   <b>Kalman filter</b> in ENU to stabilize the baseline estimate over time.
                 </p>
-                <ul class="muted" style="margin:8px 0 0 0;">
-                  <li>Planned figures: <code>p2_ellipsoid</code>, <code>p2_ENU_with_error</code></li>
-                </ul>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem2_fig1.png" alt="Problem 2: ENU ellipsoid / baseline scatter" loading="lazy">
+                    <div class="fig-caption muted">Problem 2 — Ellipsoid / ENU baseline scatter.</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem2_fig2.png" alt="Problem 2: ENU components vs time with error bounds" loading="lazy">
+                    <div class="fig-caption muted">Problem 2 — ENU components vs. time (with error bounds).</div>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top:12px;">
+                  <img class="fig" src="assets/NAV/p2_RMS_1.png" alt="Problem 2: RMS summary" loading="lazy">
+                  <div class="fig-caption muted">Problem 2 — RMS summary.</div>
+                </div>
               </div>
 
+              <!-- =========================
+                   PART 3
+                   ========================= -->
               <div class="card">
                 <h3>Part 3 — Double-difference code + carrier phase (ambiguity fixing)</h3>
                 <p>
@@ -205,11 +262,49 @@
                   in an ECEF constant-velocity Kalman filter. Estimated float ambiguities and applied <b>LAMBDA</b>
                   integer ambiguity resolution to obtain a fixed baseline.
                 </p>
-                <ul class="muted" style="margin:8px 0 0 0;">
-                  <li>Planned figures: <code>p3_ellipsoid</code>, <code>p3_ENU_with_error</code></li>
-                </ul>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem3_fig1.png" alt="Problem 3: ENU ellipsoid / baseline scatter" loading="lazy">
+                    <div class="fig-caption muted">Problem 3 — Ellipsoid / ENU baseline scatter.</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem3_fig2.png" alt="Problem 3: ENU components vs time with error bounds" loading="lazy">
+                    <div class="fig-caption muted">Problem 3 — ENU components vs. time (with error bounds).</div>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top:12px;">
+                  <img class="fig" src="assets/NAV/p3_RMS_1.png" alt="Problem 3: RMS summary" loading="lazy">
+                  <div class="fig-caption muted">Problem 3 — RMS summary.</div>
+                </div>
               </div>
 
+              <!-- =========================
+                   SUMMARY: PROBLEMS 1–3
+                   ========================= -->
+              <div class="card">
+                <h3>Summary — Problems 1–3</h3>
+                <p>
+                  Comparison figures showing how the differential baseline estimate improves as additional smoothing,
+                  filtering, and carrier-phase ambiguity handling are introduced.
+                </p>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem123_fig1.png" alt="Problems 1-3 summary: ellipsoid comparison" loading="lazy">
+                    <div class="fig-caption muted">Problems 1–3 — Ellipsoid comparison.</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/Problem123_fig2.png" alt="Problems 1-3 summary: ENU components comparison" loading="lazy">
+                    <div class="fig-caption muted">Problems 1–3 — ENU components comparison.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- =========================
+                   PART 4
+                   ========================= -->
               <div class="card">
                 <h3>Part 4 — Stand-alone GPS single-point positioning (SPP)</h3>
                 <p>
@@ -217,21 +312,51 @@
                   Solved for receiver position + clock bias via iterative nonlinear least squares at selected epochs and averaged
                   across time.
                 </p>
-                <ul class="muted" style="margin:8px 0 0 0;">
-                  <li>Planned figures: <code>p4_LLH_time</code>, <code>p4_clock_bias</code>, <code>p4_ENU_error</code></li>
-                </ul>
+
+                <div class="card" style="margin-top:12px;">
+                  <img class="fig" src="assets/NAV/Problem4_fig1.png" alt="Problem 4: ENU / time-history figure" loading="lazy">
+                  <div class="fig-caption muted">Problem 4 — ENU time-history / error behavior.</div>
+                </div>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/p4_RMS_1.png" alt="Problem 4: RMS summary (components)" loading="lazy">
+                    <div class="fig-caption muted">Problem 4 — RMS summary (components).</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/p4_RMS_2.png" alt="Problem 4: RMS summary (3D)" loading="lazy">
+                    <div class="fig-caption muted">Problem 4 — RMS summary (3D).</div>
+                  </div>
+                </div>
               </div>
 
+              <!-- =========================
+                   PART 5
+                   ========================= -->
               <div class="card">
                 <h3>Part 5 — Stand-alone improvements (smoothing + weighting)</h3>
                 <p>
                   Improved stand-alone positioning by applying <b>carrier-phase smoothing</b> and <b>SNR-based measurement weighting</b>.
                   This reduced scatter relative to raw SPP and emphasized higher-quality measurements during the LS updates.
                 </p>
-                <ul class="muted" style="margin:8px 0 0 0;">
-                  <li>Planned figures: <code>p5_LLH_time</code>, <code>p5_clock_bias</code>, <code>p5_ENU_error</code></li>
-                </ul>
+
+                <div class="card" style="margin-top:12px;">
+                  <img class="fig" src="assets/NAV/Problem5_fig1.png" alt="Problem 5: ENU / time-history figure" loading="lazy">
+                  <div class="fig-caption muted">Problem 5 — ENU time-history / error behavior.</div>
+                </div>
+
+                <div class="fig-grid two-col">
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/p5_RMS_1.png" alt="Problem 5: RMS summary (components)" loading="lazy">
+                    <div class="fig-caption muted">Problem 5 — RMS summary (components).</div>
+                  </div>
+                  <div class="card">
+                    <img class="fig" src="assets/NAV/p5_RMS_2.png" alt="Problem 5: RMS summary (3D)" loading="lazy">
+                    <div class="fig-caption muted">Problem 5 — RMS summary (3D).</div>
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -283,8 +408,9 @@
                   <a class="badge" href="assets/Wilkes_Jonah_report_MMAE555.pdf" target="_blank" rel="noopener">
                     Final Report (PDF)
                   </a>
-                  <a class="badge" href="assets/Wilkes_Jonah_Presentation_MMAE555.pdf" target="_blank" rel="noopener">
-                    Slides (PDF)
+                  <!-- If you only have PPTX, either export a PDF or point directly to the .pptx -->
+                  <a class="badge" href="assets/Wilkes_Jonah_Presentation_MMAE555.pptx" target="_blank" rel="noopener">
+                    Slides (PPTX)
                   </a>
                 </div>
               </div>
