@@ -7,6 +7,16 @@
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
   <title>NASA L'SPACE | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Centre image within the float aside on this page */
+    aside.figure img {
+      display: block;
+      margin: 0 auto;
+    }
+    aside.figure .figcap {
+      text-align: center;
+    }
+  </style>
 
 
   <!-- Google Analytics -->
@@ -93,9 +103,10 @@
           "
         >
           <img
-            src="assets/Im1.1.JPG"
+            src="assets/Im1_1.JPG"
             alt="NASA L'SPACE Mission Concept Academy rover CAD model"
-            style="width:100%; height:auto; cursor:pointer; display:block;"
+            style="width:100%; height:auto; cursor:pointer; display:block; margin:0 auto;"
+            loading="lazy"
             onclick="openLightbox(this.src, this.alt)"
           />
           <div class="figcap">
