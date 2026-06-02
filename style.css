@@ -709,3 +709,86 @@ img { max-width: 100%; height: auto; }
   overflow-x: auto;
   white-space: nowrap;
 }
+
+/* ============================================================
+   MPC PROJECT — video preview grid
+   ============================================================ */
+.mpc-video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (max-width: 700px) {
+  .mpc-video-grid { grid-template-columns: 1fr; }
+}
+
+.mpc-video-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: zoom-in;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mpc-video-card:hover {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+}
+
+.mpc-video-card .mpc-thumb {
+  width: 100%;
+  aspect-ratio: 10 / 7;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+.mpc-video-card .mpc-card-label {
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mpc-video-card .mpc-card-label .play-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* MPC performance table */
+.mpc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-top: 10px;
+  overflow-x: auto;
+  display: block;
+}
+
+.mpc-table th {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border2);
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.mpc-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.mpc-table tbody tr:last-child td { border-bottom: none; }
+
+.mpc-table .good { color: var(--accent); font-weight: 700; }

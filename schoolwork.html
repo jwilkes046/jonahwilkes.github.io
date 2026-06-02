@@ -48,6 +48,7 @@
       <a class="tab" href="schoolwork-aircraft.html">Aircraft Design</a>
       <a class="tab" href="schoolwork-spacecraft.html">Spacecraft Design</a>
       <a class="tab" href="schoolwork-navigation.html">Navigation Classwork</a>
+      <a class="tab" href="schoolwork-mpc.html">MPC Rocket Landing</a>
     </nav>
 
     <main>
@@ -140,6 +141,33 @@
               src="assets/Problem123_fig1.png"
               alt="Navigation estimation error and positioning results"
               class="lightbox-trigger"
+            />
+          </aside>
+        </div>
+
+        <div class="card with-aside" style="margin-top:12px;">
+          <div class="card-main">
+            <h3>MPC for Rocket Booster Landing</h3>
+            <p class="muted">
+              The culminating project from my Optimal Control course (MMAE 549), completed in spring 2026.
+              Working with a partner, I designed and implemented a constrained nonlinear Model Predictive
+              Controller (MPC) for the powered landing of a Falcon 9 class rocket booster, then compared
+              it against a PD baseline controller in nominal and wind-disturbed closed-loop simulations.
+              The MPC achieved a 1.453 m landing error in the nominal case while using less fuel than the PD
+              controller, which failed to land in either scenario.
+            </p>
+            <p><a href="schoolwork-mpc.html">Go to MPC Rocket Landing &rarr;</a></p>
+            <div class="tags">
+              <span>Optimal Control</span><span>MPC</span><span>Python</span>
+              <span>Constrained Optimization</span><span>Trajectory Simulation</span>
+            </div>
+          </div>
+          <aside class="aside-img">
+            <img
+              src="assets/MPC_project/mpc_thumb_nominal_comparison.jpg"
+              alt="MPC rocket landing nominal trajectory preview"
+              class="lightbox-trigger"
+              loading="lazy"
             />
           </aside>
         </div>

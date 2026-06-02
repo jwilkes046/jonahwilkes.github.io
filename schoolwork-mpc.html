@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive" />
+  <title>MPC Rocket Landing | Jonah Wilkes</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    @media (min-width: 1100px) {
+      .stack.two-col { grid-template-columns: 1fr 1fr; }
+    }
+    .stack .card { width: 100%; }
+
+    .report-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    @media (max-width: 720px) {
+      .report-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYXQ0D03PQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QYXQ0D03PQ');
+  </script>
+</head>
+
+<body>
+  <!-- Video Lightbox -->
+  <div id="videoLightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close">×</button>
+    <video id="lightboxVideo" controls playsinline preload="metadata"></video>
+  </div>
+
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>MPC for Rocket Booster Landing</h1>
+        <p>Optimal Control &bull; Trajectory Optimization &bull; Constrained Nonlinear MPC</p>
+      </div>
+      <div class="links">
+        <a class="badge" href="schoolwork.html">Back to Schoolwork</a>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <a class="tab" href="index.html">Home</a>
+      <a class="tab" href="astrophysics.html">Astrophysics Research</a>
+      <a class="tab" href="gnss.html">Antarctic Signal Processing Research</a>
+      <a class="tab" href="nasa.html">NASA L'SPACE</a>
+      <a class="tab active" href="schoolwork.html">Schoolwork</a>
+    </nav>
+
+    <nav class="tabs" style="border-bottom:none; padding-top:8px;">
+      <a class="tab" href="schoolwork.html">Overview</a>
+      <a class="tab" href="schoolwork-aircraft.html">Aircraft Design</a>
+      <a class="tab" href="schoolwork-spacecraft.html">Spacecraft Design</a>
+      <a class="tab" href="schoolwork-navigation.html">Navigation Classwork</a>
+      <a class="tab active" href="schoolwork-mpc.html">MPC Rocket Landing</a>
+    </nav>
+
+    <main>
+
+      <!-- =====================================================
+           OVERVIEW
+           ===================================================== -->
+      <section class="card">
+        <h2>Overview</h2>
+
+        <p>
+          This is the cumulative final project from my <b>Optimal Control</b> course (MMAE 549),
+          completed during my final semester at Illinois Tech in spring 2026. The project was developed
+          in collaboration with Alec Weedman and covers the full design, implementation, and evaluation
+          of a constrained Model Predictive Controller (MPC) for powered landing of a reusable rocket
+          booster — the same challenge at the core of SpaceX's Falcon 9 booster recovery.
+        </p>
+
+        <p style="margin-top:10px;">
+          The booster is modeled as a 3D point mass with gravity, atmospheric drag, variable mass from
+          fuel consumption, thrust magnitude limits, and a 20&deg; engine tilt constraint — parameters
+          chosen to roughly represent a Falcon 9 class vehicle during the powered landing phase. The MPC
+          solves a constrained finite-horizon optimization problem at every time step, plans ahead over
+          a 20 second horizon, and re-plans continuously from the current state. A PD baseline controller
+          tracking a pre-planned reference trajectory is used for comparison.
+        </p>
+
+        <p style="margin-top:10px;">
+          Both controllers are tested in a <b>nominal (no-wind)</b> case and a <b>wind-disturbed</b>
+          case. The MPC achieved a successful soft landing in the nominal case with a final position
+          error of 1.453 m and a final speed of 0.122 m/s. The PD controller did not meet the landing
+          condition in either case.
+        </p>
+
+        <div class="tags" style="margin-top:14px;">
+          <span>Optimal Control</span><span>Model Predictive Control (MPC)</span>
+          <span>Constrained Optimization</span><span>Python / SciPy</span>
+          <span>Nonlinear Dynamics</span><span>Trajectory Optimization</span>
+          <span>PD Control</span><span>Robustness Study</span>
+          <span>Rocket Propulsion</span><span>Closed-Loop Simulation</span>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           SYSTEM MODEL
+           ===================================================== -->
+      <section class="card" style="margin-top:14px;">
+        <h2>System Model</h2>
+
+        <div class="stack">
+          <div class="card">
+            <h3>Booster Dynamics</h3>
+            <p>
+              The booster is modeled as a simplified 3D point mass. The state vector is position,
+              velocity, and mass: <code>[rx, ry, rz, vx, vy, vz, m]</code>. The control input is
+              the thrust vector <code>[Tx, Ty, Tz]</code>. The equations of motion include gravity,
+              atmospheric drag (via an exponential density model), fuel consumption via the rocket
+              equation, and an optional wind disturbance acceleration.
+            </p>
+            <p style="margin-top:8px;">
+              Attitude dynamics are not modeled — the thrust vector is directly limited by a
+              maximum tilt angle of 20&deg;, which assumes a lower-level attitude controller exists.
+              This keeps the project focused on landing guidance and the controller comparison.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Point mass model</span><span>Euler propagation</span>
+              <span>Exponential atmosphere</span><span>Thrust-vector control</span>
+              <span>Variable mass</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Simulation Parameters</h3>
+            <p class="muted" style="margin:0 0 10px;">
+              Parameters chosen to roughly represent a Falcon 9 style booster during the powered
+              landing phase.
+            </p>
+            <div style="overflow-x:auto;">
+              <table class="mpc-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Initial mass</td><td>70,000 kg</td></tr>
+                  <tr><td>Dry mass</td><td>22,000 kg</td></tr>
+                  <tr><td>Specific impulse (I<sub>sp</sub>)</td><td>280 s</td></tr>
+                  <tr><td>Maximum thrust</td><td>2,535,000 N (3 &times; 845 kN)</td></tr>
+                  <tr><td>Max engine tilt</td><td>20&deg;</td></tr>
+                  <tr><td>Initial altitude</td><td>30,000 m</td></tr>
+                  <tr><td>Horizontal offset</td><td>~2,750 m from target</td></tr>
+                  <tr><td>Initial vertical speed</td><td>~250 m/s downward</td></tr>
+                  <tr><td>MPC horizon</td><td>20 s (20 steps at &Delta;t = 1 s)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h3>Engine Cutoff Condition</h3>
+          <p>
+            A successful near-touchdown is defined by three simultaneously satisfied conditions:
+            horizontal distance from target &le; 3 m, altitude &le; 1.5 m, and total speed
+            &le; 1 m/s. When all three are met, the engines shut off and the simulation ends.
+            This defines the landing target the MPC is optimizing toward.
+          </p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           CONTROLLERS
+           ===================================================== -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Controllers</h2>
+
+        <div class="stack two-col">
+          <div class="card">
+            <h3>Model Predictive Controller (MPC)</h3>
+            <p>
+              At every time step, the MPC solves a constrained finite-horizon optimization problem
+              over a 20 second prediction window. It predicts the future booster motion, finds the
+              optimal thrust sequence, applies only the first command, then re-plans from the new
+              state. This receding horizon approach gives the controller closed-loop feedback and
+              allows it to adapt its plan continuously.
+            </p>
+            <p style="margin-top:8px;">
+              The cost function penalizes position error, velocity error, command magnitude, and
+              fuel use at each step, plus a large terminal penalty on final position and velocity
+              error. The optimization is solved in Python using
+              <code>scipy.optimize.minimize</code>, with the previous solution shifted forward as
+              the warm-start initial guess to reduce solve time.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>Finite-horizon optimization</span><span>Receding horizon</span>
+              <span>Constrained MPC</span><span>SciPy minimize</span>
+              <span>Warm-start initialization</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>PD Baseline Controller</h3>
+            <p>
+              The PD controller tracks a pre-planned straight-line reference trajectory from the
+              initial position to the landing target. It computes a desired acceleration from
+              position and velocity errors against the reference, then converts this to a thrust
+              command. The same thrust magnitude, tilt, and fuel limits from the MPC are applied
+              to the PD controller, ensuring a fair constraint-consistent comparison.
+            </p>
+            <p style="margin-top:8px;">
+              The key difference from MPC: the PD controller has no lookahead, reacts only to
+              current error, and has no explicit fuel optimization. It was tuned manually to give
+              a competitive reference-tracking response without a meaningful trajectory plan.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>PD control</span><span>Reference tracking</span>
+              <span>No lookahead</span><span>Manual gain tuning</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           RESULTS — NOMINAL
+           ===================================================== -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Results — Nominal Case</h2>
+
+        <p>
+          In the nominal (no-wind) case, the MPC successfully met the engine cutoff condition at
+          t&nbsp;=&nbsp;134 s, reaching a final position error of <b>1.453 m</b> and a final speed
+          of <b>0.122 m/s</b>. The PD controller did not meet the cutoff condition and ended with a
+          final position error of 148.734 m and a final speed of 162.09 m/s.
+        </p>
+
+        <p style="margin-top:8px;">
+          The MPC also used notably less fuel than the PD controller — 26,124 kg vs.
+          31,892 kg — while achieving far better landing accuracy. The MPC reached the 20&deg;
+          tilt limit to correct horizontal error; the PD controller reached only 3.28&deg; of
+          tilt, which was insufficient to close the horizontal offset before simulation end.
+        </p>
+
+        <div style="overflow-x:auto; margin-top:14px;">
+          <table class="mpc-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>MPC</th>
+                <th>PD Baseline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Final position error</td><td class="good">1.453 m</td><td>148.734 m</td></tr>
+              <tr><td>Final horizontal error</td><td class="good">0.004 m</td><td>60.532 m</td></tr>
+              <tr><td>Final speed</td><td class="good">0.122 m/s</td><td>162.090 m/s</td></tr>
+              <tr><td>Cutoff condition met</td><td class="good">Yes</td><td>No</td></tr>
+              <tr><td>Fuel used</td><td class="good">26,124 kg</td><td>31,892 kg</td></tr>
+              <tr><td>Fuel margin above dry mass</td><td class="good">21,876 kg</td><td>16,108 kg</td></tr>
+              <tr><td>Maximum tilt angle</td><td>20.000&deg;</td><td>3.280&deg;</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Nominal videos -->
+        <h3 style="margin-top:18px;">Nominal Case Animations</h3>
+        <p class="muted">Click any preview to expand and play.</p>
+
+        <div class="mpc-video-grid">
+          <button class="mpc-video-card media-trigger"
+                  type="button"
+                  data-video="assets/MPC_project/rocket_landing_nominal_comparison.mp4"
+                  aria-label="Play nominal MPC vs PD comparison animation">
+            <img class="mpc-thumb"
+                 src="assets/MPC_project/mpc_thumb_nominal_comparison.jpg"
+                 alt="Nominal MPC vs PD comparison 3D trajectory preview"
+                 loading="lazy" />
+            <div class="mpc-card-label">
+              <span class="play-icon">&#9654;</span>
+              <span>Nominal — MPC vs. PD comparison (3D trajectory)</span>
+            </div>
+          </button>
+
+          <button class="mpc-video-card media-trigger"
+                  type="button"
+                  data-video="assets/MPC_project/rocket_landing_nominal_closeup.mp4"
+                  aria-label="Play nominal MPC close-up animation">
+            <img class="mpc-thumb"
+                 src="assets/MPC_project/mpc_thumb_nominal_closeup.jpg"
+                 alt="Nominal MPC close-up vehicle trajectory preview"
+                 loading="lazy" />
+            <div class="mpc-card-label">
+              <span class="play-icon">&#9654;</span>
+              <span>Nominal — MPC vehicle close-up</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           RESULTS — WIND
+           ===================================================== -->
+      <section class="card" style="margin-top:14px;">
+        <h2>Results — Wind-Disturbed Case</h2>
+
+        <p>
+          The wind-disturbed case uses a constant lateral acceleration
+          of [0.10, &minus;0.05, 0] m/s&sup2; to represent unmodeled external forces. The MPC
+          did not trigger engine cutoff in this case — the final horizontal error of 7.988 m
+          slightly exceeded the 3 m cutoff threshold — but it still ended near the target at low
+          speed (8.294 m position error, 0.502 m/s). The PD baseline ended 162 m from the target
+          at over 162 m/s.
+        </p>
+
+        <p style="margin-top:8px;">
+          The wind case revealed the main limitation of the current MPC tuning: the controller
+          remained stable and slow, but needed stronger lateral correction to fully overcome the
+          persistent disturbance. Possible improvements include increasing horizontal error
+          penalties in the cost function or lengthening the prediction horizon. Despite not
+          triggering cutoff, the MPC still dramatically outperformed the PD baseline.
+        </p>
+
+        <div style="overflow-x:auto; margin-top:14px;">
+          <table class="mpc-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>MPC (wind)</th>
+                <th>PD Baseline (wind)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Final position error</td><td class="good">8.294 m</td><td>162.144 m</td></tr>
+              <tr><td>Final horizontal error</td><td class="good">7.988 m</td><td>88.485 m</td></tr>
+              <tr><td>Final altitude</td><td class="good">2.233 m</td><td>135.872 m</td></tr>
+              <tr><td>Final speed</td><td class="good">0.502 m/s</td><td>162.089 m/s</td></tr>
+              <tr><td>Cutoff condition met</td><td>No</td><td>No</td></tr>
+              <tr><td>Fuel used</td><td>32,851 kg</td><td>31,896 kg</td></tr>
+              <tr><td>Maximum tilt angle</td><td>20.000&deg;</td><td>4.372&deg;</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Wind videos -->
+        <h3 style="margin-top:18px;">Wind-Disturbed Case Animations</h3>
+        <p class="muted">Click any preview to expand and play.</p>
+
+        <div class="mpc-video-grid">
+          <button class="mpc-video-card media-trigger"
+                  type="button"
+                  data-video="assets/MPC_project/rocket_landing_wind_comparison.mp4"
+                  aria-label="Play wind-disturbed MPC vs PD comparison animation">
+            <img class="mpc-thumb"
+                 src="assets/MPC_project/mpc_thumb_wind_comparison.jpg"
+                 alt="Wind-disturbed MPC vs PD comparison 3D trajectory preview"
+                 loading="lazy" />
+            <div class="mpc-card-label">
+              <span class="play-icon">&#9654;</span>
+              <span>Wind-disturbed — MPC vs. PD comparison (3D trajectory)</span>
+            </div>
+          </button>
+
+          <button class="mpc-video-card media-trigger"
+                  type="button"
+                  data-video="assets/MPC_project/rocket_landing_wind_closeup.mp4"
+                  aria-label="Play wind-disturbed MPC close-up animation">
+            <img class="mpc-thumb"
+                 src="assets/MPC_project/mpc_thumb_wind_closeup.jpg"
+                 alt="Wind-disturbed MPC close-up vehicle trajectory preview"
+                 loading="lazy" />
+            <div class="mpc-card-label">
+              <span class="play-icon">&#9654;</span>
+              <span>Wind-disturbed — MPC vehicle close-up</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           MY ROLE
+           ===================================================== -->
+      <section class="card" style="margin-top:14px;">
+        <h2>My Role</h2>
+
+        <div class="stack">
+          <div class="card">
+            <h3>Controller Design &amp; Simulation</h3>
+            <ul>
+              <li><b>System model:</b> implemented the 3D point-mass dynamics with gravity, exponential
+                atmosphere drag, fuel burn, and wind disturbance in Python.</li>
+              <li><b>MPC formulation:</b> designed the cost function (running + terminal penalties on
+                position, velocity, command, and fuel), the thrust parameterization, and the
+                constraint enforcement strategy.</li>
+              <li><b>Optimization loop:</b> built the receding-horizon solve loop using
+                <code>scipy.optimize.minimize</code> with warm-start initialization from the
+                previous solution.</li>
+              <li><b>PD baseline:</b> implemented the reference trajectory generator and PD gain
+                tuning for a fair constraint-consistent comparison.</li>
+              <li><b>Closed-loop simulation:</b> ran both controllers in the nominal and
+                wind-disturbed cases, recorded all performance metrics, and generated the result
+                figures and trajectory animations.</li>
+            </ul>
+            <div class="tags">
+              <span>Python</span><span>SciPy optimization</span><span>Nonlinear MPC</span>
+              <span>Euler propagation</span><span>Closed-loop simulation</span>
+              <span>Constraint handling</span><span>Animation / visualization</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Analysis &amp; Technical Communication</h3>
+            <ul>
+              <li><b>Performance evaluation:</b> compared controllers across landing accuracy,
+                fuel efficiency, constraint adherence, and wind robustness.</li>
+              <li><b>Computational analysis:</b> tracked MPC solve times, optimizer success
+                rates, and documented the non-repeatability arising from the nonconvex
+                optimization structure.</li>
+              <li><b>Limitations assessment:</b> identified where the current approach falls
+                short (real-time feasibility, attitude dynamics, wind modeling) and outlined
+                future directions including convex/successive-convexification methods.</li>
+              <li><b>Report &amp; presentation:</b> co-authored the final report and built the
+                presentation slide deck summarizing the project for a course audience.</li>
+            </ul>
+            <div class="tags">
+              <span>Performance comparison</span><span>Robustness analysis</span>
+              <span>Technical writing</span><span>Presentation</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Key Takeaways</h3>
+            <ul>
+              <li>MPC is well-suited to this constrained landing problem — it can plan ahead,
+                respect physical limits, and optimize fuel use simultaneously, none of which a
+                PD controller can do.</li>
+              <li>The nonconvex nature of the problem means results are not perfectly
+                repeatable between runs; a practical implementation would need faster solvers
+                or a convex reformulation.</li>
+              <li>Wind robustness requires stronger lateral penalties in the cost function or
+                a longer prediction horizon — the current tuning keeps the vehicle slow and
+                near the target but doesn't fully reject the persistent disturbance.</li>
+              <li>This project directly extended my controls and dynamics coursework into an
+                open-ended engineering design problem, connecting optimal control theory to a
+                realistic aerospace application.</li>
+            </ul>
+          </div>
+
+          <div class="card report-row">
+            <div>
+              <h3>Report &amp; Slides</h3>
+              <p class="muted" style="margin:0;">
+                Full project report and presentation deck for the MPC rocket landing study.
+              </p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="badge"
+                 href="assets/MPC_project/MMAE_549_Final_Report_-_Alec_Weedman_and_Jonah_Wilkes.pdf"
+                 target="_blank" rel="noopener">
+                Final Report (PDF)
+              </a>
+              <a class="badge"
+                 href="assets/MPC_project/MMAE_549_presentation_-_Jonah_Wilkes_and_Alec_Weedman.pdf"
+                 target="_blank" rel="noopener">
+                Slides (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      &copy; <span id="year"></span> Jonah Wilkes
+    </footer>
+  </div>
+
+  <!-- Video Lightbox Script -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function () {
+      const vbox      = document.getElementById("videoLightbox");
+      const vboxVideo = document.getElementById("lightboxVideo");
+      const vboxClose = vbox.querySelector(".lightbox-close");
+
+      function openVideo(src) {
+        vbox.classList.add("open");
+        vbox.setAttribute("aria-hidden", "false");
+        vboxVideo.src = src;
+        vboxVideo.currentTime = 0;
+        vboxVideo.play().catch(() => {});
+      }
+
+      function closeVideo() {
+        vbox.classList.remove("open");
+        vbox.setAttribute("aria-hidden", "true");
+        vboxVideo.pause();
+        vboxVideo.removeAttribute("src");
+        vboxVideo.load();
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".media-trigger");
+        if (btn && btn.dataset.video) {
+          openVideo(btn.dataset.video);
+          return;
+        }
+        if (e.target === vbox || e.target === vboxClose) closeVideo();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && vbox.classList.contains("open")) closeVideo();
+      });
+    })();
+  </script>
+</body>
+</html>
