@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow, noarchive" />
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
-  <title>Anctarctic Signal Processing Research | Jonah Wilkes</title>
+  <title>Antarctic Signal Processing Research | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
-
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYXQ0D03PQ"></script>
@@ -19,14 +18,18 @@
   </script>
 </head>
 
-
-  
 <body>
+  <!-- Image Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close image">×</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
   <div class="wrap">
     <header class="header">
       <div>
-        <h1>Anctarctic Signal Processing Research</h1>
-        <p>Galcial Surfaces • Multipath Signals • SNR Processing</p>
+        <h1>Antarctic Signal Processing Research</h1>
+        <p>Glacial Surfaces &bull; GNSS-Reflectometry &bull; SNR Processing</p>
       </div>
       <div class="links">
         <a class="badge" href="index.html">Back to Home</a>
@@ -42,83 +45,562 @@
     </nav>
 
     <main>
+
+      <!-- =====================================================
+           OVERVIEW
+           ===================================================== -->
       <section class="card">
         <h2>Overview</h2>
 
         <p class="muted">
-          As an Aerospace Researcher at Illinois Tech, I am currently conducting research in
-          Global Navigation Satellite System Reflectometry (GNSS-R), focusing on the processing
-          and analysis of reflected GNSS signals collected over Antarctic glacial surfaces.
-          Working with raw radio-frequency data acquired using a USRP-based receiver, I am
-          developing MATLAB-based signal processing algorithms to extract surface reflection
-          characteristics and quantify signal-to-noise behavior in low-SNR environments.
+          As an Aerospace Researcher at Illinois Tech, I am conducting research in Global Navigation Satellite
+          System Reflectometry (GNSS-R), focusing on the processing and analysis of reflected GNSS signals
+          collected over Antarctic glacial surfaces. Working with raw radio-frequency data acquired using a
+          USRP-based receiver, I developed MATLAB-based signal processing algorithms to extract surface
+          reflection characteristics and quantify signal-to-noise behavior in low-SNR environments.
         </p>
 
-        <p class="muted">
-          My work involves analyzing the raw data and applying coherent and incoherent
-          integration techniques to isolate weak surface reflections from noise and system
-          effects. By varying integration strategies and accumulation lengths, I am evaluating
-          how reflected signal strength evolves with processing time, enabling robust estimation
-          of reflection detectability and stability. This research bridges raw signal
-          processing with physical interpretation of cryospheric surface properties and is
-          contributing to an upcoming publication. Through this work, I am gaining experience
-          in experimental GNSS-R analysis, algorithm development, and research-level technical
-          communication.
+        <p class="muted" style="margin-top:10px;">
+          The data was collected on the McMurdo Ice Shelf at two sites: <b>Phoenix (PHNX)</b>, which was
+          primarily snow-covered, and <b>Pegasus (PGSS)</b>, which contained mixed bare ice and patchy snow.
+          The campaign included observations between November and December 2023, producing approximately
+          <b>2.25 TB of data</b> across 62 total observation instances. This work examines whether signals
+          reflected from glacial surfaces can be used to identify and study surface conditions &mdash; a
+          technique with significant value in Antarctica, where large regions are difficult to observe directly.
         </p>
+
+        <p class="muted" style="margin-top:10px;">
+          My work involves raw data verification, coherent and incoherent integration processing, SNR metric
+          computation, and PRN-level distribution analysis. This research is supported by <b>NASA Illinois
+          Space Grant</b> and <b>NSF Award No. 1940483</b>, and the results are contributing to an upcoming
+          peer-reviewed publication. Work is ongoing post-graduation.
+        </p>
+
+        <div class="tags" style="margin-top:14px;">
+          <span>MATLAB</span><span>GNSS-R</span><span>Signal Processing</span>
+          <span>SNR Estimation</span><span>Coherent Integration</span><span>PRN Analysis</span>
+          <span>Antarctic Fieldwork</span><span>Remote Sensing</span><span>NASA Space Grant</span>
+        </div>
       </section>
 
-      <!-- REPLACED SECTION -->
+      <!-- =====================================================
+           RESEARCH WORKFLOW
+           ===================================================== -->
       <section class="card" style="margin-top:14px;">
         <h2>Research Workflow</h2>
 
-        <div class="card" style="margin-top:12px;">
-          <h3>Raw Data Confirmation (probedata.m)</h3>
+        <p class="muted">
+          The processing pipeline moves from raw binary verification through acquisition-based SNR analysis
+          and finally to a distribution-level comparison of in-sky vs. out-of-sky satellites. The sections
+          below follow that workflow in order, with representative figures from the analysis at each stage.
+        </p>
+
+        <!-- ─────────────────────────────────────────
+             1. RAW DATA CONFIRMATION
+             ───────────────────────────────────────── -->
+        <div class="card" style="margin-top:14px;">
+          <h3>1 &mdash; Raw Data Confirmation</h3>
+
           <p class="muted">
-            The first step was validating each acquisition day by inspecting the raw USRP binary
-            recordings before performing any higher-level GNSS-R processing. Using MATLAB, I 
-            generated a compact set of diagnostics — a time-domain trace, a Welch power spectral 
-            density estimate, and a histogram of sample values — to confirm signal integrity, 
-            identify noise-only captures, and flag configuration or hardware-related irregularities.
+            Data analysis began with an initial exploration of the raw binary files. Each selected file was
+            read into MATLAB and three diagnostic plots were generated: a <b>time-domain trace</b> to inspect
+            the base behavior of the acquired signal, a <b>Welch power spectral density estimate</b> to examine
+            the frequency distribution, and a <b>histogram of sample values</b> to show the distribution of
+            the raw data. Together these gave a quick visual check of signal quality and spectral content
+            before any further processing.
           </p>
-          <p class="muted">
-            This step allows me to directly compare field recordings against lab-collected
-            noise references and use both spectral signatures and on-site notes to justify data
-            screening decisions (including the exclusion of identified noise-only segments)
-            before downstream analysis.
+
+          <p class="muted" style="margin-top:10px;">
+            The raw data confirmation was first performed on measurements collected in the Antarctic lab
+            intended to represent noise only. As seen in the noise-only figure below, the amplitude of the
+            time-domain plot slowly settles over time while the frequency-domain plot shows a single broad
+            hump with a spike near 2.5 MHz &mdash; a profile that is characteristic of receiver noise and
+            distinct from a real GNSS signal. This noise profile served as the baseline for identifying
+            valid collection periods.
           </p>
-          <div class="tags">
-            <span>MATLAB</span><span>USRP RF Data</span><span>Welch PSD</span><span>Quality Control</span>
+
+          <!-- Noise-only figure -->
+          <div class="gnss-fig">
+            <img src="assets/GNSS_figures/probedata_images/Crary_231114_6.jpg"
+                 alt="Raw data confirmation plot for noise-only collection"
+                 class="lightbox-trigger"
+                 data-src="assets/GNSS_figures/probedata_images/Crary_231114_6.jpg" />
+            <div class="figcap">
+              <b>Figure 1</b> &mdash; Raw data confirmation for a noise-only collection. Time-domain trace,
+              Welch PSD estimate, and sample histogram are used to characterize the noise floor before
+              comparing against field data. Click to expand.
+            </div>
           </div>
-          <!-- Optional: place representative figures here -->
-          <!-- <div class="figure"><img src="assets/..." alt="Raw data confirmation plots"><p class="muted">Figure X: ...</p></div> -->
+
+          <p class="muted" style="margin-top:14px;">
+            Following the noise confirmation, the same diagnostic was applied to each field collection day.
+            The figure below shows one check from the PGSS site on December 8. The increase in amplitude and
+            frequency-domain magnitude corresponds to the USRP being connected to the automatic gain control
+            system. A notable observation across most collection dates was the absence of a clear frequency
+            peak, which was puzzling and warranted additional analysis at later stages.
+          </p>
+
+          <!-- PGSS field data figure -->
+          <div class="gnss-fig">
+            <img src="assets/GNSS_figures/probedata_images/PGSS_231208_2.png"
+                 alt="Raw data confirmation for PGSS site December 8"
+                 class="lightbox-trigger"
+                 data-src="assets/GNSS_figures/probedata_images/PGSS_231208_2.png" />
+            <div class="figcap">
+              <b>Figure 2</b> &mdash; Raw data confirmation for the PGSS site, December 8, 2023.
+              The time-domain behavior, spectral content, and histogram were used as a preliminary
+              screening check before SNR processing. Click to expand.
+            </div>
+          </div>
+
+          <p class="muted" style="margin-top:14px;">
+            An irregularity was discovered at the PHNX site on this same date. The first five measurements
+            showed a frequency profile &mdash; a single prominent peak with significant amplitude and magnitude
+            reduction &mdash; that closely matched the noise-only data. On-site notes confirmed that the USRP
+            was powered but not connected to the appropriate receiver hardware during these collections.
+            These five segments were therefore excluded from all subsequent analysis.
+          </p>
+
+          <!-- PHNX noise figure -->
+          <div class="gnss-fig">
+            <img src="assets/GNSS_figures/probedata_images/PHNX_231208_5.png"
+                 alt="Raw data confirmation for irregular PHNX measurement December 8"
+                 class="lightbox-trigger"
+                 data-src="assets/GNSS_figures/probedata_images/PHNX_231208_5.png" />
+            <div class="figcap">
+              <b>Figure 3</b> &mdash; Raw data confirmation for an irregular PHNX measurement (Dec 8,
+              Part 5, 2023). The noise-like frequency profile and field notes confirmed this was a
+              noise-only capture; this and four similar segments were removed from later analysis.
+              Click to expand.
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:16px;">
+            <span>MATLAB</span><span>USRP RF Data</span><span>Welch PSD</span>
+            <span>Time-Domain Analysis</span><span>Quality Control</span><span>Data Screening</span>
+          </div>
         </div>
 
-        <div class="card" style="margin-top:12px;">
-          <h3>SNR Processing (Coherent &amp; Incoherent Integration)</h3>
+        <!-- ─────────────────────────────────────────
+             2. SNR PROCESSING
+             ───────────────────────────────────────── -->
+        <div class="card" style="margin-top:14px;">
+          <h3>2 &mdash; SNR Processing</h3>
+
           <p class="muted">
-            After raw-data confirmation, I am currently quantifying reflected-signal strength
-            through signal-to-noise ratio (SNR) processing using coherent and incoherent
-            integration techniques. By systematically varying coherent accumulation lengths and
-            applying incoherent averaging, I evaluate how detectability improves with
-            integration time while accounting for signal decorrelation and measurement
-            variability across collection periods.
+            After raw data confirmation, the goal was to determine whether reflected GNSS signals could be
+            acquired from the collected data. Before using the data to analyze surface conditions, it was
+            first necessary to check whether any consistent satellite acquisition signal could be detected.
+            SNR processing was therefore treated as an <b>acquisition and signal quality check</b> rather
+            than a full surface analysis.
           </p>
-          <div class="tags">
-            <span>GNSS-R</span><span>SNR Estimation</span><span>Coherent Integration</span><span>Incoherent Averaging</span>
+
+          <p class="muted" style="margin-top:10px;">
+            The final processing run used the <b>December 8, 2023 Part 2 PGSS dataset</b>. This run analyzed
+            five minutes of data after skipping the first five seconds (to allow receiver stabilization), and
+            processed the data in sequential <b>20 ms chunks</b>, each containing two 10 ms coherent blocks.
+          </p>
+
+          <!-- 2a. Signal Preparation -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px;">Signal Preparation</h4>
+            <p class="muted">
+              The original USRP data was stored as <code>.dat</code> files containing interleaved int16
+              in-phase and quadrature samples recorded at 5 MHz. These were preprocessed using a set of
+              MATLAB scripts that applied an FFT-based conversion to produce real-valued <code>.bin</code>
+              files. Within the acquisition script, the binary data was read back as interleaved sample pairs,
+              separated into I and Q components, and recombined into a complex signal
+              <i>r[n] = I[n] + jQ[n]</i> for the GNSS acquisition search.
+            </p>
+
+            <div class="proc-chain">
+              .dat file &rarr; FFT conversion &rarr; .bin file &rarr; complex signal &rarr; acquisition search &rarr; SNR analysis
+            </div>
+
+            <div class="tags" style="margin-top:10px;">
+              <span>I/Q Data</span><span>FFT Conversion</span><span>Complex Signal Reconstruction</span>
+            </div>
           </div>
-          <!-- Optional: place SNR / integration-gain figures here -->
-          <!-- <div class="figure"><img src="assets/..." alt="SNR vs integration"><p class="muted">Figure Y: ...</p></div> -->
+
+          <!-- 2b. PRN Acquisition -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px;">PRN Acquisition Search</h4>
+            <p class="muted">
+              The acquisition routine searched for <b>GPS PRNs 1 through 32</b>. For each PRN, the data was
+              correlated against the expected GPS C/A code generated using <code>makeCATable</code>, a
+              function from the standard SoftGNSS receiver framework. The search swept possible code phases
+              and Doppler bins, producing an acquisition map for each PRN where stronger values indicated
+              greater agreement between the recorded signal and the expected satellite code. The strongest
+              point in each map was identified as the primary peak, and a secondary peak was found outside
+              a protected zone around the main peak.
+            </p>
+            <p class="muted" style="margin-top:8px;">
+              During early acquisition runs, the Doppler bin associated with the peak shifted significantly
+              between processing chunks, suggesting that some detected peaks reflected noise or unstable
+              multipath rather than a stable reflected GNSS signal.
+            </p>
+            <div class="tags" style="margin-top:10px;">
+              <span>GPS C/A Code</span><span>Doppler Search</span><span>Code Phase</span>
+              <span>Acquisition Map</span><span>SoftGNSS</span>
+            </div>
+          </div>
+
+          <!-- 2c. Coherent Block Processing -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px;">Coherent Block Processing</h4>
+            <p class="muted">
+              The acquisition method was modified to use <b>10 ms coherent processing blocks</b> to better
+              handle possible navigation bit transitions while still examining short-time signal behavior.
+              The data was divided into 10 ms coherent blocks, adjacent blocks were grouped into 20 ms pairs,
+              and for each pair the block with the stronger acquisition peak was retained. The weaker block
+              was discarded. This approach reduces the likelihood that GPS navigation bit flips degrade
+              the coherent sum by changing sign across the integration period.
+            </p>
+
+            <p class="muted" style="margin-top:8px;">The 10 ms processing method followed these steps:</p>
+            <ol class="muted" style="margin-top:6px; padding-left:1.5em;">
+              <li>Split the signal into 10 ms coherent blocks.</li>
+              <li>Group adjacent 10 ms blocks into 20 ms pairs.</li>
+              <li>Compute an acquisition map for each 10 ms block.</li>
+              <li>Compare the two blocks in each pair.</li>
+              <li>Keep the block with the stronger peak.</li>
+              <li>Compute final SNR metrics for each PRN.</li>
+            </ol>
+
+            <div class="tags" style="margin-top:10px;">
+              <span>Coherent Integration</span><span>Bit-flip Mitigation</span>
+              <span>10 ms Blocks</span><span>Block Comparison</span>
+            </div>
+          </div>
+
+          <!-- 2d. Incoherent Integration Tests -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px;">Incoherent Integration Tests</h4>
+            <p class="muted">
+              Longer incoherent integration windows (e.g., 100 ms) were also tested by summing multiple
+              retained 10 ms acquisition maps to check whether persistent signal energy would accumulate.
+              These tests showed that the dominant peak often <b>shifted between Doppler bins and code
+              phases</b> from chunk to chunk. Because the peak did not remain fixed, the summed maps
+              showed background accumulation rather than a clear strengthening of a stable reflection.
+            </p>
+
+            <p class="muted" style="margin-top:8px;">
+              The figures below show five kept coherent maps for PRN 18 alongside the final incoherently
+              summed map. The red marker in each map indicates the strongest peak. The peak location changes
+              between individual maps, and the final incoherent sum does not show a stable buildup at one
+              Doppler/code-phase location &mdash; supporting the conclusion that longer integration
+              primarily increases background level rather than recovering a persistent reflected signal.
+              Based on these results, incoherent integration was not applied in the final processing run.
+            </p>
+
+            <!-- 6-panel coherent maps grid -->
+            <div class="coherent-grid" style="margin-top:14px;">
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig9_kept_coherent_map_1.png"
+                      aria-label="Expand kept coherent map 1">
+                <img src="assets/GNSS_figures/coherent_map_images/fig9_kept_coherent_map_1.png"
+                     alt="Kept coherent map 1 for PRN 18" />
+                <div class="cmap-label">(a) Kept coherent map 1</div>
+              </button>
+
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig10_kept_coherent_map_2.png"
+                      aria-label="Expand kept coherent map 2">
+                <img src="assets/GNSS_figures/coherent_map_images/fig10_kept_coherent_map_2.png"
+                     alt="Kept coherent map 2 for PRN 18" />
+                <div class="cmap-label">(b) Kept coherent map 2</div>
+              </button>
+
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig11_kept_coherent_map_3.png"
+                      aria-label="Expand kept coherent map 3">
+                <img src="assets/GNSS_figures/coherent_map_images/fig11_kept_coherent_map_3.png"
+                     alt="Kept coherent map 3 for PRN 18" />
+                <div class="cmap-label">(c) Kept coherent map 3</div>
+              </button>
+
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig12_kept_coherent_map_4.png"
+                      aria-label="Expand kept coherent map 4">
+                <img src="assets/GNSS_figures/coherent_map_images/fig12_kept_coherent_map_4.png"
+                     alt="Kept coherent map 4 for PRN 18" />
+                <div class="cmap-label">(d) Kept coherent map 4</div>
+              </button>
+
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig13_kept_coherent_map_5.png"
+                      aria-label="Expand kept coherent map 5">
+                <img src="assets/GNSS_figures/coherent_map_images/fig13_kept_coherent_map_5.png"
+                     alt="Kept coherent map 5 for PRN 18" />
+                <div class="cmap-label">(e) Kept coherent map 5</div>
+              </button>
+
+              <button class="cmap lightbox-trigger media-trigger"
+                      type="button"
+                      data-src="assets/GNSS_figures/coherent_map_images/fig14_final_incoherent_map.png"
+                      aria-label="Expand final incoherent sum map">
+                <img src="assets/GNSS_figures/coherent_map_images/fig14_final_incoherent_map.png"
+                     alt="Final incoherent sum map for PRN 18" />
+                <div class="cmap-label">(f) Final incoherent map</div>
+              </button>
+            </div>
+
+            <div class="figcap" style="margin-top:10px;">
+              <b>Figure 4</b> &mdash; Kept coherent acquisition maps and final incoherent sum for PRN 18.
+              The red marker indicates the strongest peak in each map. The peak location shifts between
+              maps, and the final incoherent sum does not show a stable buildup at one Doppler bin and
+              code phase. Click any panel to expand.
+            </div>
+
+            <div class="tags" style="margin-top:12px;">
+              <span>Incoherent Integration</span><span>100 ms Test</span>
+              <span>Peak Stability Analysis</span><span>PRN 18</span>
+            </div>
+          </div>
+
+          <!-- 2e. SNR Metrics -->
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px;">SNR Metrics</h4>
+            <p class="muted">
+              Two main metrics were used to evaluate the acquisition results. The <b>PeakMetric</b> measures
+              how clearly the main correlation peak stands out relative to the next strongest peak:
+            </p>
+
+            <div class="eq-block">
+              PeakMetric = P&#x2081; / P&#x2082;
+            </div>
+
+            <p class="muted">
+              where P&#x2081; is the strongest acquisition peak and P&#x2082; is the second strongest. The
+              <b>SNR2</b> metric measures how much the main peak rises above the average background level of
+              the acquisition map:
+            </p>
+
+            <div class="eq-block">
+              SNR2 = (P&#x2081; &minus; N&#x0305;) / N&#x0305;
+            </div>
+
+            <p class="muted">
+              where N&#x0305; is the mean background level computed outside an exclusion region of
+              approximately &plusmn;1 chip around the primary peak. Both metrics were tracked because they
+              describe different aspects of the acquisition result: PeakMetric captures separation from
+              competing peaks, while SNR2 captures elevation above the noise floor. For reflected GNSS
+              signals, surface scattering can produce multiple competing peaks, making the SNR2 metric
+              particularly informative.
+            </p>
+
+            <div class="tags" style="margin-top:10px;">
+              <span>SNR2</span><span>PeakMetric</span><span>Noise Floor</span>
+              <span>Peak-to-Background</span><span>Acquisition Quality</span>
+            </div>
+          </div>
         </div>
+
+        <!-- ─────────────────────────────────────────
+             3. PRN DISTRIBUTION ANALYSIS
+             ───────────────────────────────────────── -->
+        <div class="card" style="margin-top:14px;">
+          <h3>3 &mdash; PRN Distribution Analysis</h3>
+
+          <p class="muted">
+            The acquisition process was repeated over the full five-minute data segment, saving PeakMetric
+            and SNR2 for all 32 PRNs once every 20 ms chunk. This produced a time history of signal-quality
+            metrics for each PRN across the entire processing run.
+          </p>
+
+          <p class="muted" style="margin-top:10px;">
+            The saved values were used to generate <b>histograms</b>, <b>time histories</b>,
+            <b>mean-versus-maximum plots</b>, and <b>upper-tail comparisons</b>. The main goal was not to
+            identify a single PRN from a single acquisition result, but to check whether the statistical
+            behavior of visible and non-visible satellites differed systematically. A reflected signal may
+            not appear as a consistently high SNR value &mdash; it may instead appear as occasional
+            high-SNR spikes &mdash; so maximum values and high-SNR clusters were considered alongside
+            the overall distributions.
+          </p>
+
+          <!-- SNR2 distribution figure -->
+          <div class="gnss-fig">
+            <img src="assets/GNSS_figures/SNR_results_images/SNR2_distribution.png"
+                 alt="SNR2 distributions for all 32 PRNs"
+                 class="lightbox-trigger"
+                 data-src="assets/GNSS_figures/SNR_results_images/SNR2_distribution.png" />
+            <div class="figcap">
+              <b>Figure 5</b> &mdash; SNR2 distributions for all 32 PRNs over the five-minute processing run.
+              Click to expand.
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:14px;">
+            <span>SNR2 Distributions</span><span>Time Histories</span>
+            <span>Upper-Tail Analysis</span><span>32 PRNs</span>
+          </div>
+        </div>
+
+        <!-- ─────────────────────────────────────────
+             4. IN-SKY / OUT-OF-SKY COMPARISON
+             ───────────────────────────────────────── -->
+        <div class="card" style="margin-top:14px;">
+          <h3>4 &mdash; In-Sky and Out-of-Sky PRN Comparison</h3>
+
+          <p class="muted">
+            PRNs were compared based on expected satellite visibility. The expected visible satellites were
+            identified using the Trimble GNSS Planning skyplot tool for the PGSS station on December 8, 2023,
+            at approximately 03:40 UTC &mdash; the time corresponding to the December 8 Part 2 dataset.
+            PRNs above the horizon were labeled <b>in-sky</b>; the remaining PRNs were labeled
+            <b>out-of-sky</b>. The initial in-sky set was:
+          </p>
+
+          <div class="proc-chain">
+            PRNs 5, 7, 8, 13, 15, 16, 18, 20, 23, 26, 27, 29, 30
+          </div>
+
+          <p class="muted" style="margin-top:12px;">
+            Some in-sky PRNs showed larger SNR2 spikes and higher maximum SNR2 values compared to out-of-sky
+            PRNs. However, the full distributions still overlapped strongly, meaning the two groups could not
+            be cleanly separated using SNR2 alone. Additional filtering by satellite geometry could be
+            considered &mdash; for example, removing PRNs whose azimuths fell in the 180&deg;&ndash;300&deg;
+            range (a walking path with higher multipath risk) and PRN 13 (whose Fresnel zone intersected the
+            secondary tower location) &mdash; but these were not removed from the current analysis.
+          </p>
+
+          <!-- Mean vs max SNR2 figure -->
+          <div class="gnss-fig">
+            <img src="assets/GNSS_figures/SNR_results_images/SNR2_max_v_mean.png"
+                 alt="Mean versus maximum SNR2 for all 32 PRNs — in-sky vs out-of-sky comparison"
+                 class="lightbox-trigger"
+                 data-src="assets/GNSS_figures/SNR_results_images/SNR2_max_v_mean.png" />
+            <div class="figcap">
+              <b>Figure 6</b> &mdash; Mean vs. maximum SNR2 for all 32 PRNs.
+              Red labels indicate in-sky PRNs; blue labels indicate out-of-sky PRNs.
+              Some partial separation is visible at the high-maximum end, but distributions overlap
+              significantly. Click to expand.
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:14px;">
+            <span>In-Sky PRNs</span><span>Skyplot Analysis</span><span>Trimble GNSS Planning</span>
+            <span>Mean vs. Maximum SNR2</span><span>Multipath Geometry</span>
+          </div>
+        </div>
+
+        <!-- ─────────────────────────────────────────
+             5. RESULTS & SUMMARY
+             ───────────────────────────────────────── -->
+        <div class="card" style="margin-top:14px;">
+          <h3>5 &mdash; Results &amp; Summary</h3>
+
+          <p class="muted">
+            The SNR processing showed that reflected-signal acquisition was not clear-cut for the selected
+            dataset. Some PRNs produced stronger maximum SNR2 values and occasional high-SNR spikes,
+            especially among the in-sky PRNs. However, the SNR2 distributions for all 32 PRNs overlapped
+            significantly, and there was no distinct separation between in-sky and out-of-sky groups beyond
+            a few partial clusters in the mean-versus-maximum comparisons.
+          </p>
+
+          <p class="muted" style="margin-top:10px;">
+            The comparison between PeakMetric and SNR2 showed that the two metrics did not always identify
+            the same PRNs as strongest: a PRN could have a strong peak relative to the background while
+            still having competing nearby peaks, or vice versa. This confirmed the value of tracking both
+            metrics independently during analysis.
+          </p>
+
+          <p class="muted" style="margin-top:10px;">
+            The incoherent integration tests confirmed that longer accumulation did not automatically improve
+            SNR2 results. When the acquisition peak shifted between Doppler bins and code phases across
+            retained maps, the final summed map showed background growth rather than signal buildup. This
+            established that the current processing approach has important limits and identified clear
+            directions for future improvement before the data can support reliable surface-condition analysis.
+          </p>
+
+          <!-- Summary bullets styled as a card -->
+          <div class="card" style="margin-top:12px; border-color: var(--gold-dim); background: var(--gold-glow);">
+            <h4 style="margin:0 0 10px; color: var(--gold);">Key Takeaways</h4>
+            <ul class="muted" style="margin:0; padding-left:1.4em;">
+              <li>Some visible satellites may produce stronger reflected signals useful for further study.</li>
+              <li>Current processing does not yet definitively acquire signals or achieve clean separation between PRN groups.</li>
+              <li>Longer incoherent integration is not effective when the acquisition peak is unstable across chunks.</li>
+              <li>SNR processing is best treated as an acquisition/quality screening step; full surface analysis requires further algorithm development.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 10px;">Future Work</h4>
+            <ul class="muted" style="margin:0; padding-left:1.4em;">
+              <li>Expand the in-sky vs. out-of-sky comparison across additional collection dates.</li>
+              <li>Improve SNR processing and reflected-signal detection methods.</li>
+              <li>Compare insights from GNSS-R and GNSS-IR (Interferometric Reflectometry) analyses.</li>
+              <li>Connect successful acquisition results to glacial surface condition interpretation.</li>
+            </ul>
+          </div>
+
+          <div class="tags" style="margin-top:14px;">
+            <span>Acquisition Results</span><span>SNR2 Analysis</span>
+            <span>PeakMetric</span><span>Signal Detection Limits</span><span>Future Work</span>
+          </div>
+        </div>
+
       </section>
+
     </main>
 
     <footer class="footer">
-      © <span id="year"></span> Jonah Wilkes
+      &copy; <span id="year"></span> Jonah Wilkes
     </footer>
   </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const closeBtn = lightbox?.querySelector(".lightbox-close");
+      const imgEl    = document.getElementById("lightbox-img");
+
+      if (!lightbox || !closeBtn || !imgEl) return;
+
+      function openLightbox(src, altText) {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        imgEl.src = src;
+        imgEl.alt = altText || "";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        imgEl.src = "";
+        imgEl.alt = "";
+      }
+
+      document.addEventListener("click", (e) => {
+        // Handle both button wrappers (coherent grid) and plain img triggers
+        const btn = e.target.closest(".lightbox-trigger");
+        if (!btn) return;
+
+        // Prefer data-src attribute; fall back to src on the img child
+        const src = btn.getAttribute("data-src")
+                 || btn.querySelector("img")?.getAttribute("src")
+                 || "";
+        if (!src) return;
+
+        const img = btn.querySelector("img");
+        openLightbox(src, img ? img.getAttribute("alt") : "");
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
 </body>
 </html>

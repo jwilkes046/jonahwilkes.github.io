@@ -1,15 +1,20 @@
 :root {
   --bg: #050505;
-  --panel: #0d0d0d;
+  --panel: #0f0f0f;
 
-  --border: #5e0000;
-  --border2: #8b0000;
-  --accent: #d11a2a;   /* bright crimson red */
+  /* Scarlet primary (brighter, lighter than the old crimson) */
+  --border:   #7a0a0a;
+  --border2:  #b81a1a;
+  --accent:   #e8292b;   /* scarlet red */
 
-  --text: #f2f2f2;
-  --muted: rgba(242, 242, 242, 0.78);
+  /* Gold secondary accent */
+  --gold:        #c9a227;
+  --gold-dim:    #a07d18;
+  --gold-glow:   rgba(201, 162, 39, 0.18);
 
-  /* NEW: standardized rounding */
+  --text:  #f4f4f4;
+  --muted: rgba(244, 244, 244, 0.75);
+
   --radius: 14px;
 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -23,12 +28,13 @@ body {
   color: var(--text);
 }
 
-/* Global link styling: no underlines anywhere */
+/* Global link styling */
 a {
   color: var(--accent);
   text-decoration: none;
 }
 a:hover {
+  color: var(--gold);
   text-decoration: none;
 }
 a:focus-visible {
@@ -38,10 +44,13 @@ a:focus-visible {
 
 .wrap { max-width: 1100px; margin: 0 auto; }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;       /* bottom-align left block + badges */
+  align-items: flex-end;
   gap: 24px;
   padding: 28px 20px;
   border-bottom: 1px solid var(--border);
@@ -50,27 +59,31 @@ a:focus-visible {
 .header h1 { margin: 0; font-size: 28px; }
 .header p  { margin: 6px 0 0; color: var(--muted); }
 
-/* Ensure your second line (subline) is NOT smaller unless you want it to be */
-.subline {
-  font-size: inherit;
-}
+.subline { font-size: inherit; }
 
 .links {
   display: flex;
   gap: 14px;
-  align-items: flex-end;       /* keep badges aligned to the bottom of header */
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
+/* ============================================================
+   BADGE — gold-tinted now
+   ============================================================ */
 .badge {
-  border: 1px solid var(--border2);
+  border: 1px solid var(--gold-dim);
   background: var(--panel);
   padding: 8px 10px;
   border-radius: 10px;
   color: var(--text);
   white-space: nowrap;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
+/* ============================================================
+   TABS
+   ============================================================ */
 .tabs {
   display: flex;
   gap: 8px;
@@ -87,21 +100,43 @@ a:focus-visible {
   border-radius: 10px;
   white-space: nowrap;
   display: inline-block;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .tab.active {
-  background: rgba(209, 26, 42, 0.15);
+  background: rgba(232, 41, 43, 0.18);
   border-color: var(--accent);
+  color: var(--text);
 }
 
-/* Unified hover behavior for both badges + tabs */
+/* Unified hover for badges + tabs */
 .badge:hover,
 .tab:hover {
-  border-color: var(--accent);
-  background: rgba(209, 26, 42, 0.10);
+  border-color: var(--gold);
+  background: var(--gold-glow);
+  color: var(--gold);
   text-decoration: none;
 }
 
+/* ============================================================
+   DISTINCTION BADGE  (Summa Cum Laude etc.)
+   ============================================================ */
+.distinction {
+  display: inline-block;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-glow);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
 main { padding: 18px 20px 40px; }
 
 h2 { margin-top: 0; }
@@ -121,37 +156,43 @@ h2 { margin-top: 0; }
   .col-7, .col-5 { grid-column: span 12; }
   .header {
     flex-direction: column;
-    align-items: flex-start;   /* better on mobile */
+    align-items: flex-start;
   }
-  .links {
-    align-items: flex-start;   /* badges align nicely under header text */
-  }
+  .links { align-items: flex-start; }
 }
 
+/* ============================================================
+   CARD
+   ============================================================ */
 .card {
   border: 1px solid var(--border);
   background: var(--panel);
   padding: 14px;
-  border-radius: var(--radius); /* CHANGED */
-
-  /* NEW: allow "stick to bottom" elements (tags) */
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
+  transition: border-color 0.15s ease;
 }
 
 .card h3 { margin: 0 0 8px; }
 
+/* Gold left-bar accent on hover for top-level experience/section cards */
+section.card:hover,
+.card.highlight:hover {
+  border-color: var(--border2);
+}
+
 .muted { color: var(--muted); }
 
+/* ============================================================
+   TAGS — scarlet by default, gold variant available
+   ============================================================ */
 .tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-
-  /* NORMAL behavior everywhere by default */
   margin-top: 10px;
 }
-
 
 .tags span {
   border: 1px solid var(--border2);
@@ -159,19 +200,37 @@ h2 { margin-top: 0; }
   border-radius: 999px;
   font-size: 12px;
   opacity: 0.95;
+  transition: border-color 0.12s ease, color 0.12s ease;
 }
 
+.tags span:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+/* Gold tag variant */
+.tags.gold span {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+  background: var(--gold-glow);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
   border-top: 1px solid var(--border);
   padding: 18px 20px;
   color: var(--muted);
 }
 
-/* --- Figure containers should never spill outside cards --- */
+/* ============================================================
+   FIGURE
+   ============================================================ */
 .figure {
   width: 100%;
   max-width: 100%;
-  overflow: hidden; /* clips anything that tries to spill */
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -181,27 +240,20 @@ h2 { margin-top: 0; }
   width: 100%;
   height: auto;
   object-fit: contain;
-
-  /* CHANGED: standardized rounding + add border */
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
 }
 
-/* If you ever place images outside .figure blocks */
-img {
-  max-width: 100%;
-  height: auto;
-}
+img { max-width: 100%; height: auto; }
 
-/* ============================
-   Schoolwork highlight cards: centered larger aside
-   ============================ */
-
+/* ============================================================
+   WITH-ASIDE cards (text + right image)
+   ============================================================ */
 .card.with-aside {
   display: flex;
   gap: 22px;
-  align-items: center;   /* vertical centering */
+  align-items: center;
 }
 
 .card.with-aside .card-main {
@@ -210,61 +262,50 @@ img {
 }
 
 .card.with-aside .aside-img {
-  flex: 0 0 360px;       /* ~2× previous size */
+  flex: 0 0 360px;
 }
 
 .card.with-aside .aside-img img {
   display: block;
   width: 100%;
   height: auto;
-
-  /* CHANGED: standardized rounding + add border */
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
-
   opacity: 0.95;
 }
 
-/* Mobile: stack image below content */
 @media (max-width: 720px) {
   .card.with-aside {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .card.with-aside .aside-img {
     width: 100%;
     max-width: 480px;
   }
 }
 
-/* ============================
-   Image lightbox
-   ============================ */
-
+/* ============================================================
+   IMAGE LIGHTBOX
+   ============================================================ */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(5, 5, 5, 0.92);
+  background: rgba(5, 5, 5, 0.94);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
-.lightbox.open {
-  display: flex;
-}
+.lightbox.open { display: flex; }
 
 .lightbox img {
   max-width: 92vw;
   max-height: 88vh;
-
-  /* CHANGED: standardized rounding */
   border-radius: var(--radius);
-
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  box-shadow: 0 0 60px rgba(232, 41, 43, 0.25), 0 0 20px rgba(0,0,0,0.9);
 }
 
 .lightbox-close {
@@ -277,23 +318,16 @@ img {
   border: none;
   color: #fff;
   cursor: pointer;
-  opacity: 0.85;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, color 0.15s ease;
 }
+.lightbox-close:hover { opacity: 1; color: var(--gold); }
 
-.lightbox-close:hover {
-  opacity: 1;
-}
+.lightbox-trigger { cursor: zoom-in; }
 
-/* Subtle affordance */
-.lightbox-trigger {
-  cursor: zoom-in;
-}
-
-/* ============================
-   Video preview (aside) + video lightbox
-   ============================ */
-
-/* Button wrapper so the aside is clickable like your image lightbox triggers */
+/* ============================================================
+   VIDEO PREVIEW + LIGHTBOX
+   ============================================================ */
 .media-trigger {
   padding: 0;
   border: 0;
@@ -303,40 +337,29 @@ img {
   cursor: zoom-in;
 }
 
-/* Small looping preview video (right-side aside) */
 .aside-video {
   display: block;
   width: 100%;
   height: auto;
-
-  /* CHANGED: standardized rounding */
   border-radius: var(--radius);
-
   border: 1px solid var(--border);
   background: #000;
   opacity: 0.95;
 }
 
-/* Optional caption under the preview */
-.aside-caption {
-  margin-top: 8px;
-  font-size: 12px;
-  opacity: 0.85;
-}
+.aside-caption { margin-top: 8px; font-size: 12px; opacity: 0.85; }
 
-/* Lightbox video sizing */
 #videoLightbox video {
   max-width: 92vw;
   max-height: 88vh;
-
-  /* CHANGED: standardized rounding */
   border-radius: var(--radius);
-
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  box-shadow: 0 0 60px rgba(232, 41, 43, 0.25), 0 0 20px rgba(0,0,0,0.9);
   background: #000;
 }
 
-/* --- PDF thumbnail block inside aside --- */
+/* ============================================================
+   PDF THUMBNAIL
+   ============================================================ */
 .pdf-thumb {
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -353,27 +376,18 @@ img {
 
 .pdf-icon {
   display: inline-block;
-  border: 1px solid var(--border2);
+  border: 1px solid var(--gold-dim);
   border-radius: 10px;
   padding: 6px 10px;
   width: fit-content;
   font-weight: 700;
   letter-spacing: 0.04em;
+  color: var(--gold);
 }
 
-.pdf-title {
-  font-size: 13px;
-  word-break: break-word;
-  color: var(--text);
-  opacity: 0.92;
-}
+.pdf-title { font-size: 13px; word-break: break-word; color: var(--text); opacity: 0.92; }
+.pdf-sub   { font-size: 12px; color: var(--muted); }
 
-.pdf-sub {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* PDF lightbox sizing */
 .lightbox iframe {
   width: min(92vw, 1100px);
   height: 88vh;
@@ -384,59 +398,42 @@ img {
 }
 
 /* ============================================================
-   Aircraft page – Aerodynamics card: text + thumbnail bubbles
-   (scoped ONLY to .card.aero-images)
+   AERO-IMAGES CARD (Aircraft page)
    ============================================================ */
-
 .card.aero-images .aero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px; /* text | thumbnails */
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 14px;
-
-  /* CHANGED: stretch columns to same height so tags can sit at the bottom */
   align-items: stretch;
 }
 
-/* Stack text + thumbnails on smaller screens */
 @media (max-width: 900px) {
-  .card.aero-images .aero-layout {
-    grid-template-columns: 1fr;
-  }
+  .card.aero-images .aero-layout { grid-template-columns: 1fr; }
 }
 
-/* NEW: make the text column a flex stack so tags can push down */
 .card.aero-images .aero-text {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* Keep text readable but not full-bleed */
-.card.aero-images .aero-text p {
-  max-width: 78ch;
-}
+.card.aero-images .aero-text p { max-width: 78ch; }
 
-/* NEW: ensure tags in aero-text sit at bottom of the section */
 .card.aero-images .aero-text .tags {
   margin-top: auto;
   padding-top: 12px;
 }
 
-/* Right-side thumbnail container (side-by-side bubbles) */
 .card.aero-images .aero-thumbs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* SIDE-BY-SIDE */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
-/* Stack thumbnails vertically on small phones */
 @media (max-width: 600px) {
-  .card.aero-images .aero-thumbs {
-    grid-template-columns: 1fr;
-  }
+  .card.aero-images .aero-thumbs { grid-template-columns: 1fr; }
 }
 
-/* Individual thumbnail tile */
 .card.aero-images .thumb {
   border: 1px solid var(--border);
   background: rgba(0, 0, 0, 0.25);
@@ -447,74 +444,38 @@ img {
 }
 
 .card.aero-images .thumb:hover {
-  border-color: var(--accent);
-  background: rgba(209, 26, 42, 0.08);
+  border-color: var(--gold);
+  background: var(--gold-glow);
 }
 
-/* Thumbnail image */
 .card.aero-images .thumb img {
   width: 100%;
-  height: 140px;           /* small preview size */
-  object-fit: contain;     /* preserve plots */
+  height: 140px;
+  object-fit: contain;
   display: block;
   border-radius: calc(var(--radius) - 4px);
   border: 1px solid var(--border);
   background: #000;
 }
 
-/* Optional caption under thumbnails */
 .card.aero-images .thumb .caption {
   margin-top: 8px;
   font-size: 12px;
   color: var(--muted);
 }
 
-/* GPS thumbs: 2-column grid, with first image spanning the top row */
 .card.aero-images .aero-thumbs.gps-thumbs {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.card.aero-images .aero-thumbs.gps-thumbs .gps-wide { grid-column: 1 / -1; }
 
-.card.aero-images .aero-thumbs.gps-thumbs .gps-wide {
-  grid-column: 1 / -1; /* span both columns */
-}
-
-
-/* ============================================================
-   Aircraft page – force tags to bottom of aero text column
-   ============================================================ */
-
-/* Ensure columns match height so bottom-align is possible */
-.card.aero-images .aero-layout {
-  align-items: stretch; /* CHANGED from start */
-}
-
-/* Make text column a flex stack so tags can push down */
-.card.aero-images .aero-text {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Only in aero-text: push tags to bottom + add spacing */
-.card.aero-images .aero-text .tags {
-  margin-top: auto;
-  padding-top: 12px;
-}
-
-
-
-/* Mobile: keep it clean */
 @media (max-width: 600px) {
-  .card.aero-images .aero-thumbs.gps-thumbs {
-    grid-template-columns: 1fr;
-  }
-  .card.aero-images .aero-thumbs.gps-thumbs .gps-wide {
-    grid-column: auto;
-  }
+  .card.aero-images .aero-thumbs.gps-thumbs { grid-template-columns: 1fr; }
+  .card.aero-images .aero-thumbs.gps-thumbs .gps-wide { grid-column: auto; }
 }
 
 /* ============================================================
-   Report cards: text left, download right
+   REPORT ROW CARDS
    ============================================================ */
 .card.report-row {
   display: grid;
@@ -524,26 +485,19 @@ img {
 }
 
 @media (max-width: 700px) {
-  .card.report-row {
-    grid-template-columns: 1fr;
-  }
+  .card.report-row { grid-template-columns: 1fr; }
 }
 
-
-
 /* ============================================================
-   INDEX + Schoolwork Overview – force left text + right image (small)
-   Applies when <body class="home"> OR <body class="home-layout">
+   HOME + HOME-LAYOUT: with-aside
    ============================================================ */
-
 .home .card.with-aside,
 .home-layout .card.with-aside {
   display: flex;
   flex-direction: row;
   gap: 18px;
-  align-items: center; /* ✅ vertically center image */
+  align-items: center;
 }
-
 
 .home .card.with-aside .card-main,
 .home-layout .card.with-aside .card-main {
@@ -561,20 +515,18 @@ img {
 .home-layout .card.with-aside .aside-img img {
   width: 100%;
   height: 180px;
-  object-fit: cover; /* switch to contain if you want zero cropping */
+  object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
 }
 
-/* Mobile: stack cleanly */
 @media (max-width: 720px) {
   .home .card.with-aside,
   .home-layout .card.with-aside {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .home .card.with-aside .aside-img,
   .home-layout .card.with-aside .aside-img {
     margin-left: 0;
@@ -582,7 +534,6 @@ img {
     width: 100%;
     max-width: 420px;
   }
-
   .home .card.with-aside .aside-img img,
   .home-layout .card.with-aside .aside-img img {
     height: auto;
@@ -590,35 +541,26 @@ img {
   }
 }
 
-
 /* ============================================================
-   Side-media layout (images OR videos on right)
-   Used by:
-   - index.html        (home)
-   - schoolwork.html   (overview)
-   - spacecraft design (video preview)
+   SIDE-MEDIA LAYOUT (spacecraft page videos)
    ============================================================ */
-
 .side-media .card.with-aside {
   display: flex;
   flex-direction: row;
   gap: 18px;
-  align-items: center; /* ✅ vertically center video */
+  align-items: center;
 }
-
 
 .side-media .card.with-aside .card-main {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-/* Right column (shared for images & video) */
 .side-media .card.with-aside .aside-img {
-  flex: 0 0 300px;      /* slightly larger than image previews */
-  margin-left: auto;   /* LOCKS it to the right */
+  flex: 0 0 300px;
+  margin-left: auto;
 }
 
-/* IMAGE previews */
 .side-media .card.with-aside .aside-img img {
   width: 100%;
   height: 180px;
@@ -628,19 +570,16 @@ img {
   background: #000;
 }
 
-/* VIDEO previews — square */
 .side-media .card.with-aside .aside-video {
   width: 100%;
-  aspect-ratio: 1 / 1;   /* ✅ force square */
+  aspect-ratio: 1 / 1;
   height: auto;
-  object-fit: contain;   /* preserve full frame */
+  object-fit: contain;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
 }
 
-
-/* Caption spacing */
 .side-media .aside-caption {
   margin-top: 6px;
   font-size: 12px;
@@ -648,19 +587,16 @@ img {
   opacity: 0.85;
 }
 
-/* Mobile behavior */
 @media (max-width: 720px) {
   .side-media .card.with-aside {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .side-media .card.with-aside .aside-img {
     margin-left: 0;
     width: 100%;
     max-width: 420px;
   }
-
   .side-media .card.with-aside .aside-video,
   .side-media .card.with-aside .aside-img img {
     height: auto;
@@ -668,6 +604,99 @@ img {
   }
 }
 
+/* ============================================================
+   GNSS FIGURES  (probedata / coherent maps / SNR results)
+   ============================================================ */
+.gnss-fig {
+  margin-top: 16px;
+}
 
+.gnss-fig img {
+  display: block;
+  width: 100%;
+  max-width: 820px;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+}
 
+.gnss-fig .figcap {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
 
+/* 3-up grid for coherent maps */
+.coherent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.coherent-grid .cmap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #000;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: zoom-in;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.coherent-grid .cmap:hover {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+}
+
+.coherent-grid .cmap img {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background: #000;
+  display: block;
+}
+
+.coherent-grid .cmap .cmap-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .coherent-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 460px) {
+  .coherent-grid { grid-template-columns: 1fr; }
+}
+
+/* Equation display */
+.eq-block {
+  margin: 14px 0;
+  padding: 10px 16px;
+  border-left: 3px solid var(--gold-dim);
+  background: rgba(201, 162, 39, 0.06);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95rem;
+  color: var(--text);
+  overflow-x: auto;
+}
+
+/* Processing chain (monospace pipeline display) */
+.proc-chain {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(232, 41, 43, 0.07);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.88rem;
+  color: var(--muted);
+  overflow-x: auto;
+  white-space: nowrap;
+}
