@@ -7,16 +7,6 @@
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
   <title>NASA L'SPACE | Jonah Wilkes</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Centre image within the float aside on this page */
-    aside.figure img {
-      display: block;
-      margin: 0 auto;
-    }
-    aside.figure .figcap {
-      text-align: center;
-    }
-  </style>
 
 
   <!-- Google Analytics -->
@@ -93,58 +83,50 @@
       <section class="card" style="margin-top:14px;">
         <h2>Mission Concept Academy (MCA)</h2>
 
-        <!-- ✅ Put the aside HERE so text wraps around it -->
-        <aside class="figure"
-          style="
-            float:right;
-            width:360px;
-            max-width:42%;
-            margin:6px 0 10px 16px;
-          "
-        >
-          <img
-            src="assets/Im1.1.JPG"
-            alt="NASA L'SPACE Mission Concept Academy rover CAD model"
-            style="width:100%; height:auto; cursor:pointer; display:block; margin:0 auto;"
-            loading="lazy"
-            onclick="openLightbox(this.src, this.alt)"
-          />
-          <div class="figcap">
-            <b>MCA Design Work</b> — Mars Rover mechanical configuration developed
-            in Siemens NX as part of the NASA L’SPACE Mission Concept Academy.
+        <div class="card with-aside" style="margin-top:4px; border:none; padding:0; background:transparent;">
+          <div class="card-main">
+            <p>
+              As the primary Mechanical Engineer on a NASA L'SPACE Mission Concept Academy team, I led
+              the mechanical design of a Mars Rover mission concept developed under NASA systems
+              engineering standards. I produced a detailed rover CAD model in <b>Siemens NX</b>,
+              integrating mechanical structure with thermal, payload, power, and communications
+              subsystems, and worked closely with cross-disciplinary teams to ensure interface
+              compatibility and feasibility.
+            </p>
+
+            <p style="margin-top:10px;">
+              In addition to design work, I led the development of the mission <b>Concept of Operations
+              (ConOps)</b>, defining four distinct operational phases and coordinating subsystem
+              requirements across the mission lifecycle. I supported the project through
+              <b>Preliminary Design Review (PDR)</b> and presented technical results to a
+              <b>NASA Standing Review Board</b>, gaining direct experience with NASA-style design reviews,
+              documentation standards, and interdisciplinary collaboration.
+            </p>
+
+            <div class="tags" style="margin-top:12px;">
+              <span>Mechanical Design</span>
+              <span>Siemens NX</span>
+              <span>Mission Systems</span>
+              <span>ConOps</span>
+            </div>
           </div>
-        </aside>
 
-        <p>
-          As the primary Mechanical Engineer on a NASA L’SPACE Mission Concept Academy team, I led
-          the mechanical design of a Mars Rover mission concept developed under NASA systems
-          engineering standards. I produced a detailed rover CAD model in <b>Siemens NX</b>,
-          integrating mechanical structure with thermal, payload, power, and communications
-          subsystems, and worked closely with cross-disciplinary teams to ensure interface
-          compatibility and feasibility.
-        </p>
-
-        <p>
-          In addition to design work, I led the development of the mission <b>Concept of Operations
-          (ConOps)</b>, defining four distinct operational phases and coordinating subsystem
-          requirements across the mission lifecycle. I supported the project through
-          <b>Preliminary Design Review (PDR)</b> and presented technical results to a
-          <b>NASA Standing Review Board</b>, gaining direct experience with NASA-style design reviews,
-          documentation standards, and interdisciplinary collaboration.
-        </p>
-
-        <!-- clear the float so tags don't slide up beside it -->
-        <div style="clear:both;"></div>
-
-        <div class="tags">
-          <span>Mechanical Design</span>
-          <span>Siemens NX</span>
-          <span>Mission Systems</span>
-          <span>ConOps</span>
+          <div class="aside-img">
+            <button class="media-trigger lightbox-trigger"
+                    type="button"
+                    data-src="assets/Im1.1.JPG"
+                    aria-label="Expand MCA rover CAD model">
+              <img src="assets/Im1.1.JPG"
+                   alt="NASA L'SPACE Mission Concept Academy rover CAD model"
+                   loading="lazy"
+                   style="width:100%; height:auto; border-radius:var(--radius); border:1px solid var(--border); display:block;" />
+            </button>
+            <div style="margin-top:6px; font-size:0.82rem; color:var(--muted); text-align:center;">
+              <b>MCA Design Work</b> — Mars Rover mechanical configuration developed
+              in Siemens NX as part of the NASA L'SPACE Mission Concept Academy.
+            </div>
+          </div>
         </div>
-
-        <!-- Mobile fallback (optional but helpful without editing CSS) -->
-        <div style="display:none;"></div>
       </section>
 
       <!-- NPWEE -->
@@ -184,52 +166,42 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Lightbox helpers (self-contained)
-    function openLightbox(src, alt) {
-      const lb = document.getElementById("lightbox");
-      const img = document.getElementById("lightbox-img");
-      img.src = src;
-      img.alt = alt || "";
-      lb.style.display = "flex";
-      lb.setAttribute("aria-hidden", "false");
-    }
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const closeBtn = document.getElementById("lightbox-close");
+      const imgEl    = document.getElementById("lightbox-img");
 
-    function closeLightbox() {
-      const lb = document.getElementById("lightbox");
-      const img = document.getElementById("lightbox-img");
-      img.src = "";
-      img.alt = "";
-      lb.style.display = "none";
-      lb.setAttribute("aria-hidden", "true");
-    }
-
-    document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
-    document.getElementById("lightbox").addEventListener("click", (e) => {
-      if (e.target.id === "lightbox") closeLightbox();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeLightbox();
-    });
-
-    // Basic mobile safeguard without CSS edits:
-    // If the screen is narrow, remove the float and allow full width.
-    function adaptAside() {
-      const aside = document.querySelector('section.card aside.figure');
-      if (!aside) return;
-      if (window.innerWidth <= 760) {
-        aside.style.float = "none";
-        aside.style.width = "100%";
-        aside.style.maxWidth = "100%";
-        aside.style.margin = "10px 0 12px 0";
-      } else {
-        aside.style.float = "right";
-        aside.style.width = "360px";
-        aside.style.maxWidth = "42%";
-        aside.style.margin = "6px 0 10px 16px";
+      function openLightbox(src, altText) {
+        lightbox.classList.add("open");
+        lightbox.style.display = "flex";
+        lightbox.setAttribute("aria-hidden", "false");
+        imgEl.src = src;
+        imgEl.alt = altText || "";
       }
-    }
-    adaptAside();
-    window.addEventListener("resize", adaptAside);
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.style.display = "none";
+        lightbox.setAttribute("aria-hidden", "true");
+        imgEl.src = "";
+        imgEl.alt = "";
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lightbox-trigger");
+        if (btn) {
+          const src = btn.getAttribute("data-src")
+                   || btn.querySelector("img")?.getAttribute("src") || "";
+          if (src) openLightbox(src, btn.querySelector("img")?.alt || "");
+          return;
+        }
+        if (e.target === lightbox || e.target === closeBtn) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+    })();
   </script>
 </body>
 </html>
