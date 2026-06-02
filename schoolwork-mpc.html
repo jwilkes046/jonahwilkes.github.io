@@ -157,7 +157,7 @@
               Parameters chosen to roughly represent a Falcon 9 style booster during the powered
               landing phase.
             </p>
-            <div style="overflow-x:auto;">
+            <div class="mpc-table-wrap">
               <table class="mpc-table">
                 <thead>
                   <tr>
@@ -485,7 +485,7 @@
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <a class="badge"
-                 href="assets/MPC_project/MMAE 549 Final Report - Alec Weedman and Jonah Wilkes.pdf"
+                 href="assets/MPC_project/MMAE_549_Final_Report_-_Alec_Weedman_and_Jonah_Wilkes.pdf"
                  target="_blank" rel="noopener">
                 Final Report (PDF)
               </a>
@@ -510,127 +510,99 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     (function () {
-      // ── Config: which src goes left (comparison) vs right (closeup) ──
-      const PAIRS = {
-        nominal: {
-          comparison: {
-            src:   "assets/MPC_project/rocket_landing_nominal_comparison.mp4",
-            label: "Nominal — MPC vs. PD comparison",
-          },
-          closeup: {
-            src:   "assets/MPC_project/rocket_landing_nominal_closeup.mp4",
-            label: "Nominal — MPC close-up",
-          },
+      // ── Video source map ──
+      const VIDEOS = {
+        'nominal-comparison': {
+          src:   'assets/MPC_project/rocket_landing_nominal_comparison.mp4',
+          label: 'Nominal — MPC vs. PD comparison (3D trajectory)',
         },
-        wind: {
-          comparison: {
-            src:   "assets/MPC_project/rocket_landing_wind_comparison.mp4",
-            label: "Wind-disturbed — MPC vs. PD comparison",
-          },
-          closeup: {
-            src:   "assets/MPC_project/rocket_landing_wind_closeup.mp4",
-            label: "Wind-disturbed — MPC close-up",
-          },
+        'nominal-closeup': {
+          src:   'assets/MPC_project/rocket_landing_nominal_closeup.mp4',
+          label: 'Nominal — MPC close-up',
+        },
+        'wind-comparison': {
+          src:   'assets/MPC_project/rocket_landing_wind_comparison.mp4',
+          label: 'Wind-disturbed — MPC vs. PD comparison (3D trajectory)',
+        },
+        'wind-closeup': {
+          src:   'assets/MPC_project/rocket_landing_wind_closeup.mp4',
+          label: 'Wind-disturbed — MPC close-up',
         },
       };
 
-      const lb        = document.getElementById("dualVideoLightbox");
-      const closeBtn  = document.getElementById("dualClose");
-      const vidLeft   = document.getElementById("lightboxComparison");
-      const vidRight  = document.getElementById("lightboxCloseup");
-      const lblLeft   = document.getElementById("lbLabelLeft");
-      const lblRight  = document.getElementById("lbLabelRight");
+      const lb       = document.getElementById('dualVideoLightbox');
+      const closeBtn = document.getElementById('dualClose');
+      const vidEl    = document.getElementById('lightboxComparison'); // only one used now
+      const lblEl    = document.getElementById('lbLabelLeft');
 
-      // ── Sync helper: keep both videos at the same playback position ──
-      let syncActive = false;
-      function startSync() {
-        if (syncActive) return;
-        syncActive = true;
-        vidLeft.addEventListener("timeupdate", onSync);
-      }
-      function stopSync() {
-        syncActive = false;
-        vidLeft.removeEventListener("timeupdate", onSync);
-      }
-      function onSync() {
-        const diff = Math.abs(vidLeft.currentTime - vidRight.currentTime);
-        if (diff > 0.25) vidRight.currentTime = vidLeft.currentTime;
-      }
+      // Hide the second video/label slots (CSS also hides them; belt-and-suspenders)
+      const vidRight = document.getElementById('lightboxCloseup');
+      const lblRight = document.getElementById('lbLabelRight');
+      if (vidRight) vidRight.classList.add('lb-hidden');
+      if (lblRight) lblRight.classList.add('lb-hidden');
 
-      function openPair(pairKey) {
-        const pair = PAIRS[pairKey];
-        if (!pair) return;
+      function openVideo(key) {
+        const info = VIDEOS[key];
+        if (!info) return;
 
-        // Set sources and labels
-        vidLeft.src  = pair.comparison.src;
-        vidRight.src = pair.closeup.src;
-        lblLeft.textContent  = pair.comparison.label;
-        lblRight.textContent = pair.closeup.label;
+        // Pause all inline preview videos while lightbox is open
+        document.querySelectorAll('.mpc-preview-video').forEach(v => v.pause());
 
-        // Show lightbox
-        lb.classList.add("open");
-        lb.setAttribute("aria-hidden", "false");
+        lblEl.textContent = info.label;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
 
-        // Play together from t=0 once both are ready
-        let leftReady = false, rightReady = false;
-        function tryPlay() {
-          if (!leftReady || !rightReady) return;
-          vidLeft.currentTime  = 0;
-          vidRight.currentTime = 0;
-          Promise.all([
-            vidLeft.play().catch(() => {}),
-            vidRight.play().catch(() => {}),
-          ]).then(() => startSync());
-        }
-        vidLeft.oncanplay  = () => { leftReady  = true; tryPlay(); };
-        vidRight.oncanplay = () => { rightReady = true; tryPlay(); };
-        vidLeft.load();
-        vidRight.load();
+        // Set src AFTER showing lightbox; use {once:true} so handler fires exactly once
+        vidEl.src = info.src;
+        vidEl.addEventListener('canplay', () => {
+          vidEl.currentTime = 0;
+          vidEl.play().catch(() => {});
+        }, { once: true });
+        vidEl.load();
       }
 
-      function closePair() {
-        stopSync();
-        lb.classList.remove("open");
-        lb.setAttribute("aria-hidden", "true");
-        vidLeft.pause();
-        vidRight.pause();
-        vidLeft.removeAttribute("src");
-        vidRight.removeAttribute("src");
-        vidLeft.load();
-        vidRight.load();
-        vidLeft.oncanplay  = null;
-        vidRight.oncanplay = null;
-      }
+      function closeVideo() {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        vidEl.pause();
+        vidEl.removeAttribute('src');
+        vidEl.load();
 
-      // ── Sync the two looping inline preview videos so they stay in step ──
-      function syncPreviews(compEl, closeEl) {
-        if (!compEl || !closeEl) return;
-        compEl.addEventListener("timeupdate", () => {
-          const diff = Math.abs(compEl.currentTime - closeEl.currentTime);
-          if (diff > 0.5) closeEl.currentTime = compEl.currentTime;
+        // Resume inline previews
+        document.querySelectorAll('.mpc-preview-video').forEach(v => {
+          v.play().catch(() => {});
         });
       }
-      syncPreviews(
-        document.getElementById("nominal-preview-comparison"),
-        document.getElementById("nominal-preview-closeup")
-      );
-      syncPreviews(
-        document.getElementById("wind-preview-comparison"),
-        document.getElementById("wind-preview-closeup")
-      );
+
+      // ── Sync inline preview pairs so they start at the same time ──
+      function syncPreviews(aId, bId) {
+        const a = document.getElementById(aId);
+        const b = document.getElementById(bId);
+        if (!a || !b) return;
+        // When either is seeked/looped, snap the other to match
+        a.addEventListener('timeupdate', () => {
+          if (Math.abs(a.currentTime - b.currentTime) > 0.5)
+            b.currentTime = a.currentTime;
+        });
+      }
+      syncPreviews('nominal-preview-comparison', 'nominal-preview-closeup');
+      syncPreviews('wind-preview-comparison',    'wind-preview-closeup');
 
       // ── Click delegation ──
-      document.addEventListener("click", (e) => {
-        const btn = e.target.closest(".sync-trigger");
+      document.addEventListener('click', (e) => {
+        // Close button or backdrop
+        if (e.target === closeBtn || e.target === lb) { closeVideo(); return; }
+
+        // Video card click — derive key from data-pair + data-role
+        const btn = e.target.closest('.sync-trigger');
         if (btn) {
-          openPair(btn.dataset.pair);
-          return;
+          const key = btn.dataset.pair + '-' + btn.dataset.role;
+          openVideo(key);
         }
-        if (e.target === lb || e.target === closeBtn) closePair();
       });
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && lb.classList.contains("open")) closePair();
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lb.classList.contains('open')) closeVideo();
       });
     })();
   </script>
