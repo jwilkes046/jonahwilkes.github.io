@@ -42,10 +42,17 @@
 </head>
 
 <body>
-  <!-- Video Lightbox -->
-  <div id="videoLightbox" class="lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Close">×</button>
-    <video id="lightboxVideo" controls playsinline preload="metadata"></video>
+  <!-- Dual Video Lightbox (synced pair) -->
+  <div id="dualVideoLightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" id="dualClose" aria-label="Close">×</button>
+    <div class="dual-video-row">
+      <video id="lightboxComparison" controls playsinline preload="metadata"></video>
+      <video id="lightboxCloseup"    controls playsinline preload="metadata"></video>
+    </div>
+    <div class="dual-video-labels">
+      <span id="lbLabelLeft"></span>
+      <span id="lbLabelRight"></span>
+    </div>
   </div>
 
   <div class="wrap">
@@ -257,7 +264,7 @@
           tilt, which was insufficient to close the horizontal offset before simulation end.
         </p>
 
-        <div style="overflow-x:auto; margin-top:14px;">
+        <div class="mpc-table-wrap">
           <table class="mpc-table">
             <thead>
               <tr>
@@ -280,31 +287,35 @@
 
         <!-- Nominal videos -->
         <h3 style="margin-top:18px;">Nominal Case Animations</h3>
-        <p class="muted">Click any preview to expand and play.</p>
+        <p class="muted">Videos play inline below. Click either card to expand both side-by-side in sync.</p>
 
-        <div class="mpc-video-grid">
-          <button class="mpc-video-card media-trigger"
+        <div class="mpc-video-grid" id="nominal-grid">
+          <button class="mpc-video-card sync-trigger"
                   type="button"
-                  data-video="assets/MPC_project/rocket_landing_nominal_comparison.mp4"
-                  aria-label="Play nominal MPC vs PD comparison animation">
-            <img class="mpc-thumb"
-                 src="assets/MPC_project/mpc_thumb_nominal_comparison.jpg"
-                 alt="Nominal MPC vs PD comparison 3D trajectory preview"
-                 loading="lazy" />
+                  data-pair="nominal"
+                  data-role="comparison"
+                  aria-label="Expand nominal MPC vs PD comparison animation">
+            <video class="mpc-preview-video"
+                   src="assets/MPC_project/rocket_landing_nominal_comparison.mp4"
+                   autoplay loop muted playsinline
+                   preload="metadata"
+                   id="nominal-preview-comparison"></video>
             <div class="mpc-card-label">
               <span class="play-icon">&#9654;</span>
               <span>Nominal — MPC vs. PD comparison (3D trajectory)</span>
             </div>
           </button>
 
-          <button class="mpc-video-card media-trigger"
+          <button class="mpc-video-card sync-trigger"
                   type="button"
-                  data-video="assets/MPC_project/rocket_landing_nominal_closeup.mp4"
-                  aria-label="Play nominal MPC close-up animation">
-            <img class="mpc-thumb"
-                 src="assets/MPC_project/mpc_thumb_nominal_closeup.jpg"
-                 alt="Nominal MPC close-up vehicle trajectory preview"
-                 loading="lazy" />
+                  data-pair="nominal"
+                  data-role="closeup"
+                  aria-label="Expand nominal MPC close-up animation">
+            <video class="mpc-preview-video"
+                   src="assets/MPC_project/rocket_landing_nominal_closeup.mp4"
+                   autoplay loop muted playsinline
+                   preload="metadata"
+                   id="nominal-preview-closeup"></video>
             <div class="mpc-card-label">
               <span class="play-icon">&#9654;</span>
               <span>Nominal — MPC vehicle close-up</span>
@@ -336,7 +347,7 @@
           triggering cutoff, the MPC still dramatically outperformed the PD baseline.
         </p>
 
-        <div style="overflow-x:auto; margin-top:14px;">
+        <div class="mpc-table-wrap">
           <table class="mpc-table">
             <thead>
               <tr>
@@ -359,31 +370,35 @@
 
         <!-- Wind videos -->
         <h3 style="margin-top:18px;">Wind-Disturbed Case Animations</h3>
-        <p class="muted">Click any preview to expand and play.</p>
+        <p class="muted">Videos play inline below. Click either card to expand both side-by-side in sync.</p>
 
-        <div class="mpc-video-grid">
-          <button class="mpc-video-card media-trigger"
+        <div class="mpc-video-grid" id="wind-grid">
+          <button class="mpc-video-card sync-trigger"
                   type="button"
-                  data-video="assets/MPC_project/rocket_landing_wind_comparison.mp4"
-                  aria-label="Play wind-disturbed MPC vs PD comparison animation">
-            <img class="mpc-thumb"
-                 src="assets/MPC_project/mpc_thumb_wind_comparison.jpg"
-                 alt="Wind-disturbed MPC vs PD comparison 3D trajectory preview"
-                 loading="lazy" />
+                  data-pair="wind"
+                  data-role="comparison"
+                  aria-label="Expand wind-disturbed MPC vs PD comparison animation">
+            <video class="mpc-preview-video"
+                   src="assets/MPC_project/rocket_landing_wind_comparison.mp4"
+                   autoplay loop muted playsinline
+                   preload="metadata"
+                   id="wind-preview-comparison"></video>
             <div class="mpc-card-label">
               <span class="play-icon">&#9654;</span>
               <span>Wind-disturbed — MPC vs. PD comparison (3D trajectory)</span>
             </div>
           </button>
 
-          <button class="mpc-video-card media-trigger"
+          <button class="mpc-video-card sync-trigger"
                   type="button"
-                  data-video="assets/MPC_project/rocket_landing_wind_closeup.mp4"
-                  aria-label="Play wind-disturbed MPC close-up animation">
-            <img class="mpc-thumb"
-                 src="assets/MPC_project/mpc_thumb_wind_closeup.jpg"
-                 alt="Wind-disturbed MPC close-up vehicle trajectory preview"
-                 loading="lazy" />
+                  data-pair="wind"
+                  data-role="closeup"
+                  aria-label="Expand wind-disturbed MPC close-up animation">
+            <video class="mpc-preview-video"
+                   src="assets/MPC_project/rocket_landing_wind_closeup.mp4"
+                   autoplay loop muted playsinline
+                   preload="metadata"
+                   id="wind-preview-closeup"></video>
             <div class="mpc-card-label">
               <span class="play-icon">&#9654;</span>
               <span>Wind-disturbed — MPC vehicle close-up</span>
@@ -491,42 +506,131 @@
     </footer>
   </div>
 
-  <!-- Video Lightbox Script -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
     (function () {
-      const vbox      = document.getElementById("videoLightbox");
-      const vboxVideo = document.getElementById("lightboxVideo");
-      const vboxClose = vbox.querySelector(".lightbox-close");
+      // ── Config: which src goes left (comparison) vs right (closeup) ──
+      const PAIRS = {
+        nominal: {
+          comparison: {
+            src:   "assets/MPC_project/rocket_landing_nominal_comparison.mp4",
+            label: "Nominal — MPC vs. PD comparison",
+          },
+          closeup: {
+            src:   "assets/MPC_project/rocket_landing_nominal_closeup.mp4",
+            label: "Nominal — MPC close-up",
+          },
+        },
+        wind: {
+          comparison: {
+            src:   "assets/MPC_project/rocket_landing_wind_comparison.mp4",
+            label: "Wind-disturbed — MPC vs. PD comparison",
+          },
+          closeup: {
+            src:   "assets/MPC_project/rocket_landing_wind_closeup.mp4",
+            label: "Wind-disturbed — MPC close-up",
+          },
+        },
+      };
 
-      function openVideo(src) {
-        vbox.classList.add("open");
-        vbox.setAttribute("aria-hidden", "false");
-        vboxVideo.src = src;
-        vboxVideo.currentTime = 0;
-        vboxVideo.play().catch(() => {});
+      const lb        = document.getElementById("dualVideoLightbox");
+      const closeBtn  = document.getElementById("dualClose");
+      const vidLeft   = document.getElementById("lightboxComparison");
+      const vidRight  = document.getElementById("lightboxCloseup");
+      const lblLeft   = document.getElementById("lbLabelLeft");
+      const lblRight  = document.getElementById("lbLabelRight");
+
+      // ── Sync helper: keep both videos at the same playback position ──
+      let syncActive = false;
+      function startSync() {
+        if (syncActive) return;
+        syncActive = true;
+        vidLeft.addEventListener("timeupdate", onSync);
+      }
+      function stopSync() {
+        syncActive = false;
+        vidLeft.removeEventListener("timeupdate", onSync);
+      }
+      function onSync() {
+        const diff = Math.abs(vidLeft.currentTime - vidRight.currentTime);
+        if (diff > 0.25) vidRight.currentTime = vidLeft.currentTime;
       }
 
-      function closeVideo() {
-        vbox.classList.remove("open");
-        vbox.setAttribute("aria-hidden", "true");
-        vboxVideo.pause();
-        vboxVideo.removeAttribute("src");
-        vboxVideo.load();
+      function openPair(pairKey) {
+        const pair = PAIRS[pairKey];
+        if (!pair) return;
+
+        // Set sources and labels
+        vidLeft.src  = pair.comparison.src;
+        vidRight.src = pair.closeup.src;
+        lblLeft.textContent  = pair.comparison.label;
+        lblRight.textContent = pair.closeup.label;
+
+        // Show lightbox
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+
+        // Play together from t=0 once both are ready
+        let leftReady = false, rightReady = false;
+        function tryPlay() {
+          if (!leftReady || !rightReady) return;
+          vidLeft.currentTime  = 0;
+          vidRight.currentTime = 0;
+          Promise.all([
+            vidLeft.play().catch(() => {}),
+            vidRight.play().catch(() => {}),
+          ]).then(() => startSync());
+        }
+        vidLeft.oncanplay  = () => { leftReady  = true; tryPlay(); };
+        vidRight.oncanplay = () => { rightReady = true; tryPlay(); };
+        vidLeft.load();
+        vidRight.load();
       }
 
+      function closePair() {
+        stopSync();
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        vidLeft.pause();
+        vidRight.pause();
+        vidLeft.removeAttribute("src");
+        vidRight.removeAttribute("src");
+        vidLeft.load();
+        vidRight.load();
+        vidLeft.oncanplay  = null;
+        vidRight.oncanplay = null;
+      }
+
+      // ── Sync the two looping inline preview videos so they stay in step ──
+      function syncPreviews(compEl, closeEl) {
+        if (!compEl || !closeEl) return;
+        compEl.addEventListener("timeupdate", () => {
+          const diff = Math.abs(compEl.currentTime - closeEl.currentTime);
+          if (diff > 0.5) closeEl.currentTime = compEl.currentTime;
+        });
+      }
+      syncPreviews(
+        document.getElementById("nominal-preview-comparison"),
+        document.getElementById("nominal-preview-closeup")
+      );
+      syncPreviews(
+        document.getElementById("wind-preview-comparison"),
+        document.getElementById("wind-preview-closeup")
+      );
+
+      // ── Click delegation ──
       document.addEventListener("click", (e) => {
-        const btn = e.target.closest(".media-trigger");
-        if (btn && btn.dataset.video) {
-          openVideo(btn.dataset.video);
+        const btn = e.target.closest(".sync-trigger");
+        if (btn) {
+          openPair(btn.dataset.pair);
           return;
         }
-        if (e.target === vbox || e.target === vboxClose) closeVideo();
+        if (e.target === lb || e.target === closeBtn) closePair();
       });
 
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && vbox.classList.contains("open")) closeVideo();
+        if (e.key === "Escape" && lb.classList.contains("open")) closePair();
       });
     })();
   </script>
