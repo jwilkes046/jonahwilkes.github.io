@@ -30,19 +30,19 @@
       .report-row { flex-direction: column; align-items: flex-start; }
     }
 
-    /* Result plot grid */
-    .mpc-plot-grid {
+    /* Result plot rows */
+    .mpc-plot-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 4px;
+      gap: 12px;
+      margin-top: 12px;
     }
-    @media (min-width: 1200px) {
-      .mpc-plot-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .mpc-plot-row.two   { grid-template-columns: 1fr 1fr; }
+    .mpc-plot-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 700px) {
+      .mpc-plot-row.two,
+      .mpc-plot-row.three { grid-template-columns: 1fr; }
     }
-    @media (max-width: 600px) {
-      .mpc-plot-grid { grid-template-columns: 1fr; }
-    }
+
     .mpc-plot-fig {
       margin: 0;
       background: var(--surface, #f8f8f8);
@@ -51,18 +51,63 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      cursor: zoom-in;
     }
     .mpc-plot-fig img {
       width: 100%;
       height: auto;
       display: block;
+      transition: opacity 0.15s;
     }
+    .mpc-plot-fig:hover img { opacity: 0.88; }
     .mpc-plot-fig figcaption {
       font-size: 0.78rem;
       color: var(--muted, #666);
       text-align: center;
-      padding: 6px 10px;
+      padding: 5px 10px 7px;
       border-top: 1px solid var(--border, #ddd);
+    }
+
+    /* Image lightbox */
+    #imgLightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.85);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #imgLightbox.open { display: flex; }
+    #imgLightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 6px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      object-fit: contain;
+      cursor: default;
+    }
+    #imgLightboxClose {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    #imgLightboxClose:hover { opacity: 1; }
+    #imgLightboxCaption {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      white-space: nowrap;
     }
   </style>
 
@@ -77,6 +122,13 @@
 </head>
 
 <body>
+  <!-- Image Lightbox -->
+  <div id="imgLightbox" aria-hidden="true">
+    <button id="imgLightboxClose" aria-label="Close image">×</button>
+    <img id="imgLightboxImg" src="" alt="" />
+    <span id="imgLightboxCaption"></span>
+  </div>
+
   <!-- Dual Video Lightbox (synced pair) -->
   <div id="dualVideoLightbox" aria-hidden="true">
     <button class="lightbox-close" type="button" id="dualClose" aria-label="Close">×</button>
@@ -322,38 +374,35 @@
 
         <!-- Nominal result plots -->
         <h3 style="margin-top:22px;">Nominal Case — Result Plots</h3>
-        <p class="muted" style="margin-bottom:12px;">
-          Key simulation outputs comparing MPC (solid blue) vs. PD baseline (dashed orange) in the
-          nominal no-wind case.
+        <p class="muted" style="margin-bottom:4px;">
+          MPC (solid blue) vs. PD baseline (dashed orange). Click any plot to expand.
         </p>
 
-        <div class="mpc-plot-grid">
-          <figure class="mpc-plot-fig">
-            <img src="assets/MPC_project/nominal_trajectory_3d.png"
-                 alt="3D landing trajectory — Nominal" loading="lazy" />
-            <figcaption>3D Landing Trajectory</figcaption>
-          </figure>
-          <figure class="mpc-plot-fig">
-            <img src="assets/MPC_project/nominal_horizontal_error.png"
-                 alt="Horizontal error vs time — Nominal" loading="lazy" />
-            <figcaption>Horizontal Error vs. Time</figcaption>
-          </figure>
-          <figure class="mpc-plot-fig">
+        <div class="mpc-plot-row two">
+          <figure class="mpc-plot-fig" data-caption="Position Response (x, y, z) — Nominal">
             <img src="assets/MPC_project/nominal_position.png"
                  alt="Position response — Nominal" loading="lazy" />
             <figcaption>Position Response (x, y, z)</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+          <figure class="mpc-plot-fig" data-caption="Velocity Response (vx, vy, vz) — Nominal">
             <img src="assets/MPC_project/nominal_velocity.png"
                  alt="Velocity response — Nominal" loading="lazy" />
             <figcaption>Velocity Response (vx, vy, vz)</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+        </div>
+
+        <div class="mpc-plot-row three">
+          <figure class="mpc-plot-fig" data-caption="Horizontal Error vs. Time — Nominal">
+            <img src="assets/MPC_project/nominal_horizontal_error.png"
+                 alt="Horizontal error vs time — Nominal" loading="lazy" />
+            <figcaption>Horizontal Error vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig" data-caption="Thrust Magnitude vs. Time — Nominal">
             <img src="assets/MPC_project/nominal_thrust_magnitude.png"
                  alt="Thrust magnitude vs time — Nominal" loading="lazy" />
             <figcaption>Thrust Magnitude vs. Time</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+          <figure class="mpc-plot-fig" data-caption="Thrust Tilt Angle vs. Time — Nominal">
             <img src="assets/MPC_project/nominal_tilt_angle.png"
                  alt="Thrust tilt angle vs time — Nominal" loading="lazy" />
             <figcaption>Thrust Tilt Angle vs. Time</figcaption>
@@ -445,38 +494,36 @@
 
         <!-- Wind result plots -->
         <h3 style="margin-top:22px;">Wind-Disturbed Case — Result Plots</h3>
-        <p class="muted" style="margin-bottom:12px;">
+        <p class="muted" style="margin-bottom:4px;">
           The same metrics under a constant lateral wind acceleration of [0.10, &minus;0.05, 0] m/s&sup2;.
-          The MPC adapts its thrust to fight the disturbance; the PD baseline cannot.
+          Click any plot to expand.
         </p>
 
-        <div class="mpc-plot-grid">
-          <figure class="mpc-plot-fig">
-            <img src="assets/MPC_project/wind_trajectory_3d.png"
-                 alt="3D landing trajectory — Wind-disturbed" loading="lazy" />
-            <figcaption>3D Landing Trajectory</figcaption>
-          </figure>
-          <figure class="mpc-plot-fig">
-            <img src="assets/MPC_project/wind_horizontal_error.png"
-                 alt="Horizontal error vs time — Wind-disturbed" loading="lazy" />
-            <figcaption>Horizontal Error vs. Time</figcaption>
-          </figure>
-          <figure class="mpc-plot-fig">
+        <div class="mpc-plot-row two">
+          <figure class="mpc-plot-fig" data-caption="Position Response (x, y, z) — Wind-Disturbed">
             <img src="assets/MPC_project/wind_position.png"
                  alt="Position response — Wind-disturbed" loading="lazy" />
             <figcaption>Position Response (x, y, z)</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+          <figure class="mpc-plot-fig" data-caption="Velocity Response (vx, vy, vz) — Wind-Disturbed">
             <img src="assets/MPC_project/wind_velocity.png"
                  alt="Velocity response — Wind-disturbed" loading="lazy" />
             <figcaption>Velocity Response (vx, vy, vz)</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+        </div>
+
+        <div class="mpc-plot-row three">
+          <figure class="mpc-plot-fig" data-caption="Horizontal Error vs. Time — Wind-Disturbed">
+            <img src="assets/MPC_project/wind_horizontal_error.png"
+                 alt="Horizontal error vs time — Wind-disturbed" loading="lazy" />
+            <figcaption>Horizontal Error vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig" data-caption="Thrust Magnitude vs. Time — Wind-Disturbed">
             <img src="assets/MPC_project/wind_thrust_magnitude.png"
                  alt="Thrust magnitude vs time — Wind-disturbed" loading="lazy" />
             <figcaption>Thrust Magnitude vs. Time</figcaption>
           </figure>
-          <figure class="mpc-plot-fig">
+          <figure class="mpc-plot-fig" data-caption="Thrust Tilt Angle vs. Time — Wind-Disturbed">
             <img src="assets/MPC_project/wind_tilt_angle.png"
                  alt="Thrust tilt angle vs time — Wind-disturbed" loading="lazy" />
             <figcaption>Thrust Tilt Angle vs. Time</figcaption>
@@ -622,6 +669,40 @@
   </div>
 
   <script>
+    // ── Image lightbox ──
+    (function () {
+      const lb      = document.getElementById('imgLightbox');
+      const img     = document.getElementById('imgLightboxImg');
+      const caption = document.getElementById('imgLightboxCaption');
+      const closeBtn = document.getElementById('imgLightboxClose');
+
+      function openImg(src, alt, cap) {
+        img.src = src;
+        img.alt = alt;
+        caption.textContent = cap || '';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+      }
+      function closeImg() {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        img.src = '';
+      }
+
+      document.querySelectorAll('.mpc-plot-fig').forEach(fig => {
+        fig.addEventListener('click', () => {
+          const i = fig.querySelector('img');
+          openImg(i.src, i.alt, fig.dataset.caption || fig.querySelector('figcaption')?.textContent);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeImg);
+      lb.addEventListener('click', (e) => { if (e.target === lb) closeImg(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lb.classList.contains('open')) closeImg();
+      });
+    })();
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
     (function () {
