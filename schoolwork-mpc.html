@@ -29,6 +29,41 @@
     @media (max-width: 720px) {
       .report-row { flex-direction: column; align-items: flex-start; }
     }
+
+    /* Result plot grid */
+    .mpc-plot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    @media (min-width: 1200px) {
+      .mpc-plot-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .mpc-plot-grid { grid-template-columns: 1fr; }
+    }
+    .mpc-plot-fig {
+      margin: 0;
+      background: var(--surface, #f8f8f8);
+      border: 1px solid var(--border, #ddd);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .mpc-plot-fig img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .mpc-plot-fig figcaption {
+      font-size: 0.78rem;
+      color: var(--muted, #666);
+      text-align: center;
+      padding: 6px 10px;
+      border-top: 1px solid var(--border, #ddd);
+    }
   </style>
 
   <!-- Google Analytics -->
@@ -285,8 +320,48 @@
           </table>
         </div>
 
+        <!-- Nominal result plots -->
+        <h3 style="margin-top:22px;">Nominal Case — Result Plots</h3>
+        <p class="muted" style="margin-bottom:12px;">
+          Key simulation outputs comparing MPC (solid blue) vs. PD baseline (dashed orange) in the
+          nominal no-wind case.
+        </p>
+
+        <div class="mpc-plot-grid">
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_trajectory_3d.png"
+                 alt="3D landing trajectory — Nominal" loading="lazy" />
+            <figcaption>3D Landing Trajectory</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_horizontal_error.png"
+                 alt="Horizontal error vs time — Nominal" loading="lazy" />
+            <figcaption>Horizontal Error vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_position.png"
+                 alt="Position response — Nominal" loading="lazy" />
+            <figcaption>Position Response (x, y, z)</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_velocity.png"
+                 alt="Velocity response — Nominal" loading="lazy" />
+            <figcaption>Velocity Response (vx, vy, vz)</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_thrust_magnitude.png"
+                 alt="Thrust magnitude vs time — Nominal" loading="lazy" />
+            <figcaption>Thrust Magnitude vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/nominal_tilt_angle.png"
+                 alt="Thrust tilt angle vs time — Nominal" loading="lazy" />
+            <figcaption>Thrust Tilt Angle vs. Time</figcaption>
+          </figure>
+        </div>
+
         <!-- Nominal videos -->
-        <h3 style="margin-top:18px;">Nominal Case Animations</h3>
+        <h3 style="margin-top:22px;">Nominal Case Animations</h3>
         <p class="muted">Videos play inline below. Click either card to expand both side-by-side in sync.</p>
 
         <div class="mpc-video-grid" id="nominal-grid">
@@ -368,8 +443,48 @@
           </table>
         </div>
 
+        <!-- Wind result plots -->
+        <h3 style="margin-top:22px;">Wind-Disturbed Case — Result Plots</h3>
+        <p class="muted" style="margin-bottom:12px;">
+          The same metrics under a constant lateral wind acceleration of [0.10, &minus;0.05, 0] m/s&sup2;.
+          The MPC adapts its thrust to fight the disturbance; the PD baseline cannot.
+        </p>
+
+        <div class="mpc-plot-grid">
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_trajectory_3d.png"
+                 alt="3D landing trajectory — Wind-disturbed" loading="lazy" />
+            <figcaption>3D Landing Trajectory</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_horizontal_error.png"
+                 alt="Horizontal error vs time — Wind-disturbed" loading="lazy" />
+            <figcaption>Horizontal Error vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_position.png"
+                 alt="Position response — Wind-disturbed" loading="lazy" />
+            <figcaption>Position Response (x, y, z)</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_velocity.png"
+                 alt="Velocity response — Wind-disturbed" loading="lazy" />
+            <figcaption>Velocity Response (vx, vy, vz)</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_thrust_magnitude.png"
+                 alt="Thrust magnitude vs time — Wind-disturbed" loading="lazy" />
+            <figcaption>Thrust Magnitude vs. Time</figcaption>
+          </figure>
+          <figure class="mpc-plot-fig">
+            <img src="assets/MPC_project/wind_tilt_angle.png"
+                 alt="Thrust tilt angle vs time — Wind-disturbed" loading="lazy" />
+            <figcaption>Thrust Tilt Angle vs. Time</figcaption>
+          </figure>
+        </div>
+
         <!-- Wind videos -->
-        <h3 style="margin-top:18px;">Wind-Disturbed Case Animations</h3>
+        <h3 style="margin-top:22px;">Wind-Disturbed Case Animations</h3>
         <p class="muted">Videos play inline below. Click either card to expand both side-by-side in sync.</p>
 
         <div class="mpc-video-grid" id="wind-grid">
@@ -485,12 +600,12 @@
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <a class="badge"
-                 href="assets/MPC_project/MMAE 549 Final Report - Alec Weedman and Jonah Wilkes.pdf"
+                 href="assets/MPC_project/MMAE_549_Final_Report_-_Alec_Weedman_and_Jonah_Wilkes.pdf"
                  target="_blank" rel="noopener">
                 Final Report (PDF)
               </a>
               <a class="badge"
-                 href="assets/MPC_project/MMAE 549 presentation - Jonah Wilkes and Alec Weedman.pdf"
+                 href="assets/MPC_project/MMAE_549_presentation_-_Jonah_Wilkes_and_Alec_Weedman.pdf"
                  target="_blank" rel="noopener">
                 Slides (PDF)
               </a>
