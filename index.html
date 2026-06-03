@@ -116,7 +116,7 @@
               <li><a href="astrophysics.html">Astrophysics Research &rarr;</a></li>
               <li><a href="gnss.html">Antarctic Signal Processing Research &rarr;</a></li>
               <li><a href="nasa.html">NASA L'SPACE &rarr;</a></li>
-              <li><a href="schoolwork.html">Schoolwork (Aircraft / Spacecraft / Navigation) &rarr;</a></li>
+              <li><a href="schoolwork.html">Schoolwork Overview &rarr;</a></li>
             </ul>
           </div>
         </section>
@@ -324,6 +324,111 @@
                   </div>
                 </div>
               </a>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- SCHOOL PROJECTS -->
+        <section class="card col-12" style="margin-top:14px;">
+          <h2>School Projects</h2>
+          <p class="muted" style="margin-bottom:4px;">
+            Selected semester-long design and analysis projects from coursework in aircraft design,
+            astrodynamics, navigation, and optimal control.
+          </p>
+
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3><a href="schoolwork-aircraft.html">Aircraft Design</a></h3>
+              <p class="muted">
+                Led conceptual and preliminary design of a fixed-wing aircraft within a small team,
+                covering wing planform definition, airfoil selection, and aerodynamic configuration.
+                Conducted detailed aerodynamic analysis in XFLR5, developed custom MATLAB post-processing
+                scripts, and integrated results into a Simulink-based flight control model evaluated across
+                multiple flight conditions.
+              </p>
+              <div class="tags">
+                <span>Aircraft Design</span><span>XFLR5</span><span>MATLAB</span><span>Simulink</span><span>Aerodynamics</span>
+              </div>
+            </div>
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger" type="button"
+                      data-src="assets/Aircraft_XFLR5.PNG"
+                      aria-label="Expand aircraft XFLR5 figure">
+                <img src="assets/Aircraft_XFLR5.PNG"
+                     alt="XFLR5 wing aerodynamic analysis" loading="lazy" />
+              </button>
+            </div>
+          </div>
+
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3><a href="schoolwork-spacecraft.html">Spacecraft Dynamics &amp; Design</a></h3>
+              <p class="muted">
+                Designed and simulated multi-flyby interplanetary trajectories for ten of Jupiter's
+                moons using Python and the REBOUND N-body framework, then applied astrodynamics methods
+                within a full systems-engineering mission concept to Saturn's moon Titan. Led trajectory
+                design while collaborating on spacecraft architecture, deployable satellites, and a
+                submersible concept for Titan's methane lakes.
+              </p>
+              <div class="tags">
+                <span>Astrodynamics</span><span>Orbital Mechanics</span><span>Mission Design</span><span>Python</span><span>Systems Engineering</span>
+              </div>
+            </div>
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger" type="button"
+                      data-src="assets/Spacecraft_img.PNG"
+                      aria-label="Expand spacecraft mission figure">
+                <img src="assets/Spacecraft_img.PNG"
+                     alt="Interplanetary trajectory and spacecraft mission concept" loading="lazy" />
+              </button>
+            </div>
+          </div>
+
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3><a href="schoolwork-navigation.html">Navigation Systems</a></h3>
+              <p class="muted">
+                Applied state-space modeling and Kalman filtering to GNSS positioning problems,
+                implementing differential GPS and augmentation methods through a cumulative course project.
+                Gained hands-on experience with estimation structure, error sources, and solution
+                robustness across noisy, uncertainty-driven measurement scenarios.
+              </p>
+              <div class="tags">
+                <span>GNSS / GPS</span><span>Kalman Filtering</span><span>MATLAB</span><span>Optimal Estimation</span>
+              </div>
+            </div>
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger" type="button"
+                      data-src="assets/Problem123_fig1.png"
+                      aria-label="Expand navigation estimation figure">
+                <img src="assets/Problem123_fig1.png"
+                     alt="Navigation estimation error and positioning results" loading="lazy" />
+              </button>
+            </div>
+          </div>
+
+          <div class="card with-aside" style="margin-top:12px;">
+            <div class="card-main">
+              <h3><a href="schoolwork-mpc.html">MPC for Rocket Booster Landing</a></h3>
+              <p class="muted">
+                Designed and implemented a constrained nonlinear Model Predictive Controller for
+                powered landing of a Falcon 9-class booster, benchmarked against a PD baseline in
+                nominal and wind-disturbed closed-loop simulations. The MPC achieved a 1.453 m
+                landing error while using 18% less fuel than the PD controller, which failed to
+                land in either scenario.
+              </p>
+              <div class="tags">
+                <span>Optimal Control</span><span>MPC</span><span>Python / SciPy</span><span>Constrained Optimization</span><span>Trajectory Simulation</span>
+              </div>
+            </div>
+            <div class="aside-img">
+              <button class="media-trigger lightbox-trigger" type="button"
+                      data-src="assets/MPC_project/mpc_thumb_nominal_comparison.jpg"
+                      aria-label="Expand MPC rocket landing figure">
+                <img src="assets/MPC_project/mpc_thumb_nominal_comparison.jpg"
+                     alt="MPC rocket landing nominal trajectory preview" loading="lazy" />
+              </button>
             </div>
           </div>
 
